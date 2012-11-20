@@ -13,6 +13,7 @@ if [ `cat /proc/stb/info/chipset` = bcm7405 ]; then
 	echo
 	cd /tmp
 	echo
+	echo "download & extract spinnerupdate"
 	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateET9x00.tar.gz
 	echo
 	if [ -f /etc/opkg/et9x00-feed.conf ]; then
@@ -42,6 +43,7 @@ if [ `cat /proc/stb/info/chipset` = 7335 ]; then
  	opkg update > /dev/null 2>&1
 	opkg upgrade
 	echo
+	echo "download & extract spinnerupdate"
 	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateVuduo.tar.gz
 	echo
 	echo "extract files"
@@ -62,6 +64,7 @@ if [ `cat /proc/stb/info/chipset` = 7325 ]; then
  	opkg update > /dev/null 2>&1
 	opkg upgrade
 	echo
+	echo "download & extract spinnerupdate"
 	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateVUSolo.tar.gz
 	echo
 	echo "extract files"

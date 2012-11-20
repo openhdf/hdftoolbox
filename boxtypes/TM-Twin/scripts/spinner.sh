@@ -9,6 +9,7 @@ echo "Download and install update"
  	opkg update > /dev/null 2>&1
 	opkg upgrade
 	echo
+	echo "download & extract spinnerupdate"
 	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateTM-Twin.tar.gz
 	echo
 	echo "extract files"

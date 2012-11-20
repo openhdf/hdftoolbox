@@ -12,8 +12,8 @@ if [ `cat /proc/stb/info/chipset` = bcm7405 ]; then
 		opkg upgrade
 	echo
 	cd /tmp
-	echo
-	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateET9x00.tar.gz
+	echo "download & extract spinnerupdate"
+	wget -q http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateET9x00.tar.gz
 	echo
 	if [ -f /etc/opkg/et9x00-feed.conf ]; then
 		echo "New et9x00 Image found"
@@ -42,7 +42,8 @@ if [ `cat /proc/stb/info/chipset` = 7335 ]; then
  	opkg update > /dev/null 2>&1
 	opkg upgrade
 	echo
-	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateVuduo.tar.gz
+	echo "download & extract spinnerupdate"
+	wget -q http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateVuduo.tar.gz
 	echo
 	echo "extract files"
 	cd /
@@ -62,7 +63,8 @@ if [ `cat /proc/stb/info/chipset` = 7325 ]; then
  	opkg update > /dev/null 2>&1
 	opkg upgrade
 	echo
-	wget http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateVUSolo.tar.gz
+	echo "download & extract spinnerupdate"
+	wget -q http://addons.hdfreaks.cc/feeds/enigma2-plugins-update-HDFreaks_SpinnerupdateVUSolo.tar.gz
 	echo
 	echo "extract files"
 	cd /
