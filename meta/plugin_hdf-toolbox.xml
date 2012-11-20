@@ -1,0 +1,15 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info>
+                    <author>HDF-Team</author>
+                    <name>DLNAServer</name>
+                    <packagename>enigma2-plugin-extensions-hdf-toolbox</packagename>
+                    <shortdescription>HDFreaks.cc Toolbox</shortdescription>
+                    <description>The AIO Toolbox of HDFreaks</description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-hdf-toolbox" />
+  	  </files>
+</default>
