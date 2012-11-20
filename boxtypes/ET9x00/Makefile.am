@@ -1,4 +1,4 @@
-installdir = /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/ET9x00
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/ET9x00
 
 SUBDIRS = menu scripts
 

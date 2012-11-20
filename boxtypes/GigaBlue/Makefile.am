@@ -1,4 +1,4 @@
-installdir = /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/GigaBlue
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/GigaBlue
 
 SUBDIRS = menu scripts
 

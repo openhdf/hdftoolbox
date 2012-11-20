@@ -1,5 +1,4 @@
-ACLOCAL_AMFLAGS = -I m4
-installdir = /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox
 
 SUBDIRS = boxtypes meta
 
