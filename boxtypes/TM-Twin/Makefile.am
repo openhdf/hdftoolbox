@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox/boxtypes/TM-Twin
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/TM-Twin
 
 SUBDIRS = menu scripts
 

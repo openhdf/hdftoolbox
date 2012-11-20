@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox/boxtypes/TM800
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/TM800
 
 SUBDIRS = menu scripts
 

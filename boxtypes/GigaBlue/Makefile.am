@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox/boxtypes/GigaBlue
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/GigaBlue
 
 SUBDIRS = menu scripts
 

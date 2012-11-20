@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox/boxtypes/VU+Solo
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/VU+Solo
 
 SUBDIRS = menu scripts
 

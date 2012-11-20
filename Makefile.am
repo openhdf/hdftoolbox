@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox
 
 SUBDIRS = boxtypes meta
 

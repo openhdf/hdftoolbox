@@ -1,3 +1,3 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox/boxtypes/GigaBlue/menu
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/GigaBlue/menu
 
 install_DATA = *.cfg

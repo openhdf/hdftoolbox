@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDFToolbox/boxtypes/Ixuss
+installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/Ixuss
 
 SUBDIRS = menu scripts
 
