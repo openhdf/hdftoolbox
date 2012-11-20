@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/TM800
+installdir = /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/TM800
 
 SUBDIRS = menu scripts
 

@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/TM-Twin
+installdir = /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/TM-Twin
 
 SUBDIRS = menu scripts
 

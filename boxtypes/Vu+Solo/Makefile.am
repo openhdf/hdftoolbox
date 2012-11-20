@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/Extensions/HDF-Toolbox/boxtypes/VU+Solo
+installdir = /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/VU+Solo
 
 SUBDIRS = menu scripts
 
