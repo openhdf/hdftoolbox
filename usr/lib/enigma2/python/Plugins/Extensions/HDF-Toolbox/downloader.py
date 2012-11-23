@@ -40,14 +40,6 @@ for line in menulog:
     elif "STx7109" in line:
         box = "ipbox"
         boxname = "IPBox"
-    elif os.path.exists("/proc/stb/info/gbmodel"): 
-        if open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
-            box = "gbquad"
-            boxname = "GigaBlue"
-    elif os.path.exists("/proc/stb/info/gbmodel"):
-        if open("/proc/stb/info/model",'r').read().strip() == "Gigablue":
-            box = "gigablue"
-            boxname = "GigaBlue"
     elif "BCM7325B0 STB platform" and "220.16" in line:
         box = "vusolo"
         boxname = "Vu+Solo"
@@ -58,15 +50,24 @@ for line in menulog:
         if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
             box = "et9000"
             boxname = "Ixuss One"
-        if open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
+        elif open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
             box = "et9000"
             boxname = "Zuron One"
-if os.path.exists("/proc/stb/info/hwmodel"):
-    if open("/proc/stb/info/hwmodel",'r').read().strip() == "twin":
-        box = "tmtwin"
-        boxname = "TM-Twin"
+    elif os.path.exists("/proc/stb/info/hwmodel"):
+        if open("/proc/stb/info/hwmodel",'r').read().strip() == "twin":
+            box = "tmtwin"
+            boxname = "TM-Twin"
+    elif os.path.exists("/proc/stb/info/gbmodel"): 
+        if open("/proc/stb/info/gbmodel",'r').read().strip() == "gb800solo":
+            box = "gigablue"
+            boxname = "GigaBlue"
+        elif open("/proc/stb/info/gbmodel",'r').read().strip() == "gb800se":
+            box = "gigablue"
+            boxname = "GigaBlue"
+        elif open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
+            box = "gbquad"
+            boxname = "GigaBlue"
 menulog.close()
-
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py")
