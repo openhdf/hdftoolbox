@@ -25,6 +25,13 @@ for line in menulog:
     if "BCM7413B1 STB platform" in line:
         box = "et9000"
         boxname = "ET9x00/ET6x00"
+        if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
+            box = "et9000"
+            boxname = "Ixuss One"
+        elif open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
+            box = "et9000"
+            boxname = "Zuron One"
+
     elif "STx7111" in line:
         box = "spark"
         boxname = "Spark"
