@@ -11,6 +11,10 @@ for line in menulog:
       if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
          box = "Ixuss"
          boxname = "Ixuss One"
+      if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
+         box = "odinm9"
+         boxname = "OdinM9"
+
    elif "BCM7335B0 STB platform" in line:
       box = "Vu+Duo"
    elif "NXP STB22x" in line:
