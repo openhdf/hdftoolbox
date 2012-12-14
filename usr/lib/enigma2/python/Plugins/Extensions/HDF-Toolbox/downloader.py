@@ -76,6 +76,9 @@ for line in menulog:
         elif open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
             box = "gbquad"
             boxname = "GigaBlue"
+        elif open("/proc/stb/info/gbmodel",'r').read().strip() == "ue":
+            box = "gigablue"
+            boxname = "GigaBlue"
 menulog.close()
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
