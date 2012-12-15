@@ -26,10 +26,10 @@ for line in menulog:
         box = "et9000"
         boxname = "ET9x00/ET6x00"
         if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-            box = "et9000"
+            box = "ixuss"
             boxname = "Ixuss One"
         if open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
-            box = "et9000"
+            box = "ixuss"
             boxname = "Zuron One"
         if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
             box = "odinm9"
