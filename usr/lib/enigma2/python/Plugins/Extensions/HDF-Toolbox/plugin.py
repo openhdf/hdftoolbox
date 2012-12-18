@@ -27,6 +27,8 @@ for line in menulog:
    elif os.path.exists("/proc/stb/info/boxtype"):
       if open("/proc/stb/info/boxtype",'r').read().strip() == "gigablue":
          box = "GigaBlue"
+   elif "BCM7358A1 STB platform" in line:
+      box = "ET4x00"
    elif "BCM7325B0 STB platform" and "220.16" in line:
       box = "Vu+Solo"
    elif "BCM97xxx Settop Platform" in line:
@@ -152,7 +154,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 16.12.2012" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 18.12.2012" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):

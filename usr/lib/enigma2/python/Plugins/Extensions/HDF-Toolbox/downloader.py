@@ -52,6 +52,9 @@ for line in menulog:
     elif "BCM7325B0 STB platform" and "220.16" in line:
         box = "vusolo"
         boxname = "Vu+Solo"
+    elif "BCM7358A1 STB platform" in line:
+        box = "et4x00"
+        boxname = "ET4x00"
     elif "AMD Phenom(tm) II X6 1090T Processor" in line:
         box = "et9000"
         boxname = "Henry VM"
