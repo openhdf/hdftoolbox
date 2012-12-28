@@ -86,6 +86,8 @@ pluginpath = "/usr/lib/enigma2/python/Plugins/"
 
 from Screens.Ci import *
 from Screens.PluginBrowser import *
+# SkinSelector is now located in Screen
+from Screens.SkinSelector import SkinSelector
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.autoupdate") is True:
    os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/update.sh")
@@ -101,11 +103,7 @@ if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
 if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
    from Plugins.PLi.SoftcamSetup.Sc import *
 # SkinSelector
-if os.path.exists("%s/SystemPlugins/SkinSelector" %pluginpath) is True:
-   try:
-      from Plugins.SystemPlugins.SkinSelector.plugin import *
-   except:
-      pass
+
 # SoftwareUpdate
 if os.path.exists("%s/SystemPlugins/SoftwareUpdate" %pluginpath) is True:
   try:
@@ -154,7 +152,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 18.12.2012" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 28.12.2012" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -558,6 +556,9 @@ class Fantastic(Screen):
 # modded by koivo Z: open extra plugins and screens
            elif mfcommand is "Z":
                  self.session.openWithCallback(self.FantasticMenu(""),PluginBrowser)
+# modded by henrylicious W: open extra plugins and screens
+           elif mfcommand is "W":
+                 self.session.openWithCallback(self.FantasticMenu(""),SkinSelector)
            elif mfcommand is "1":
                  self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
 				 
