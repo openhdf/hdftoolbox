@@ -3,7 +3,6 @@
 cd /tmp
 echo "Download and install update"
 
-if [ `cat /proc/stb/info/chipset` = 7335 ]; then 
 	echo
 	echo "Boxtype Ixuss"
 	echo
@@ -18,7 +17,6 @@ if [ `cat /proc/stb/info/chipset` = 7335 ]; then
 	tar xzvf /tmp/enigma2-plugins-update-HDFreaks_SpinnerupdateIxuss.tar.gz > /dev/null 2>&1
 	rm -f /tmp/enigma2-plugins-update-HDFreaks_SpinnerupdateIxuss.tar.gz > /dev/null 2>&1
 	echo
-	echo "Update Done ... Please reboot your Box now!"	
-fi
+	echo "Update Done ... Please reboot your Box now!"
 
 exit 0 

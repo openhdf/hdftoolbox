@@ -3,8 +3,6 @@
 cd /tmp
 echo "Download and install update"
 
-
-if [ `cat /proc/stb/info/chipset` = 7325 ]; then 
 	echo
 	echo "Boxtype vusolo"
 	echo
@@ -21,6 +19,5 @@ if [ `cat /proc/stb/info/chipset` = 7325 ]; then
 	rm -f /tmp/enigma2-plugins-update-HDFreaks_SpinnerupdateVUSolo.tar.gz > /dev/null 2>&1
 	echo
 	echo "Update Done ... Please reboot your Box now!"
-fi
 
 exit 0 

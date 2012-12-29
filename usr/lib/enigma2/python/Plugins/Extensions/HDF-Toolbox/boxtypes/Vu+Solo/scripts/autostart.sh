@@ -3,9 +3,6 @@
 #set temp output file
 touch /tmp/hdf.txt
 
-#download changelog
-cd /tmp
-wget -q http://addons.hdfreaks.cc/et9000/changelog -Oet9000_changelog
 ####
 
 if [ -f /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/dvbdate ]; then
