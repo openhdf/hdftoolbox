@@ -8,12 +8,16 @@ menulog = open("/proc/cpuinfo","r")
 for line in menulog: 
    if "BCM7413B1 STB platform" in line:
       box = "ET9x00"
-      if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-         box = "Ixuss"
-         boxname = "Ixuss One"
-      if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
-         box = "OdinM9"
-         boxname = "OdinM9"
+      if os.path.exists("/proc/stb/info/boxtype"):
+         if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
+            box = "Ixuss"
+            boxname = "Ixuss One"
+         if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
+            box = "OdinM9"
+            boxname = "OdinM9"
+      if os.path.exists("/proc/stb/info/model"):
+         box = "Dreambox"
+         boxname = "Dreambox"
    elif "BCM7335B0 STB platform" in line:
       box = "Vu+Duo"
    elif "NXP STB22x" in line:

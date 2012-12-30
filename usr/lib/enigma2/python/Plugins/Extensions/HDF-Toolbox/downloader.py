@@ -25,16 +25,20 @@ for line in menulog:
     if "BCM7413B1 STB platform" in line:
         box = "et9000"
         boxname = "ET9x00/ET6x00"
-        if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-            box = "ixuss"
-            boxname = "Ixuss One"
-        if open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
-            box = "ixuss"
-            boxname = "Zuron One"
-        if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
-            box = "odinm9"
-            boxname = "Odin M9"
-    elif "STx7111" in line:
+        if os.path.exists("/proc/stb/info/boxtype"):
+            if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
+                box = "ixuss"
+                boxname = "Ixuss One"
+            if open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
+                box = "ixuss"
+                boxname = "Zuron One"
+            if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
+                box = "odinm9"
+                boxname = "Odin M9"
+        if os.path.exists("/proc/stb/info/model"):
+            box = "dreambox"
+            boxname = "Dreambox"
+	    elif "STx7111" in line:
         box = "spark"
         boxname = "Spark"
     elif "STx7105" in line:
@@ -706,3 +710,4 @@ def main(session, **kwargs):
 #added gbquad as boxtype
 #added tmtwin as boxtype
 #Try block um main
+#added Dreambox
