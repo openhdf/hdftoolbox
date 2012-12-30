@@ -659,7 +659,10 @@ class PictureScreen(Screen):
 #                            fnc=main)]
 
 def main(session, **kwargs):
-    session.open(Hdf_Downloader)
+    try:
+        session.open(Hdf_Downloader)
+    except:
+        self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
 
 #Recent Updates:
 # Die Discription tut
@@ -702,3 +705,4 @@ def main(session, **kwargs):
 ## -> falls ja: mips23el einlesen
 #added gbquad as boxtype
 #added tmtwin as boxtype
+#Try block um main
