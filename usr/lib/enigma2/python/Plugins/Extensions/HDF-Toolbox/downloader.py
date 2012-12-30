@@ -38,7 +38,7 @@ for line in menulog:
         if os.path.exists("/proc/stb/info/model"):
             box = "dreambox"
             boxname = "Dreambox"
-	    elif "STx7111" in line:
+    elif "STx7111" in line:
         box = "spark"
         boxname = "Spark"
     elif "STx7105" in line:
