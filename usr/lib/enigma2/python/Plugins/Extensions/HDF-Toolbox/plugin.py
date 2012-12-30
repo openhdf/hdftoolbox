@@ -268,7 +268,11 @@ class Fantastic(Screen):
                self.session.open(MessageBox,("%s") % (title),  MessageBox.TYPE_INFO)
            elif mfselected is "mfschdf":
                #self.session.openWithCallback(self.FantasticMenu(""),HDF_Downloader)
-               self.session.open(downloader.Hdf_Downloader)
+               try:
+					self.session.open(downloader.Hdf_Downloader)
+               except:
+					self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
+               #self.session.open(downloader.Hdf_Downloader)
                #self.HDF_Downloader()
            elif mfselected is "mfsc":
                self.session.openWithCallback(self.FantasticMenu(""),ScSelection)
