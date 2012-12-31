@@ -1,0 +1,4 @@
+#!/bin/sh
+rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox
+echo "remove old HDF-Toolbox"
+exit 0
