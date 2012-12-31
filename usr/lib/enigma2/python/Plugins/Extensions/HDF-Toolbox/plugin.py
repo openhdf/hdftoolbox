@@ -1,6 +1,4 @@
 #
-# Menu Fantastic Plugin by gutemine
-#
 import os
 
 #check the boxtype#
@@ -51,16 +49,15 @@ if os.path.exists("/proc/stb/info/hwmodel"):
 
 menulog.close()
 
-os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
-os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
-os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
-
+#change some stuff at linux
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
-   os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
-   os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
-   os.system("mv /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/" + box + "/* /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/")
-   os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/")
-
+	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
+	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
+	os.system("mv /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/" + box + "/* /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/")
+	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/")
+	os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
+	os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
+	os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
 from enigma import *
 from Screens.Screen import Screen
@@ -97,13 +94,10 @@ from Screens.PluginBrowser import *
 # SkinSelector is now located in Screen
 from Screens.SkinSelector import SkinSelector
 
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.autoupdate") is True:
-   os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/update.sh")
-
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py")
-else:
-    pass
+    os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/__init__.py")
+
 
 # SoftcamManager
 if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
@@ -119,15 +113,12 @@ if os.path.exists("%s/SystemPlugins/SoftwareUpdate" %pluginpath) is True:
   except:
      pass
  
-   
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
 fantastic_pluginpath = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox"
 fantastic_readme = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/readme.txt"
 splitchar = ":"
 
-
 session = None
-
 
 def autostart(reason, **kwargs):
     global session
@@ -409,14 +400,12 @@ class Fantastic(Screen):
               else:
                  os.system("%s %s"  % (mfexecute,mftextargument))
               self.session.openWithCallback(self.FantasticMenu,MessageBox,"%s %s was executed !" %(mfexecute,mftextargument), MessageBox.TYPE_INFO, timeout=mfintargument)
-# patched by barabas
            elif mfcommand is "U":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
                  os.system("%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument))
               else:
                  os.system("%s %s"  % (mfexecute,mftextargument))
               self.FantasticMenu("") 
-# ------ ende ------              
            elif mfcommand is "C":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
                  self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument) ])
