@@ -16,8 +16,9 @@ for line in menulog:
             box = "OdinM9"
             boxname = "OdinM9"
       if os.path.exists("/proc/stb/info/model"):
-         box = "Dreambox"
-         boxname = "Dreambox"
+         if open("/proc/stb/info/model",'r').read().strip() == "Dreambox":
+            box = "Dreambox"
+            boxname = "Dreambox"
    elif "BCM7335B0 STB platform" in line:
       box = "Vu+Duo"
    elif "NXP STB22x" in line:
