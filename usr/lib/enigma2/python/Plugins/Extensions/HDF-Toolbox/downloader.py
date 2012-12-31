@@ -35,9 +35,11 @@ for line in menulog:
             if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
                 box = "odinm9"
                 boxname = "Odin M9"
-        if os.path.exists("/proc/stb/info/model"):
-            box = "dreambox"
-            boxname = "Dreambox"
+            if os.path.exists("/proc/stb/info/model"):
+                if open("/proc/stb/info/model",'r').read().strip() == "Dreambox":
+                    box = "Dreambox"
+                    boxname = "Dreambox"
+
     elif "STx7111" in line:
         box = "spark"
         boxname = "Spark"
