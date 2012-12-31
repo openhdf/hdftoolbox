@@ -1,29 +1,25 @@
 #!/bin/sh
-echo "Download new version of HDF-Toolbox"
+echo "Reinstall HDF-Toolbox"
 IP=hdfreaks.cc
 ping -c 1 $IP  > /dev/null 2>&1
+
 if [ $? == 0 ]
 	then
-		wget -q http://addons.hdfreaks.cc/feeds/enigma2-plugin-extensions-hdftoolbox_v5_all.ipk -O /tmp/enigma2-plugin-extensions-hdftoolbox_v5_all.ipk
 		echo
-		echo "Download complete"
+		echo "remove installed version"
+		rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/ > /dev/null 2>&1
+		rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu > /dev/null 2>&1
+		rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts > /dev/null 2>&1
+		rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/main.cfg > /dev/null 2>&1
+		echo "install new version from feed"
+		opkg install --force-reinstall enigma2-plugin-extensions-hdftoolbox > /dev/null 2>&1
+		date > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.lastupdate.log
+		echo "please restart enigma now"
 		echo
 	else
-  		echo "Sorry ... Update failed"
-fi;
-
-if [ -f /tmp/enigma2-plugin-extensions-hdftoolbox_v5_all.ipk ]; then 
-	rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/ > /dev/null 2>&1
-	rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu > /dev/null 2>&1
-	rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts > /dev/null 2>&1
-	rm -fr /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/main.cfg > /dev/null 2>&1
-	opkg install /tmp/enigma2-plugin-extensions-hdftoolbox_v5_all.ipk
-	rm /tmp/enigma2-plugin-extensions-hdftoolbox_v5_all.ipk
-	date > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.lastupdate.log
-echo
-echo "please reboot enigma now"
-echo
-else
-	echo "sorry there is a problem"
+		echo
+		echo "sorry ... update failed ... is you box online?"
+		echo
 fi
+
 exit 0 
