@@ -37,7 +37,7 @@ for line in menulog:
                 boxname = "Odin M9"
             if os.path.exists("/proc/stb/info/model"):
                 if open("/proc/stb/info/model",'r').read().strip() == "Dreambox":
-                    box = "Dreambox"
+                    box = "dreambox"
                     boxname = "Dreambox"
 
     elif "STx7111" in line:
