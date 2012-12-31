@@ -54,10 +54,13 @@ os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-To
 os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu") is False or os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts") is False:	
+if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
+   os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
+   os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
    os.system("mv /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/" + box + "/* /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/")
    os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/")
-   
+
+
 from enigma import *
 from Screens.Screen import Screen
 from Screens.Standby import *
@@ -156,7 +159,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 29.12.2012" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 31.12.2012" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
