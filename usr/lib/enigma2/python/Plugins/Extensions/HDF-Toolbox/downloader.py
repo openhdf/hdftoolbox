@@ -392,7 +392,7 @@ class Hdf_Downloader(Screen):
                 if file.split(".")[i] != "ipk" or file.split(".")[i] != "tar" or file.split(".")[i] != "tgz":
                     i = i + 1
             if filetype == "ipk":
-                com = "opkg install /tmp/" + file + ""
+                com = "opkg install --force-overwrite /tmp/" + file + ""
             else:
                 com = "tar xzvf /tmp/" + file + " -C /"
             self.session.open(Console,_("Install Log: %s") % (com), ["%s" %com])

@@ -96,7 +96,6 @@ from Screens.SkinSelector import SkinSelector
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py")
-    os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/__init__.py")
 
 
 # SoftcamManager
