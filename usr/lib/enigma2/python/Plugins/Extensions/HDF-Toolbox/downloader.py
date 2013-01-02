@@ -86,7 +86,6 @@ except:
             boxname = "TM800"
         elif "STx7109" in line:
             box = "ipbox"
-        elif "BCM97xxx Settop Platform" in line:
     menulog.close()
     
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
