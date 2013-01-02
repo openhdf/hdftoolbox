@@ -20,76 +20,75 @@ import os
 import sys
 
 #check the boxtype#
-menulog = open("/proc/cpuinfo", "r")
-for line in menulog:
-    if "BCM7413B1 STB platform" in line:
+try:
+    from enigma import getBoxType
+    #ET Boxen
+    #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
+    if getBoxType() == "et9x00":
         box = "et9000"
-        boxname = "ET9x00/ET6x00"
-        if os.path.exists("/proc/stb/info/boxtype"):
-            if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-                box = "ixuss"
-                boxname = "Ixuss One"
-            if open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
-                box = "ixuss"
-                boxname = "Zuron One"
-            if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
-                box = "odinm9"
-                boxname = "Odin M9"
-            if os.path.exists("/proc/stb/info/model"):
-                if open("/proc/stb/info/model",'r').read().strip() == "Dreambox":
-                    box = "dreambox"
-                    boxname = "Dreambox"
-
-    elif "STx7111" in line:
-        box = "spark"
-        boxname = "Spark"
-    elif "STx7105" in line:
-        box = "spark"
-        boxname = "Spark"
-    elif "BCM7335B0 STB platform" in line:
-        box = "vuduo"
-        boxname = "Vu+Duo"
-    elif "NXP STB22x" in line:
-        box = "tm800"
-        boxname = "TM800"
-    elif "STx7109" in line:
-        box = "ipbox"
-        boxname = "IPBox"
-    elif "BCM7325B0 STB platform" and "220.16" in line:
-        box = "vusolo"
-        boxname = "Vu+Solo"
-    elif "BCM7358A1 STB platform" in line:
-        box = "et4x00"
+        boxname = "ET9x00"
+    elif getBoxType() == "et6x00":
+        box = "et9000"
+        boxname = "ET6x00"
+    elif getBoxType() == "et5x00":
+        box = "et9000"
+        boxname = "ET5x00"
+    elif getBoxType() == "et4x00":
+        box = "et9000"
         boxname = "ET4x00"
-    elif "AMD Phenom(tm) II X6 1090T Processor" in line:
-        box = "et9000"
-        boxname = "Henry VM"
-    elif "BCM97xxx Settop Platform" in line:
-        if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-            box = "et9000"
-            boxname = "Ixuss One"
-        elif open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
-            box = "et9000"
-            boxname = "Zuron One"
-    elif os.path.exists("/proc/stb/info/hwmodel"):
-        if open("/proc/stb/info/hwmodel",'r').read().strip() == "twin":
-            box = "tmtwin"
-            boxname = "TM-Twin"
-    elif os.path.exists("/proc/stb/info/gbmodel"): 
-        if open("/proc/stb/info/gbmodel",'r').read().strip() == "gb800solo":
-            box = "gigablue"
-            boxname = "GigaBlue"
-        elif open("/proc/stb/info/gbmodel",'r').read().strip() == "gb800se":
-            box = "gigablue"
-            boxname = "GigaBlue"
-        elif open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
-            box = "gbquad"
-            boxname = "GigaBlue"
-        elif open("/proc/stb/info/gbmodel",'r').read().strip() == "ue":
-            box = "gigablue"
-            boxname = "GigaBlue"
-menulog.close()
-
+    #VU Boxen
+    elif getBoxType() == "vuduo":
+        box = "vuduo"
+        boxname = "VU+Duo"
+    elif getBoxType() == "vusolo":
+        box = "vusolo"
+        boxname = "VU+Solo"
+    #GigaBlues
+    elif getBoxType().startswith('gb'):
+        box = "gigablue"
+        boxname = "GigaBlue"
+    elif getBoxType() == "gbquad":
+        box = "gbquad"
+        boxname = "GigaBlue"
+    #Technomates
+    elif getBoxType() == "tmtwin":
+        box = "tmtwin"
+        boxname = "TM-Twin"
+    elif getBoxType() == "tm2t":
+        box = "tmtwin"
+        boxname = "TM-2T"
+    elif getBoxType() == "tmsingle":
+        box = "tmtwin"
+        boxname = "TM-Single"
+    #Ixussone
+    elif getBoxType() == "ixussone":
+        box = "ixuss"
+        boxname = "Ixuss One"
+    #Maram/OdinM9
+    elif getBoxType() == "odinm9":
+        box = "odinm9"
+        boxname = "Odin M9"
+    #Dreambox
+    elif getBoxType() == "dm800se":
+        box = "dreambox"
+        boxname = "Dreambox"
+except: 
+    menulog = open("/proc/cpuinfo", "r")
+    for line in menulog:
+        if "STx7111" in line:
+            box = "spark"
+            boxname = "Spark"
+        elif "STx7105" in line:
+            box = "spark"
+            boxname = "Spark"
+        elif "NXP STB22x" in line:
+            box = "tm800"
+            boxname = "TM800"
+        elif "STx7109" in line:
+            box = "ipbox"
+        elif "BCM97xxx Settop Platform" in line:
+    menulog.close()
+    
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py")
 else:
@@ -293,7 +292,7 @@ class Hdf_Downloader(Screen):
             self["description2"].setText("Description: ")
             self["size"].setText(self["downloadmenu"].l.getCurrentSelection()[2])
             self["size2"].setText("Size: ")
-            Screen.setTitle(self, "Select your Download")
+            Screen.setTitle(self, "Select your Download for " + boxname )
         elif "uninstall" in self["downloadmenu"].l.getCurrentSelection():
             self["key_green"].setText("Remove")
             self["introduction"].setText("Press OK to remove the file.")
@@ -713,3 +712,4 @@ def main(session, **kwargs):
 #added tmtwin as boxtype
 #Try block um main
 #added Dreambox
+#getBoxType eingebaut, boxname im Title mit eingebaut (eigentlich eher zu dev zwecken, aber sieht net schlecht aus)
