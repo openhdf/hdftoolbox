@@ -73,20 +73,7 @@ try:
         box = "dreambox"
         boxname = "Dreambox"
 except: 
-    menulog = open("/proc/cpuinfo", "r")
-    for line in menulog:
-        if "STx7111" in line:
-            box = "spark"
-            boxname = "Spark"
-        elif "STx7105" in line:
-            box = "spark"
-            boxname = "Spark"
-        elif "NXP STB22x" in line:
-            box = "tm800"
-            boxname = "TM800"
-        elif "STx7109" in line:
-            box = "ipbox"
-    menulog.close()
+    pass
     
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py")
@@ -712,3 +699,4 @@ def main(session, **kwargs):
 #Try block um main
 #added Dreambox
 #getBoxType eingebaut, boxname im Title mit eingebaut (eigentlich eher zu dev zwecken, aber sieht net schlecht aus)
+# Removed Unused Boxtypes

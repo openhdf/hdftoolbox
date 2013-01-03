@@ -2,52 +2,47 @@
 import os
 
 #check the boxtype#
-menulog = open("/proc/cpuinfo","r")
-for line in menulog: 
-   if "BCM7413B1 STB platform" in line:
-      box = "ET9x00"
-      if os.path.exists("/proc/stb/info/boxtype"):
-         if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-            box = "Ixuss"
-            boxname = "Ixuss One"
-         if open("/proc/stb/info/boxtype",'r').read().strip() == "odinm9":
-            box = "OdinM9"
-            boxname = "OdinM9"
-      if os.path.exists("/proc/stb/info/model"):
-         if open("/proc/stb/info/model",'r').read().strip() == "Dreambox":
-            box = "Dreambox"
-            boxname = "Dreambox"
-   elif "BCM7335B0 STB platform" in line:
-      box = "Vu+Duo"
-   elif "NXP STB22x" in line:
-      box = "TM800"
-   elif "STx7109" in line:
-      box = "IPBox"
-   elif "STx7111" in line:
-      box = "Spark"
-   elif "STx7105" in line:
-      box = "Spark"
-   elif os.path.exists("/proc/stb/info/boxtype"):
-      if open("/proc/stb/info/boxtype",'r').read().strip() == "gigablue":
-         box = "GigaBlue"
-   elif "BCM7358A1 STB platform" in line:
-      box = "ET4x00"
-   elif "BCM7325B0 STB platform" and "220.16" in line:
-      box = "Vu+Solo"
-   elif "BCM97xxx Settop Platform" in line:
-      if open("/proc/stb/info/boxtype",'r').read().strip() == "Ixuss One":
-         box = "Ixuss"
-         boxname = "Ixuss One"
-      if open("/proc/stb/info/boxtype",'r').read().strip() == "Zuron One":
-         box = "Zuron"
-         boxname = "Zuron One"
-   elif "BCM7346B2" in line:
-      box = "GigaBlue"
-if os.path.exists("/proc/stb/info/hwmodel"):
-   if open("/proc/stb/info/hwmodel",'r').read().strip() == "twin":
-      box = "TM-Twin"
-
-menulog.close()
+try:
+    from enigma import getBoxType
+    #ET Boxen
+    #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
+    if getBoxType() == "et9x00":
+        box = "ET9x00"
+    elif getBoxType() == "et6x00":
+        box = "ET9x00"
+    elif getBoxType() == "et5x00":
+        box = "ET9x00"
+    elif getBoxType() == "et4x00":
+        box = "ET4x00"
+    #VU Boxen
+    elif getBoxType() == "vuduo":
+        box = "VU+Duo"
+    elif getBoxType() == "vusolo":
+        box = "VU+Solo"
+    #GigaBlues
+    elif getBoxType().startswith('gb'):
+        box = "GigaBlue"
+    elif getBoxType() == "gbquad":
+        box = "GigaBlue"
+    #Technomates
+    elif getBoxType() == "tmtwin":
+        box = "TM-Twin"
+## Just in cvase we would need it some times
+#    elif getBoxType() == "tm2t":
+#        box = "TM-2T"
+#    elif getBoxType() == "tmsingle":
+#        box = "TM-Single"
+    #Ixussone
+    elif getBoxType() == "ixussone":
+        box = "Ixuss"
+    #Maram/OdinM9
+    elif getBoxType() == "odinm9":
+        box = "OdinM9"
+    #Dreambox
+    elif getBoxType() == "dm800se":
+        box = "Dreambox"
+except: 
+    pass
 
 #change some stuff at linux
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
@@ -150,7 +145,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 01.01.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 03.01.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
