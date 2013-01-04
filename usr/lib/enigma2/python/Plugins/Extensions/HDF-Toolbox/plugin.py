@@ -71,6 +71,7 @@ from Plugins.Plugin import PluginDescriptor
 from RecordTimer import *
 from time import *
 from Tools import Directories, Notifications
+from Tools.Directories import resolveFilename, fileExists, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 import NavigationInstance
 import downloader
 #try:
@@ -101,11 +102,19 @@ if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
 # SkinSelector
 
 # SoftwareUpdate
-if os.path.exists("%s/SystemPlugins/SoftwareUpdate" %pluginpath) is True:
+if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareUpdate") is True:
   try:
      from Plugins.SystemPlugins.SoftwareUpdate.plugin import *
   except:
      pass
+ 
+# SoftwareManager
+if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager") is True:
+  try:
+     from Plugins.SystemPlugins.SoftwareManager.plugin import *
+  except:
+     pass
+
  
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
 fantastic_pluginpath = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox"
@@ -445,7 +454,12 @@ class Fantastic(Screen):
                        self.session.openWithCallback(self.FantasticMenu(""),BackupSetup)
                     except:
                        pass  
-		 elif mftextargument == "GboxSuite":
+                 elif mftextargument == "SoftwareManager":
+                    try:
+                       self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
+                    except:
+                       pass 
+                 elif mftextargument == "GboxSuite":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),GboxSuite)
                     except:
@@ -547,7 +561,7 @@ class Fantastic(Screen):
                  datei = open(mftextargument,"r")
                  Ausgabe=datei.read()
                  datei.close()
-                 self.session.openWithCallback(self.FantasticYN,MessageBox,Ausgabe, MessageBox.TYPE_YESNO)			  
+                 self.session.openWithCallback(self.FantasticYN,MessageBox,Ausgabe, MessageBox.TYPE_YESNO)
 # modded by koivo Z: open extra plugins and screens
            elif mfcommand is "Z":
                  self.session.openWithCallback(self.FantasticMenu(""),PluginBrowser)
@@ -556,8 +570,8 @@ class Fantastic(Screen):
                  self.session.openWithCallback(self.FantasticMenu(""),SkinSelector)
            elif mfcommand is "1":
                  self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
-				 
-				 
+                 os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/spinner.sh")
+
            elif mfcommand is "D":
 #              self.session.open(FantasticLCD,mftextargument)
               self.session.openWithCallback(self.FantasticMenu(""),FantasticLCD,mftextargument)
