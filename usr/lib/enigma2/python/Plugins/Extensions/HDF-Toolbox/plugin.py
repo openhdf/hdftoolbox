@@ -71,7 +71,6 @@ from Plugins.Plugin import PluginDescriptor
 from RecordTimer import *
 from time import *
 from Tools import Directories, Notifications
-from Tools.Directories import resolveFilename, fileExists, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 import NavigationInstance
 import downloader
 #try:
@@ -102,18 +101,19 @@ if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
 # SkinSelector
 
 # SoftwareUpdate
-if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareUpdate") is True:
+if os.path.exists("%s/SystemPlugins/SoftwareUpdate" %pluginpath) is True:
   try:
      from Plugins.SystemPlugins.SoftwareUpdate.plugin import *
   except:
      pass
- 
-# SoftwareManager
-if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager") is True:
-  try:
-     from Plugins.SystemPlugins.SoftwareManager.plugin import *
-  except:
-     pass
+
+##crash the box if acticated	 
+## SoftwareManager
+#if os.path.exists("%s/SystemPlugins/SoftwareManager" %pluginpath) is True:
+#  try:
+#     from Plugins.SystemPlugins.SoftwareManager.plugin import *
+#  except:
+#     pass
 
  
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
@@ -154,7 +154,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 03.01.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 05.01.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -454,12 +454,7 @@ class Fantastic(Screen):
                        self.session.openWithCallback(self.FantasticMenu(""),BackupSetup)
                     except:
                        pass  
-                 elif mftextargument == "SoftwareManager":
-                    try:
-                       self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
-                    except:
-                       pass 
-                 elif mftextargument == "GboxSuite":
+		 elif mftextargument == "GboxSuite":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),GboxSuite)
                     except:
@@ -488,7 +483,12 @@ class Fantastic(Screen):
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
                     except:
-		       pass
+                       pass
+                 elif mftextargument == "SoftwareManager":
+                    try:
+                       self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
+                    except:
+                       pass
                  elif mftextargument == "weinbergtagger":
                     self.session.openWithCallback(self.FantasticMenu(""),weinbergtagger)
                  elif mftextargument == "SkinSelector":
@@ -570,10 +570,9 @@ class Fantastic(Screen):
                  self.session.openWithCallback(self.FantasticMenu(""),SkinSelector)
            elif mfcommand is "1":
                  self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
-                 os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/spinner.sh")
+#                 os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/spinner.sh")
 
            elif mfcommand is "D":
-#              self.session.open(FantasticLCD,mftextargument)
               self.session.openWithCallback(self.FantasticMenu(""),FantasticLCD,mftextargument)
 
            elif mfcommand is "L":
