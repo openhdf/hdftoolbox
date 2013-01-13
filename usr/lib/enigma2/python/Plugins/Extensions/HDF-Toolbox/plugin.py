@@ -17,8 +17,12 @@ try:
     #VU Boxen
     elif getBoxType() == "vuduo":
         box = "Vu+Duo"
+    elif getBoxType() == "vuduo2":
+        box = "Vu+Duo2"
     elif getBoxType() == "vusolo":
         box = "Vu+Solo"
+    elif getBoxType() == "vusolo2":
+        box = "Vu+Solo2"
     #GigaBlues
     elif getBoxType().startswith('gb'):
         box = "GigaBlue"

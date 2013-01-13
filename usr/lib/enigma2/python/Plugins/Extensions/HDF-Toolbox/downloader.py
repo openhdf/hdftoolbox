@@ -40,9 +40,15 @@ try:
     elif getBoxType() == "vuduo":
         box = "vuduo"
         boxname = "VU+Duo"
+    elif getBoxType() == "vuduo2":
+        box = "vuduo"
+        boxname = "VU+Duo2"
     elif getBoxType() == "vusolo":
         box = "vusolo"
         boxname = "VU+Solo"
+    elif getBoxType() == "vusolo2":
+        box = "vusolo"
+        boxname = "VU+Solo2"
     #GigaBlues
     elif getBoxType().startswith('gb'):
         box = "gigablue"
