@@ -48,7 +48,7 @@ try:
 except: 
     pass
 
-#change some stuff at linux
+#change some stuff at linux console
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
 	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
 	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
