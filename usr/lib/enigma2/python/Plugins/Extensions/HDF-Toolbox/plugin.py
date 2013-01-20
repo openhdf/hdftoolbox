@@ -92,33 +92,17 @@ from Screens.Ci import *
 from Screens.PluginBrowser import *
 # SkinSelector is now located in Screen
 from Screens.SkinSelector import SkinSelector
+## SoftwareUpdate is now located in Screen
+from Screens.SoftwareUpdate import *
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py")
-
 
 # SoftcamManager
 if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
    from Plugins.Extensions.SoftcamManager.Sc import *
 if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
    from Plugins.PLi.SoftcamSetup.Sc import *
-# SkinSelector
-
-# SoftwareUpdate
-if os.path.exists("%s/SystemPlugins/SoftwareUpdate" %pluginpath) is True:
-  try:
-     from Plugins.SystemPlugins.SoftwareUpdate.plugin import *
-  except:
-     pass
-
-##crash the box if acticated	 
-## SoftwareManager
-#if os.path.exists("%s/SystemPlugins/SoftwareManager" %pluginpath) is True:
-#  try:
-#     from Plugins.SystemPlugins.SoftwareManager.plugin import *
-#  except:
-#     pass
-
  
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
 fantastic_pluginpath = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox"
@@ -158,7 +142,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 17.01.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 20.01.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -224,7 +208,7 @@ class Fantastic(Screen):
 
         if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/hdf.png") is True:
            mainmenu.append(("HDF-Downloader" , "mfschdf"))
-		   
+
 		# SoftcamManager
         if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
@@ -483,14 +467,9 @@ class Fantastic(Screen):
                     self.session.openWithCallback(self.FantasticMenu(""),GameStarter)
                  elif mftextargument == "FrontprocessorUpgrade":
                     self.session.openWithCallback(self.FantasticMenu(""),FPUpgrade)
-                 elif mftextargument == "SoftwareUpdate":
+                 elif mftextargument == "ImageUpdate":
                     try:
-                       self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
-                    except:
-                       pass
-                 elif mftextargument == "SoftwareManager":
-                    try:
-                       self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
+                       self.session.openWithCallback(self.FantasticMenu(""),ImageUpdate)
                     except:
                        pass
                  elif mftextargument == "weinbergtagger":
@@ -573,12 +552,10 @@ class Fantastic(Screen):
            elif mfcommand is "W":
                  self.session.openWithCallback(self.FantasticMenu(""),SkinSelector)
            elif mfcommand is "1":
-                 self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
-#                 os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/spinner.sh")
-
+                 os.system("opkg update")
+                 self.session.openWithCallback(self.FantasticMenu(""),UpdatePlugin)
            elif mfcommand is "D":
               self.session.openWithCallback(self.FantasticMenu(""),FantasticLCD,mftextargument)
-
            elif mfcommand is "L":
               if mftextargument == "log":
                  os.system("echo %s > /tmp/fantasticlog.txt" %mfexecute) 
