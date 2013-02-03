@@ -49,14 +49,14 @@ except:
     pass
 
 #change some stuff at linux console
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
-	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
-	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
-	os.system("mv /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/" + box + "/* /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/")
-	os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/")
-	os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
-	os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
-	os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
+#if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
+	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
+	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
+	#os.system("mv /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/" + box + "/* /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/")
+	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/")
+os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
+os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
+os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
 from enigma import *
 from Screens.Screen import Screen
