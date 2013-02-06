@@ -81,7 +81,7 @@ try:
     #XP1000
     elif getBoxType() == "xp1000":
         box = "xp1000"
-        boxtype = "XP1000"
+        boxname = "XP1000"
 except: 
     pass
     
