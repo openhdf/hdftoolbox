@@ -78,6 +78,10 @@ try:
     elif getBoxType() == "dm800se":
         box = "dreambox"
         boxname = "Dreambox"
+    #XP1000
+    elif getBoxType() == "xp1000":
+        box = "xp1000"
+        boxtype = "XP1000"
 except: 
     pass
     

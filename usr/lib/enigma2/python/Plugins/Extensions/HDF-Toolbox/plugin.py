@@ -45,6 +45,9 @@ try:
     #Dreambox
     elif getBoxType() == "dm800se":
         box = "Dreambox"
+    #XP1000
+    elif getBoxType() == "xp1000":
+        box = "XP1000"
 except: 
     pass
 
