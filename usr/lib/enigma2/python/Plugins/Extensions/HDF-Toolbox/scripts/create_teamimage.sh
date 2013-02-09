@@ -25,7 +25,7 @@ opkg install enigma2-plugin-extensions-dokumonster enigma2-plugin-extensions-cin
 opkg install enigma2-plugin-extensions-epgrefresh_mod enigma2-plugin-extensions-yampmusicplayer
 opkg install enigma2-plugin-systemplugins-recordinfobar enigma2-plugin-extensions-icefilms enigma2-plugin-extensions-cubic_streamer
 opkg install enigma2-plugin-extensions-cooltvguide enigma2-plugin-extensions-pipservicerelation.mod
-opkg install enigma2-plugin-extensions-infobartunerstate enigma2-plugin-extensions-flashexpander
+opkg install enigma2-plugin-extensions-infobartunerstate-mod enigma2-plugin-extensions-flashexpander
 echo
 echo "done ... but not complete"
 echo "please reboot your box now"
