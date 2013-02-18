@@ -7,6 +7,7 @@ echo "please wait".
 echo
 echo "remove old plugins"
 opkg remove enigma2-plugin-extensions-remotestreamconvert enigma2-plugin-systemplugins-extnumberzap
+opkg install kernel-module-nfs-layout-nfsv41-files
 echo
 echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo-hdf enigma2-plugin-extensions-zaphistorybrowser.mod enigma2-plugin-extensions-virtualzap.mod
