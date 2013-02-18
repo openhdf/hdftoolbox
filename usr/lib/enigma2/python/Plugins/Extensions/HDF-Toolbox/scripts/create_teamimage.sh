@@ -21,7 +21,7 @@ opkg install enigma2-plugin-extensions-songsto enigma2-plugin-extensions-putpatt
 opkg install enigma2-plugin-extensions-myentertainment enigma2-plugin-extensions-movie2kserien
 opkg install enigma2-plugin-extensions-movie2kfilme enigma2-plugin-extensions-kinokiste enigma2-plugin-extensions-istream
 opkg install enigma2-plugin-extensions-dokumonster enigma2-plugin-extensions-cinestreamer enigma2-plugin-extensions-remotechannelstreamimport
-opkg install enigma2-plugin-extensions-epgrefresh_mod enigma2-plugin-extensions-yampmusicplayer
+opkg install enigma2-plugin-extensions-epgrefresh_mod enigma2-plugin-extensions-yampmusicplayer enigma2-plugin-extensions-socketmmi
 opkg install enigma2-plugin-systemplugins-recordinfobar enigma2-plugin-extensions-icefilms enigma2-plugin-extensions-cubic_streamer
 opkg install enigma2-plugin-extensions-cooltvguide enigma2-plugin-extensions-pipservicerelation.mod
 opkg install enigma2-plugin-extensions-infobartunerstate-mod enigma2-plugin-extensions-flashexpander
