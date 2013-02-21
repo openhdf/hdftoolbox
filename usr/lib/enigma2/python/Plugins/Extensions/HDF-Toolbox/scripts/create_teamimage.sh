@@ -19,7 +19,7 @@ echo "install addons"
 opkg install enigma2-plugin-extensions-Burnseries enigma2-plugin-extensions-webradiofs enigma2-plugin-extensions-skyanytime
 opkg install enigma2-plugin-extensions-mediaportal enigma2-plugin-extensions-tvkino enigma2-plugin-extensions-moviecut
 opkg install enigma2-plugin-extensions-songsto enigma2-plugin-extensions-putpattv enigma2-plugin-extensions-netzkino
-opkg install enigma2-plugin-extensions-myentertainment enigma2-plugin-extensions-movie2kserien
+opkg install enigma2-plugin-extensions-myentertainment enigma2-plugin-extensions-movie2kserien enigma2-plugin-extensions-enhancedpowersave
 opkg install enigma2-plugin-extensions-movie2kfilme enigma2-plugin-extensions-kinokiste enigma2-plugin-extensions-istream
 opkg install enigma2-plugin-extensions-dokumonster enigma2-plugin-extensions-cinestreamer enigma2-plugin-extensions-remotechannelstreamimport
 opkg install enigma2-plugin-extensions-epgrefresh_mod enigma2-plugin-extensions-yampmusicplayer enigma2-plugin-extensions-socketmmi
