@@ -28,5 +28,6 @@ opkg install enigma2-plugin-extensions-cooltvguide enigma2-plugin-extensions-pip
 opkg install enigma2-plugin-extensions-infobartunerstate-mod enigma2-plugin-extensions-flashexpander
 echo
 echo "done ... but not complete"
+echo "install ice-network-tuner if you have a box with 2 cpu"
 echo "please reboot your box now"
 echo
