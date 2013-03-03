@@ -25,7 +25,7 @@ opkg install enigma2-plugin-extensions-dokumonster enigma2-plugin-extensions-cin
 opkg install enigma2-plugin-extensions-epgrefresh_mod enigma2-plugin-extensions-yampmusicplayer enigma2-plugin-extensions-socketmmi
 opkg install enigma2-plugin-systemplugins-recordinfobar enigma2-plugin-extensions-icefilms enigma2-plugin-extensions-cubic_streamer
 opkg install enigma2-plugin-extensions-cooltvguide enigma2-plugin-extensions-pipservicerelation.mod enigma2-plugin-extensions-dreamexplorer
-opkg install enigma2-plugin-extensions-infobartunerstate-mod enigma2-plugin-extensions-flashexpander
+opkg install enigma2-plugin-extensions-infobartunerstate-mod enigma2-plugin-extensions-flashexpander enigma2-plugin-extensions-tvcharts
 echo
 echo "done ... but not complete"
 echo "install ice-network-tuner if you have a box with 2 cpu"
