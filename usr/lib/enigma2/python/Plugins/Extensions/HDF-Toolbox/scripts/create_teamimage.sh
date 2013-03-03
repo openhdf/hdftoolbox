@@ -13,7 +13,7 @@ echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo-hdf enigma2-plugin-extensions-zaphistorybrowser.mod enigma2-plugin-extensions-virtualzap.mod
 opkg install enigma2-plugin-extensions-2ib enigma2-plugin-extensions-et-portal enigma2-plugin-extensions-openairplaymod
 opkg install enigma2-plugin-extensions-seekbarmod enigma2-plugin-extensions-webinterface-old-package enigma2-plugin-extensions-menusort
-opkg install enigma2-plugin-extensions-jobmanager enigma2-plugin-systemplugins-satelliteequipmentcontrol
+opkg install enigma2-plugin-extensions-jobmanager enigma2-plugin-systemplugins-satelliteequipmentcontrol enigma2-plugin-systemplugins-osd3dmodsetup
 echo
 echo "install addons"
 opkg install enigma2-plugin-extensions-Burnseries enigma2-plugin-extensions-webradiofs enigma2-plugin-extensions-skyanytime
