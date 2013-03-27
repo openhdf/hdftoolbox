@@ -5,7 +5,7 @@ if [ -f /usr/local/browser/browser ]; then
 	echo
 	echo "HbbTV Browser found ... remove ET9x00 HbbTV"
 	echo
-	opkg remove enigma2-plugin-extensions-et-webbrowser
+	opkg remove enigma2-plugin-extensions-et-hbbtv
 	echo
 	echo "done"
 	sync
@@ -18,7 +18,7 @@ else
 	freespace=`df -h | grep rootfs | df -h | grep rootfs | cut -c 46-47`
 	freeneeded=10
 	if [ $freespace -ge $freeneeded ]; then
-		opkg install enigma2-plugin-extensions-et-webbrowser
+		opkg install enigma2-plugin-extensions-et-hbbtv
 		echo "done"
 	else
 		echo "Sorry not enough space in flash to install Browser"
