@@ -37,7 +37,7 @@ try:
 #    elif getBoxType() == "tmsingle":
 #        box = "TM-Single"
     #Ixussone
-    elif getBoxType()startswith == "ixuss":
+    elif getBoxType().startswith == "ixuss":
         box = "Ixuss"
     #Maram/OdinM9
     elif getBoxType() == "odinm9":
@@ -48,9 +48,9 @@ try:
     #XP1000
     elif getBoxType() == "xp1000":
         box = "XP1000"
-    elif getBoxType().startswith == 'venton'
+    elif getBoxType().startswith == 'venton':
         box = "Venton"
-    elif getBoxType() == "e3hd"
+    elif getBoxType() == "e3hd":
         box = "E3HD"
 except:
     pass
