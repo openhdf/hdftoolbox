@@ -67,7 +67,7 @@ try:
         box = "tmtwin"
         boxname = "TM-Single"
     #Ixussone
-    elif getBoxType().startswith == "ixuss":
+    elif getBoxType().startswith('ixuss'):
         box = "ixuss"
         boxname = "Ixuss One/Zero"
     #Maram/OdinM9
@@ -82,7 +82,7 @@ try:
     elif getBoxType() == "xp1000":
         box = "xp1000"
         boxname = "XP1000"
-    elif getBoxType().startswith == 'venton':
+    elif getBoxType().startswith('venton'):
         box = "Venton"
     elif getBoxType() == "e3hd":
         box = "E3HD"
@@ -714,3 +714,4 @@ def main(session, **kwargs):
 #added Dreambox
 #getBoxType eingebaut, boxname im Title mit eingebaut (eigentlich eher zu dev zwecken, aber sieht net schlecht aus)
 # Removed Unused Boxtypes
+# Ixusszero eingebaut/ Code korrigiert
