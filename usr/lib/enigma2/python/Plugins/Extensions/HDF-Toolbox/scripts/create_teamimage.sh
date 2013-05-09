@@ -8,20 +8,19 @@ echo
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove old plugins"
 opkg remove enigma2-plugin-extensions-remotestreamconvert
-opkg install kernel-module-nfs-layout-nfsv41-files
+#opkg install kernel-module-nfs-layout-nfsv41-files
 echo
 echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo-hdf \
 enigma2-plugin-extensions-zaphistorybrowser.mod \
 enigma2-plugin-extensions-virtualzap.mod \
-enigma2-plugin-extensions-2ib \
 enigma2-plugin-extensions-et-portal \
 enigma2-plugin-extensions-openairplaymod \
 enigma2-plugin-systemplugins-extnumberzap \
-enigma2-plugin-extensions-seekbarmod \
 enigma2-plugin-extensions-webinterface-old-package \
 enigma2-plugin-extensions-menusort \
 enigma2-plugin-extensions-jobmanager \
+enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-osd3dmodsetup
 echo
@@ -44,10 +43,11 @@ enigma2-plugin-extensions-epgrefresh_mod \
 enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-systemplugins-recordinfobar \
 enigma2-plugin-extensions-icefilms \
+enigma2-plugin-extensions-tvspielfilm \
 enigma2-plugin-extensions-cubic_streamer
 echo
 echo "done ... but not complete"
-echo "install ice-network-tuner if you have a box with 2 cpu"
+echo "install enigma2-plugin-systemplugins-ice-network-tuner if you have a box with 2 cpu"
 echo "install enigma2-plugin-extensions-moviecut on all boxes but not on ixuss"
 echo "install enigma2-plugin-extensions-pipservicerelation.mod on all boxes but not on ixuss"
 echo "please reboot your box now"
