@@ -67,9 +67,9 @@ try:
         box = "tmtwin"
         boxname = "TM-Single"
     #Ixussone
-    elif getBoxType() == "ixussone":
+    elif getBoxType().startswith('ixuss'):
         box = "ixuss"
-        boxname = "Ixuss One"
+        boxname = "Ixuss One/Zero"
     #Maram/OdinM9
     elif getBoxType() == "odinm9":
         box = "odinm9"
@@ -82,9 +82,13 @@ try:
     elif getBoxType() == "xp1000":
         box = "xp1000"
         boxname = "XP1000"
-except: 
+    elif getBoxType().startswith('venton'):
+        box = "Venton"
+    elif getBoxType() == "e3hd":
+        box = "E3HD"
+except:
     pass
-    
+
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py")
 else:
@@ -127,7 +131,7 @@ class Hdf_Downloader(Screen):
                 <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
                 <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
           </screen>"""
-    
+
     def __init__(self, session , **kwargs):
         self.session = session
 ##### Variables and lists
@@ -187,7 +191,7 @@ class Hdf_Downloader(Screen):
         self.loadInfo()
 
 ##### Reading of files
-    
+
     def readSource(self):
         sourceread = open("/tmp/.down.hdf", "r")
         for lines in sourceread.readlines():
@@ -198,14 +202,14 @@ class Hdf_Downloader(Screen):
                 self.filesArrayClean.append(newLines[1])
                 self.filesArraySplit.append(lines.split('#'))
                 self.filesArray.append(newLines[1].split('-'))
-        
+
         sourceread.close()
         os.system("rm -rf /tmp/.down.hdf")
 
 ##### Building Menu
-    
+
     def makeMenu(self):
-        
+
         # TMP Install:
         # 3 Werte werden benoetigt 1. Dateiname
         i = 0
@@ -259,12 +263,12 @@ class Hdf_Downloader(Screen):
 
             i = i + 1
         self.list.append((_(" "), "none"))
-    
+
     def delMenu(self):
         count = 0
         while len(self.list) > count:
             self.list.pop()
-    
+
     def mkNewMenu(self):
         self.delMenu()
         self.makeMenu()
@@ -274,7 +278,7 @@ class Hdf_Downloader(Screen):
         Screen.show(self)
 
 ##### Onscreen Actions
-    
+
     def loadInfo(self):
         self["blue"].hide()
         self["key_blue"].setText(" ")
@@ -316,12 +320,12 @@ class Hdf_Downloader(Screen):
         else:
             self["description"].setText(" ")
             self["size"].setText(" ")
-        
+
         Screen.hide(self)
         Screen.show(self)
 
 ##### Executive Functions
-    
+
     def restartGUI(self, answer):
         if answer is True:
             plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -329,7 +333,7 @@ class Hdf_Downloader(Screen):
             #self.session.open(TryQuitMainloop, 3)
         else:
             self.close()
-    
+
     def uninstall(self, answer):
         if answer is True:
             os.chmod("/usr/uninstall/" + self["downloadmenu"].l.getCurrentSelection()[1], 755)
@@ -340,7 +344,7 @@ class Hdf_Downloader(Screen):
             self.session.open(MessageBox, ("It's recommented to restart box for changes taking place!"), MessageBox.TYPE_INFO, timeout=10).setTitle(_("Uninstall complete"))
         else:
             self.close()
-    
+
     def preview(self):
         if self.switch == "skin" or self.switch == "picon":
             file = self["downloadmenu"].l.getCurrentSelection()[1].split(".")[0] + ".jpg"
@@ -356,19 +360,19 @@ class Hdf_Downloader(Screen):
             pass
 
     def recompile(self):
-        if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.devdown"): 
+        if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.devdown"):
             print "Starting Recompile"
             self.restartGUI(True)
         else:
             pass
 
 ###### Easter Egg
-    
+
     def info(self):
         self.session.open(MessageBox, ("(c) HDF 2012\nSpecial thanks to koivo for testing\nGoogle for amounts of questions\nand\nTBX for telling me what Google couldn't"), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Info"))
 
 ###### Special Controls
-    
+
     def ok(self):
         if "download" in self["downloadmenu"].l.getCurrentSelection():
             file = self["downloadmenu"].l.getCurrentSelection()[1]
@@ -396,42 +400,42 @@ class Hdf_Downloader(Screen):
         else:
             returnValue = "self." + self["downloadmenu"].l.getCurrentSelection()[1] + "()"
             eval(returnValue)
-    
+
     def cancel(self):
         if self.anyNewInstalled is True:
             self.session.openWithCallback(self.restartGUI, MessageBox, _("Activate and reload the new installed Plugins now? \n\nNo Enigma GUI Restart needed!"), MessageBox.TYPE_YESNO).setTitle(_("Reload Plugins now?"))
         else:
             self.close()
-    
+
     def none(self):
         pass
 
 ###### Category Controls
-    
+
     def one(self):
         self.switch = "extensions"
         self.mkNewMenu()
-    
+
     def two(self):
         self.switch = "update"
         self.mkNewMenu()
-    
+
     def three(self):
         self.switch = "softcam"
         self.mkNewMenu()
-    
+
     def four(self):
         self.switch = "skin"
         self.mkNewMenu()
-    
+
     def five(self):
         self.switch = "picon"
         self.mkNewMenu()
-    
+
     def six(self):
         self.switch = "tmpinst"
         self.mkNewMenu()
-	
+
     def zero(self):
         if os.path.exists("/usr/uninstall") == False:
             os.system("mkdir /usr/uninstall")
@@ -439,19 +443,19 @@ class Hdf_Downloader(Screen):
         self.mkNewMenu()
 
 ##### Basic Controls
-    
+
     def up(self):
         self["downloadmenu"].up()
         self.loadInfo()
-    
+
     def down(self):
         self["downloadmenu"].down()
         self.loadInfo()
-    
+
     def left(self):
         self["downloadmenu"].pageUp()
         self.loadInfo()
-    
+
     def right(self):
         self["downloadmenu"].pageDown()
         self.loadInfo()
@@ -464,7 +468,7 @@ class BufferThread():
         self.downloading = False
         self.error = ""
         self.download = None
-    
+
     def startDownloading(self, filename, url):
         self.progress = 0
         self.downloading = True
@@ -472,10 +476,10 @@ class BufferThread():
         self.download = downloadWithProgress(url, filename)
         self.download.addProgress(self.httpProgress)
         self.download.start().addCallback(self.httpFinished).addErrback(self.httpFailed)
-    
+
     def httpProgress(self, recvbytes, totalbytes):
         self.progress = int(100 * recvbytes / float(totalbytes))
-    
+
     def httpFinished(self, string=""):
         self.downloading = False
         if string is not None:
@@ -483,13 +487,13 @@ class BufferThread():
         else:
             self.error = ""
 
-    
+
     def httpFailed(self, failure_instance=None, error_message=""):
         self.downloading = False
         if error_message == "" and failure_instance is not None:
             error_message = failure_instance.getErrorMessage()
             self.error = str(error_message)
-    
+
     def stop(self):
         self.progress = 0
         self.downloading = False
@@ -511,7 +515,7 @@ class downloadfile(Screen):
                 <widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
         </screen>"""
-    
+
     def __init__(self, session, filename, url):
         self.session = session
         self.skin = downloadfile.skin
@@ -559,21 +563,21 @@ class downloadfile(Screen):
         else:
             self.show()
             self.Shown = True
-    
+
     def exit(self):
         self.session.openWithCallback(self.StopDownLoad, MessageBox, _("Do you realy want to stop the download?"), MessageBox.TYPE_YESNO).setTitle(_("Abort Download?"))
-    
+
     def StopDownLoad(self, result):
         if result is True:
             bufferThread.download.stop()
             self.close(None)
         else:
             pass
-    
+
     def install(self, answer):
         if answer is True:
             self.doInstall()
-    
+
     def doInstall(self):
         if "tar.gz" in  self.filename:
             os.system("tar xzf " + self.filename + " -C /")
@@ -584,7 +588,7 @@ class downloadfile(Screen):
             os.system("ipkg install " + self.filename + " | cut -d' ' -f2 | sort -u > /tmp/.ipkinst")
             # das ist der Pluginname
             pluginname = open("/tmp/.ipkinst", "r").readline()
-            
+
             # Erklaerung:
             # Splittet vom Dateinamen Bsp: enigma2-plugin-extensions-cccaminfo_svn-2940-r0_all.ipk anhand von "-" und waehlt den 4 Teil aus
             # -> cccaminfo_svn-2940-r0_all.ipk
@@ -601,12 +605,12 @@ class downloadfile(Screen):
 ###########################################################################
 
 class PictureScreen(Screen):
-    
+
     skin="""
         <screen name="Preview" position="center,center" size="800,450" title="Preview" >
             <widget name="picture" position="0,0" size="800,450" zPosition="1" alphatest="on" />
         </screen>"""
-    
+
     def __init__(self, session, picPath = None):
         Screen.__init__(self, session)
         self.picPath = picPath
@@ -618,10 +622,10 @@ class PictureScreen(Screen):
             "ok": self.cancel,
             "cancel": self.cancel
         }, -1)
-        
+
         self.PicLoad.PictureData.get().append(self.DecodePicture)
         self.onLayoutFinish.append(self.ShowPicture)
-    
+
     def ShowPicture(self):
         if self.picPath is not None:
             self.PicLoad.setPara([
@@ -632,15 +636,15 @@ class PictureScreen(Screen):
                         0,
                         1,
                         "#002C2C39"])
-            
+
             self.PicLoad.startDecode(self.picPath)
-    
+
     def DecodePicture(self, PicInfo = ""):
         if self.picPath is not None:
             ptr = self.PicLoad.getData()
             self["picture"].instance.setPixmap(ptr)
 
-    
+
     def cancel(self):
         self.close(None)
 
@@ -692,7 +696,7 @@ def main(session, **kwargs):
 # os.chmod beim uninstall hinzugefuegt
 # os.remove der datei im tmp nach download angepasst
 # Zuron-One hinzugefuegt mit folder vom et9000
-# tmpinstall im def ok geaendert: bei xxx.aaa.ipk wurde aaa als filetype erkannt, jetzt ists eine schleife ueber die laenge des am . getrennten dateinamens 
+# tmpinstall im def ok geaendert: bei xxx.aaa.ipk wurde aaa als filetype erkannt, jetzt ists eine schleife ueber die laenge des am . getrennten dateinamens
 # Unterscheidung vusolo und gigablue eingebaut
 # Umgebaut auf allgemeinen feed ohne unterordner
 # .devdown datei eingebaut um alle Boxtypen im downloadmenu zu haben, nicht nur den eigenen
@@ -702,7 +706,7 @@ def main(session, **kwargs):
 # Liste 0 Sortiert
 # selbst loeschen der py eingefuegt
 # uninstall ordner wird angelegt falls nicht vorhanden
-# check auf python 2.7 
+# check auf python 2.7
 ## -> falls ja: mips23el einlesen
 #added gbquad as boxtype
 #added tmtwin as boxtype
@@ -710,3 +714,4 @@ def main(session, **kwargs):
 #added Dreambox
 #getBoxType eingebaut, boxname im Title mit eingebaut (eigentlich eher zu dev zwecken, aber sieht net schlecht aus)
 # Removed Unused Boxtypes
+# Ixusszero eingebaut/ Code korrigiert

@@ -37,7 +37,7 @@ try:
 #    elif getBoxType() == "tmsingle":
 #        box = "TM-Single"
     #Ixussone
-    elif getBoxType() == "ixussone":
+    elif getBoxType().startswith('ixuss'):
         box = "Ixuss"
     #Maram/OdinM9
     elif getBoxType() == "odinm9":
@@ -48,7 +48,11 @@ try:
     #XP1000
     elif getBoxType() == "xp1000":
         box = "XP1000"
-except: 
+    elif getBoxType().startswith == 'venton':
+        box = "Venton"
+    elif getBoxType() == "e3hd":
+        box = "E3HD"
+except:
     pass
 
 #change some stuff at linux console
@@ -84,7 +88,7 @@ import downloader
 #   import downloader
 #except:
 #   pass
-   
+
 #def HDF_Downloader(self):
 #   self.session.open(downloader.Hdf_Downloader)
 
@@ -106,7 +110,7 @@ if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
    from Plugins.Extensions.SoftcamManager.Sc import *
 if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
    from Plugins.PLi.SoftcamSetup.Sc import *
- 
+
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
 fantastic_pluginpath = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox"
 fantastic_readme = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/readme.txt"
@@ -119,12 +123,12 @@ def autostart(reason, **kwargs):
     if reason == 0 and kwargs.has_key("session"):
        session = kwargs["session"]
        session.open(FantasticBoot)
-       
+
 def menu(menuid, **kwargs):
     if menuid == "mainmenu":
         return [(_("HDF Toolbox " + box + ""), main, "hdf_toolbox", 10)]
     return []
-	
+
 def Plugins(**kwargs):
     try:
 	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
@@ -133,9 +137,9 @@ def Plugins(**kwargs):
             PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
     except:
 	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),PluginDescriptor(name="HDFreaks Toolbox " + box + "", description="Addons, Scripts, Tools", where = [PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name = "HDFreaks Toolbox " + box + "", description = "Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
-	 
+
 def main(session,**kwargs):
-    try:    
+    try:
      	session.open(Fantastic)
     except:
         print "[FANTASTIC] Pluginexecution failed"
@@ -153,7 +157,7 @@ class Fantastic(Screen):
         self.session = session
         Screen.__init__(self, session)
         self.menu = args
-        
+
         global mfcommand
         global mfmenu
         global mfmenuold
@@ -162,7 +166,7 @@ class Fantastic(Screen):
         global mfintargument
         global mftextargument
 
-        try:    
+        try:
            if mfmenu is None:
               pass
         except:
@@ -186,7 +190,7 @@ class Fantastic(Screen):
         mfexecute=" "
         mfintargument=0
         mftextargument=" "
-                
+
         mainmenu = []
 
         menufile = "%s/%s.cfg" % (fantastic_pluginpath,mfmenu)
@@ -195,7 +199,7 @@ class Fantastic(Screen):
            for line in mf:
               parts=line.split(splitchar,3)
               index=len(parts)
-   
+
               if index > 1:
                  command=parts[0].upper().rstrip()
                  mfcommand=command[0]
@@ -204,10 +208,10 @@ class Fantastic(Screen):
                        mainmenu.append(( str(parts[2]), line ))
                     else:
                        mainmenu.append(( str(parts[1]), line ))
- 
+
            mf.close()
         else:
-           mainmenu.append(("no %s.cfg found - please reboot" %mfmenu, "mfnomenu"))        
+           mainmenu.append(("no %s.cfg found - please reboot" %mfmenu, "mfnomenu"))
 
         if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/hdf.png") is True:
            mainmenu.append(("HDF-Downloader" , "mfschdf"))
@@ -220,13 +224,13 @@ class Fantastic(Screen):
         elif os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
            mainmenu.append((" " , "mfxyz"))
-           mainmenu.append(("About" , "mfabout"))		   
+           mainmenu.append(("About" , "mfabout"))
         else:
-           mainmenu.append(("About" , "mfabout"))     
+           mainmenu.append(("About" , "mfabout"))
 
         self["menu"] = MenuList(mainmenu)
         self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.FantasticMainMenu,"back": self.close,}, -1)
-        
+
     def FantasticMainMenu(self):
 
         global mfcommand
@@ -243,7 +247,7 @@ class Fantastic(Screen):
            if mfselected is "mfreadme":
                 self.session.open(Console,_("Showing Fantastic readme.txt"),["cat %s" % fantastic_readme])
            elif mfselected is "mfnomenu":
-               title1=_("HDF-Toolbox") 
+               title1=_("HDF-Toolbox")
                title2=_("needs a %s.cfg file at" % mfmenu)
                title3=_("%s" %fantastic_pluginpath)
                title="%s\n%s\n%s" % (title1, title2,title3)
@@ -311,19 +315,19 @@ class Fantastic(Screen):
                              os.system("%s/%s %s" % (fantastic_pluginpath,cmd,mftextargument))
                           else:
                              os.system("%s %s" % (cmd,mftextargument))
-                       
+
                        mfmenudescr=parts[2].rstrip()
                     else:
                        if index is 3:
                           mfmenudescr=parts[2].rstrip()
                        else:
                           mfmenudescr=parts[1].rstrip()
-                          
+
            if os.path.exists("%s/%s.cfg" % (fantastic_pluginpath,mfmenu.rstrip())) is True:
               if mfmenu == "main":
                  pass
               else:
-                 self.session.openWithCallback(self.FantasticMenuSelected,ChoiceBox,mfmenudescr,self.ListMenuFantastic())        
+                 self.session.openWithCallback(self.FantasticMenuSelected,ChoiceBox,mfmenudescr,self.ListMenuFantastic())
            else:
               self.skipMF("no Menufile %s.cfg" %mfmenu)
 
@@ -368,7 +372,7 @@ class Fantastic(Screen):
               mfmenudescr=parts[2].rstrip()
            else:
               mfmenudescr=parts[1].rstrip()
-              
+
            if index > 3:
               mfexecute=parts[3].rstrip()
               mftextargument=parts[3].rstrip()
@@ -399,7 +403,7 @@ class Fantastic(Screen):
                  os.system("%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument))
               else:
                  os.system("%s %s"  % (mfexecute,mftextargument))
-              self.FantasticMenu("") 
+              self.FantasticMenu("")
            elif mfcommand is "C":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
                  self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument) ])
@@ -414,7 +418,7 @@ class Fantastic(Screen):
                  plugininstalled=True
               if os.path.exists("%s/SystemPlugins/%s" %(pluginpath,mftextargument)) is True:
                  plugininstalled=True
-                 
+
               if plugininstalled is True:
                  if mftextargument == "Tuxtxt":
                     self.session.openWithCallback(self.FantasticMenu(""),ScSelection)
@@ -425,7 +429,7 @@ class Fantastic(Screen):
                  elif mftextargument == "Multiboot":
                     self.session.openWithCallback(self.FantasticMenu(""),Multiboot)
                  elif mftextargument == "MediaPlayerDeluxe":
-                    self.session.openWithCallback(self.FantasticMenu(""),MediaPlayerDeluxe)                                     
+                    self.session.openWithCallback(self.FantasticMenu(""),MediaPlayerDeluxe)
                  elif mftextargument == "SpiderFan":
                     self.session.openWithCallback(self.FantasticMenu(""),SpiderFan)
                  elif mftextargument == "Elektro":
@@ -444,24 +448,24 @@ class Fantastic(Screen):
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),BackupSetup)
                     except:
-                       pass  
+                       pass
 		 elif mftextargument == "GboxSuite":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),GboxSuite)
                     except:
-                       pass  
+                       pass
 		 elif mftextargument == "KeyUpdater":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),KeyUpdater)
                     except:
-                       pass  
+                       pass
 		 elif mftextargument == "CCcamInfo":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),CCcamInfo)
                     except:
-                       pass  
+                       pass
 		 elif mftextargument == "LasMail":
-                    self.session.openWithCallback(self.FantasticMenu(""),LasMail)	
+                    self.session.openWithCallback(self.FantasticMenu(""),LasMail)
                  elif mftextargument == "Tuxcom":
                     self.session.openWithCallback(self.FantasticMenu(""),TuxComStarter)
                  elif mftextargument == "Cronmanager":
@@ -497,7 +501,7 @@ class Fantastic(Screen):
                        self.session.openWithCallback(self.FantasticMenu,MessageBox,"Plugin %s is not available !" %mftextargument, MessageBox.TYPE_INFO)
                  else:
                     self.session.openWithCallback(self.FantasticMenu,MessageBox,"Plugin %s is not installed !" %mftextargument, MessageBox.TYPE_INFO)
-                    
+
            elif mfcommand is "R":
               if mfintargument == 3:
                  self.session.openWithCallback(self.FantasticMenu,MessageBox,"Restarting Enigma2", MessageBox.TYPE_INFO, timeout=5)
@@ -561,14 +565,14 @@ class Fantastic(Screen):
               self.session.openWithCallback(self.FantasticMenu(""),FantasticLCD,mftextargument)
            elif mfcommand is "L":
               if mftextargument == "log":
-                 os.system("echo %s > /tmp/fantasticlog.txt" %mfexecute) 
+                 os.system("echo %s > /tmp/fantasticlog.txt" %mfexecute)
               elif mftextargument == "logappend":
-                 os.system("echo %s >> /tmp/fantasticlog.txt" %mfexecute) 
+                 os.system("echo %s >> /tmp/fantasticlog.txt" %mfexecute)
               elif mftextargument == "reset":
                  if os.path.exists("/tmp/fantasticlog.txt") is True:
-                    os.system("rm /tmp/fantasticlog.txt") 
+                    os.system("rm /tmp/fantasticlog.txt")
               elif mftextargument == "wall":
-                 os.system("wall %s" %mfexecute) 
+                 os.system("wall %s" %mfexecute)
               else:
                  print "[FANTASTIC] Logging: %s" %mfexecute
               self.FantasticMenu("")
@@ -643,9 +647,9 @@ class Fantastic(Screen):
            if mftextargument is not None:
               if mftextargument is not " ":
                  mfmenu=mftextargument
-           
+
         self.FantasticMenu("")
-           
+
     def skipMF(self,reason):
         self.session.open(MessageBox,_("Menu Fantastic exits, because %s") % reason, MessageBox.TYPE_WARNING)
 
@@ -676,12 +680,12 @@ class FantasticBoot(Screen):
         skin = """
             <screen position="100,100" size="500,400" title="HDFreaks.cc" >
             </screen>"""
-        
+
 	def __init__(self,session):
                 self.skin = FantasticBoot.skin
 		Screen.__init__(self,session)
 		self.session = session
-		
+
                 mainmenufile = "%s/%s.cfg" % (fantastic_pluginpath,"main")
                 if os.path.exists(mainmenufile) is True:
                    mfmain = open(mainmenufile,"r")
@@ -698,9 +702,9 @@ class FantasticBoot(Screen):
                                os.system("%s/%s" % (fantastic_pluginpath,cmd))
                             else:
                                os.system("%s" % (cmd))
-                            
+
                          mfmain.close()
-   
+
 
 class FantasticApplication(Screen):
 
@@ -711,9 +715,9 @@ class FantasticApplication(Screen):
 		self.container=eConsoleAppContainer()
 		self.container.appClosed.get().append(self.finished)
 		self.runapp()
-		
+
 	def runapp(self):
-	
+
                 global mfcommand
                 global mfmenu
                 global mfmenuold
@@ -745,7 +749,7 @@ class FantasticLCD(Screen):
 		<screen position="0,0" size="0,0" title="LCD Text" >
 			<widget name="text" position="0,0" size="0,0" font="Regular;14" halign="center"/>
 		</screen>"""
-		
+
 	def __init__(self, session, title = "LCD Text"):
 		self.skin = FantasticLCD.skin
 		Screen.__init__(self, session)
@@ -753,18 +757,18 @@ class FantasticLCD(Screen):
 		self["text"] = Label("")
 
                 # minimal actions to be able to exit after showing LCD Label
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.cancel,
 			"back": self.cancel,
 		}, -1)
-                # now set passed Text Label for LCD output 		
+                # now set passed Text Label for LCD output
 		self.newtitle = title
 		self.onShown.append(self.updateTitle)
 
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
-			
+
 	def cancel(self):
 		self.close()
 
