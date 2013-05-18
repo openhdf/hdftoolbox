@@ -85,7 +85,9 @@ try:
     elif getBoxType().startswith('venton'):
         box = "Venton"
     elif getBoxType() == "e3hd":
-        box = "E3HD"
+        box = "e3hd"
+        boxname = "E3HD"
+
 except:
     pass
 

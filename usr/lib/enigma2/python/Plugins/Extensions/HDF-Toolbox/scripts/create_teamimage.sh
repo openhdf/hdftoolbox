@@ -12,6 +12,7 @@ opkg remove enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo-hdf \
+sqlite3 \
 enigma2-plugin-extensions-zaphistorybrowser.mod \
 enigma2-plugin-extensions-virtualzap.mod \
 enigma2-plugin-extensions-et-portal \
