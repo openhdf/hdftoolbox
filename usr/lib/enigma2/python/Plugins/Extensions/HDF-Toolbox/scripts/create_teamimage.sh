@@ -19,6 +19,7 @@ enigma2-plugin-extensions-et-portal \
 enigma2-plugin-extensions-openairplaymod \
 enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-extensions-webinterface-old-package \
+enigma2-plugin-extensions-picturecenterfs \
 enigma2-plugin-extensions-menusort \
 enigma2-plugin-extensions-jobmanager \
 enigma2-plugin-extensions-mediainfo \
