@@ -33,7 +33,6 @@ enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-cooltvguide \
 enigma2-plugin-extensions-cacheflush \
 enigma2-plugin-extensions-infobartunerstate \
-enigma2-plugin-extensions-movie2kserien \
 enigma2-plugin-extensions-enhancedpowersave \
 enigma2-plugin-extensions-flashexpander \
 enigma2-plugin-extensions-tvcharts \
