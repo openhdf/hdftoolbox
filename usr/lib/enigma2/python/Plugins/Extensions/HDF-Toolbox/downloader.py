@@ -70,10 +70,13 @@ try:
     elif getBoxType().startswith('ixuss'):
         box = "ixuss"
         boxname = "Ixuss One/Zero"
-    #Maram/OdinM9
+    #Maram/OdinM9/M9
     elif getBoxType() == "odinm9":
         box = "odinm9"
         boxname = "Odin M9"
+    elif getBoxType() == "odinm7":
+        box = "odinm7"
+        boxname = "Odin M7"
     #Dreambox
     elif getBoxType() == "dm800se":
         box = "dreambox"

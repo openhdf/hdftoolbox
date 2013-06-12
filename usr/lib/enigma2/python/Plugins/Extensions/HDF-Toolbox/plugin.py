@@ -42,6 +42,8 @@ try:
     #Maram/OdinM9
     elif getBoxType() == "odinm9":
         box = "OdinM9"
+    elif getBoxType() == "odinm7":
+        box = "OdinM7"
     #Dreambox
     elif getBoxType() == "dm800se":
         box = "Dreambox"
