@@ -25,7 +25,7 @@ enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-osd3dmodsetup
 echo
-echo "install addons"
+echo "install extensions"
 opkg install enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-skyrecorder \
 enigma2-plugin-extensions-mediaportal \
@@ -44,6 +44,7 @@ enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-systemplugins-recordinfobar \
 enigma2-plugin-extensions-icefilms \
 enigma2-plugin-extensions-tvspielfilm \
+enigma2-plugin-extensions-customsubservicesplugin \
 enigma2-plugin-extensions-cubic_streamer
 echo
 echo "done ... but not complete"
