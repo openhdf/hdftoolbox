@@ -1,7 +1,17 @@
 #!/bin/sh
 
 #set temp output file
+rm /tmp/hdf.txt
 touch /tmp/hdf.txt
+cat /proc/stb/info/boxtype >> /tmp/hdf.txt
+echo "" >> /tmp/hdf.txt
+cat /proc/version >> /tmp/hdf.txt
+echo "" >> /tmp/hdf.txt
+less /etc/version >> /tmp/hdf.txt
+echo "" >> /tmp/hdf.txt
+cat /proc/stb/info/chipset >> /tmp/hdf.txt
+echo "" >> /tmp/hdf.txt
+cat /proc/cpuinfo >> /tmp/hdf.txt
 ####
 
 if [ -f /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/dvbdate ]; then
