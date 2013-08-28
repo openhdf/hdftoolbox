@@ -77,6 +77,9 @@ try:
     elif getBoxType() == "odinm7":
         box = "odinm7"
         boxname = "Odin M7"
+    elif getBoxType() == "odinm6":
+        box = "odinm7"
+        boxname = "Odin M6"
     #Dreambox
     elif getBoxType() == "dm800se":
         box = "dreambox"

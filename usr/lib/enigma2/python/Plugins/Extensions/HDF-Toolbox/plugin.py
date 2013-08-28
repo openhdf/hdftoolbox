@@ -44,6 +44,8 @@ try:
         box = "OdinM9"
     elif getBoxType() == "odinm7":
         box = "OdinM7"
+    elif getBoxType() == "odinm6":
+        box = "OdinM6"
     #Dreambox
     elif getBoxType() == "dm800se":
         box = "Dreambox"
@@ -151,7 +153,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 26.08.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 28.08.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):

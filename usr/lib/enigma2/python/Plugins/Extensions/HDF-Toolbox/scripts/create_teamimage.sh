@@ -10,7 +10,7 @@ echo "remove old plugins"
 opkg remove enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
-opkg install enigma2-plugin-extensions-bootvideo-hdf \
+opkg install enigma2-plugin-extensions-bootvideo \
 sqlite3 \
 enigma2-plugin-extensions-zaphistorybrowser.mod \
 enigma2-plugin-extensions-virtualzap.mod \
@@ -22,6 +22,7 @@ enigma2-plugin-extensions-picturecenterfs \
 enigma2-plugin-extensions-menusort \
 enigma2-plugin-extensions-jobmanager \
 enigma2-plugin-extensions-mediainfo \
+enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-osd3dmodsetup
 echo
@@ -29,8 +30,8 @@ echo "install extensions"
 opkg install enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-skyrecorder \
 enigma2-plugin-extensions-mediaportal \
+enigma2-plugin-extensions-picturecenterfs \
 enigma2-plugin-extensions-cooltvguide \
-enigma2-plugin-extensions-cacheflush \
 enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-enhancedpowersave \
 enigma2-plugin-extensions-flashexpander \
@@ -44,6 +45,7 @@ enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-systemplugins-recordinfobar \
 enigma2-plugin-extensions-icefilms \
 enigma2-plugin-extensions-tvspielfilm \
+enigma2-plugin-skins-mmark-mediaportal \
 enigma2-plugin-extensions-customsubservicesplugin
 echo
 echo "done ... but not complete"
