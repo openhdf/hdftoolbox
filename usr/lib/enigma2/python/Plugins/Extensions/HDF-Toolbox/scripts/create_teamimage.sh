@@ -37,8 +37,6 @@ enigma2-plugin-extensions-enhancedpowersave \
 enigma2-plugin-extensions-flashexpander \
 enigma2-plugin-extensions-tvcharts \
 enigma2-plugin-extensions-dreamexplorer \
-enigma2-plugin-extensions-dokumonster \
-enigma2-plugin-extensions-cinestreamer \
 enigma2-plugin-extensions-remotechannelstreamimport \
 enigma2-plugin-extensions-epgrefresh_mod \
 enigma2-plugin-extensions-yampmusicplayer \
@@ -46,7 +44,7 @@ enigma2-plugin-systemplugins-recordinfobar \
 enigma2-plugin-extensions-icefilms \
 enigma2-plugin-extensions-tvspielfilm \
 enigma2-plugin-skins-mmark-mediaportal \
-enigma2-plugin-extensions-customsubservicesplugin
+enigma2-plugin-extensions-customsubservices
 echo
 echo "done ... but not complete"
 echo "install enigma2-plugin-systemplugins-ice-network-tuner if you have a box with 2 cpu"

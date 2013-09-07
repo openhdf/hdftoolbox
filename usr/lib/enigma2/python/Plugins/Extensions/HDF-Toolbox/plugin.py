@@ -1,9 +1,9 @@
 #
 import os
+from enigma import getBoxType, getMachineBrand, getMachineName
 
 #check the boxtype#
 try:
-    from enigma import getBoxType
     #ET Boxen
     #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
     if getBoxType() == "et9x00":
@@ -31,7 +31,7 @@ try:
     #Technomates
     elif getBoxType() == "tmtwin":
         box = "TM-Twin"
-## Just in cvase we would need it some times
+## Just in case we would need it some times
 #    elif getBoxType() == "tm2t":
 #        box = "TM-2T"
 #    elif getBoxType() == "tmsingle":
@@ -59,6 +59,12 @@ try:
 except:
     pass
 
+try:
+	if getMachineName() == 'STARSAT-LX':
+		box = "Starsat-LX"
+except:
+    pass
+		
 #change some stuff at linux console
 #if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
 	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
@@ -153,7 +159,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 31.08.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 07.09.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
