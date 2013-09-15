@@ -41,7 +41,6 @@ enigma2-plugin-extensions-remotechannelstreamimport \
 enigma2-plugin-extensions-epgrefresh_mod \
 enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-systemplugins-recordinfobar \
-enigma2-plugin-extensions-icefilms \
 enigma2-plugin-extensions-tvspielfilm \
 enigma2-plugin-skins-mmark-mediaportal \
 enigma2-plugin-extensions-customsubservices
