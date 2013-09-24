@@ -24,6 +24,8 @@ enigma2-plugin-extensions-jobmanager \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
+enigma2-plugin-extensions-xbmcwetter \
+enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-systemplugins-osd3dmodsetup
 echo
 echo "install extensions"
@@ -42,8 +44,7 @@ enigma2-plugin-extensions-epgrefresh_mod \
 enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-systemplugins-recordinfobar \
 enigma2-plugin-extensions-tvspielfilm \
-enigma2-plugin-skins-mmark-mediaportal \
-enigma2-plugin-extensions-customsubservices
+enigma2-plugin-skins-mmark-mediaportal
 echo
 echo "done ... but not complete"
 echo "install enigma2-plugin-systemplugins-ice-network-tuner if you have a box with 2 cpu"
