@@ -18,7 +18,7 @@ else
 	freespace=`df -h | grep rootfs | df -h | grep rootfs | cut -c 46-47`
 	freeneeded=10
 	if [ $freespace -ge $freeneeded ]; then
-		opkg enigma2-plugin-extensions-et-webbrowser
+		opkg install enigma2-plugin-extensions-et-webbrowser
 		echo "done"
 	else
 		echo "Sorry not enough space in flash to install Browser"
