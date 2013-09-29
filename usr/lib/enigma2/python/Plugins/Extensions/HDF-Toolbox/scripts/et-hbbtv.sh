@@ -17,11 +17,13 @@ else
 	echo
 	freespace=`df -h | grep rootfs | df -h | grep rootfs | cut -c 46-47`
 	freeneeded=10
+	echo "$freespace MB available on ubi0:rootfs. $freeneeded MB are needed for installation of HbbTV"
+	echo
 	if [ $freespace -ge $freeneeded ]; then
 		opkg install enigma2-plugin-extensions-et-hbbtv
 		echo "done"
 	else
-		echo "Sorry not enough space in flash to install Browser"
+		echo "You need $freeneeded MB in your Flash available. But it is only $freespace MB free"
 	fi
 	echo
 	sync
