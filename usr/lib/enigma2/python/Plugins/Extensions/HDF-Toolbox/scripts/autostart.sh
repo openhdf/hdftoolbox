@@ -36,3 +36,25 @@ else
 	echo "no binary dvbdate found"
 fi
 
+##reinstall mediaportal skins after update
+echo
+mediaportal=`opkg list-installed | grep extensions-mediaportal | cut -d" " -f1`
+if [ $mediaportal == enigma2-plugin-extensions-mediaportal ]; then
+	echo "mediaportal is installed"
+	IP=hdfreaks.cc
+	ping -c 1 $IP  > /dev/null 2>&1
+		if [ $? == 0 ]; then
+			echo "box online"
+				if [ -f /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins/weed_/haupt_Screen.xml ]; then
+					echo "mediaportal skins are installed ... nothing to do"
+				else
+					echo "missing mediaportal skin ... install now"
+					opkg install --force-reinstall enigma2-plugin-skins-mediaportal > /dev/null 2>&1
+					echo "done"
+				fi
+		else
+			echo "box offline"
+		fi
+else
+	echo "mediaportal is currently not installed"
+fi
