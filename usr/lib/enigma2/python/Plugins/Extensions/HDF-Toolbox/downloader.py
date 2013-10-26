@@ -154,8 +154,11 @@ class Hdf_Downloader(Screen):
         self.filesArraySplit = []
         self.list = []
 ##### Download Source File
-        import urllib
-        urllib.urlretrieve ("http://addons.hdfreaks.cc/feeds/down.hdf", "/tmp/.down.hdf")
+        try:
+            import urllib
+            urllib.urlretrieve ("http://addons.hdfreaks.cc/feeds/down.hdf", "/tmp/.down.hdf")
+        except:
+            os.system("touch /tmp/.down.hdf")
 ##### Lets Start
         self.readSource()
         self.makeMenu()
