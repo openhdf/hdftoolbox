@@ -58,3 +58,11 @@ if [ $mediaportal == enigma2-plugin-extensions-mediaportal ]; then
 else
 	echo "mediaportal is currently not installed"
 fi
+
+##remove old videomode if new screen videomode is installed
+if [ -f /usr/lib/enigma2/python/Screens/VideoMode.pyo ]; then
+	echo "remove old videomode version if exists"
+	rm -fr /usr/lib/enigma2/python/Plugins/SystemPlugins/Videomode/ > /dev/null 2>&1
+else
+	echo "nothing to do"
+fi
