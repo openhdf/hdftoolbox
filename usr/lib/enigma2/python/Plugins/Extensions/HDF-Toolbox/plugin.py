@@ -61,9 +61,12 @@ try:
 except:
     pass
 
-try:
+try:		
 	if getMachineName() == 'STARSAT-LX':
-		box = "Starsat-LX"
+		if os.path.exists("/etc/enigma2/.opticum") is True: #touch this file to show boxtye in toolbox
+			box = "Opticum AX-Odin"
+		else:
+			box = "Starsat-LX"
 	elif getMachineName().startswith('Golden'):
 		box = "GI Xpeed LX"
 	elif getMachineName() == 'SF8 HD':
@@ -165,7 +168,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 05.11.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 09.11.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
