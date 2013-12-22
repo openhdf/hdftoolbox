@@ -50,7 +50,7 @@ else
 	ping -c 1 $IP  > /dev/null 2>&1
 		if [ $? == 0 ]; then
 			echo -n "box online ... "
-				if [ -f /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins/weed_/haupt_Screen.xml ]; then
+				if [ -f /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins/weed_EvoBlue/haupt_Screen.xml ]; then
 					echo "mediaportal skins are installed ... nothing to do"
 				else
 					echo -n "missing mediaportal skin ... install now"
