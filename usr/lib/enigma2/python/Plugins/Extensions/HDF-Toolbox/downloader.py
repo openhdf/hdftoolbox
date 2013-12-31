@@ -100,6 +100,19 @@ try:
 except:
     pass
 
+##read brand and machine for other OEMs
+brandfile = "/etc/.brand"
+if os.path.exists(brandfile) is True:
+	brand = open(brandfile,"r")
+	box = brand.readline()
+	brand.close()
+
+machinefile = "/etc/.machine"
+if os.path.exists(machinefile) is True:
+	machine = open(machinefile,"r")
+	boxmachine = machine.readline()
+	machine.close()
+
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
     os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py")
 else:

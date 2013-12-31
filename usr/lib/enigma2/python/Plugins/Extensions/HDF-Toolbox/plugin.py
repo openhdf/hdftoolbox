@@ -31,11 +31,6 @@ try:
     #Technomates
     elif getBoxType() == "tmtwin":
         box = "TM-Twin"
-## Just in case we would need it some times
-#    elif getBoxType() == "tm2t":
-#        box = "TM-2T"
-#    elif getBoxType() == "tmsingle":
-#        box = "TM-Single"
     #Ixussone
     elif getBoxType().startswith('ixuss'):
         box = "Ixuss"
@@ -73,13 +68,20 @@ try:
 		box = "SF8 HD"
 except:
     pass
-		
-#change some stuff at linux console
-#if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes") is True:
-	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/")
-	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/")
-	#os.system("mv /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/" + box + "/* /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/")
-	#os.system("rm -rf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/boxtypes/")
+
+##read brand and machine for other OEMs
+brandfile = "/etc/.brand"
+if os.path.exists(brandfile) is True:
+	brand = open(brandfile,"r")
+	box = brand.readline()
+	brand.close()
+
+machinefile = "/etc/.machine"
+if os.path.exists(machinefile) is True:
+	machine = open(machinefile,"r")
+	boxmachine = machine.readline()
+	machine.close()
+
 os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
 os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
@@ -168,7 +170,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 22.12.2013" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 01.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
