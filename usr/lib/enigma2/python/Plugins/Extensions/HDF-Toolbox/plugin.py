@@ -69,18 +69,22 @@ try:
 except:
     pass
 
-##read brand and machine for other OEMs
+##read .brand and .machine for other OEMs
 brandfile = "/etc/.brand"
 if os.path.exists(brandfile) is True:
 	brand = open(brandfile,"r")
-	box = brand.readline()
+	box = brand.readline().lower()
 	brand.close()
 
 machinefile = "/etc/.machine"
 if os.path.exists(machinefile) is True:
 	machine = open(machinefile,"r")
-	boxmachine = machine.readline()
+	boxmachine = machine.readline().lower()
 	machine.close()
+
+#change some names that are reading in .brand file
+if box == "opticum":
+	box = "Opticum AX-Odin"
 
 os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
 os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
