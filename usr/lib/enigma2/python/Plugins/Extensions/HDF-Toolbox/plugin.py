@@ -1,6 +1,5 @@
-#
 import os
-from boxbranding import getBoxType,getMachineBrand, getMachineName
+from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
 
 #check the boxtype#
 try:
