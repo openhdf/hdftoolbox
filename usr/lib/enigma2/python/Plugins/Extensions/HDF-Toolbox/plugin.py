@@ -20,26 +20,16 @@ import NavigationInstance
 import downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 
-#check the boxtype#
 try:
     #ET Boxen
-    #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
-    if getBoxType() == 'et9x00':
-        box = "ET9x00"
-    elif getBoxType() == "et9000":
-        box = "ET9x00"
-    elif getBoxType() == "et6x00":
-        box = "ET6x00"
-    elif getBoxType() == "et6000":
-        box = "ET6x00"
-    elif getBoxType() == "et5x00":
-        box = "ET5x00"
-    elif getBoxType() == "et5000":
-        box = "ET5x00"
-    elif getBoxType() == "et4x00":
-        box = "ET4x00"
-    elif getBoxType() == "et4000":
-        box = "ET4x00"
+    if getBoxType().startswith('et9'):
+		box = "ET9x00"
+    elif getBoxType().startswith('et6'):
+		box = "ET6x00"
+    elif getBoxType().startswith('et5'):
+		box = "ET5x00"
+    elif getBoxType().startswith('et4'):
+		box = "ET4x00"
     #VU Boxen
     elif getBoxType() == "vuduo":
         box = "Vu+Duo"
@@ -116,22 +106,12 @@ os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-To
 os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
-#try:
-#   import downloader
-#except:
-#   pass
-
-#def HDF_Downloader(self):
-#   self.session.open(downloader.Hdf_Downloader)
-
 # plugin calling support comes here ...
 pluginpath = "/usr/lib/enigma2/python/Plugins/"
 
 from Screens.Ci import *
 from Screens.PluginBrowser import *
-# SkinSelector is now located in Screen
 from Screens.SkinSelector import SkinSelector
-## SoftwareUpdate is now located in Screen
 from Plugins.SystemPlugins.SoftwareManager.plugin import *
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py"):
@@ -292,13 +272,10 @@ class Fantastic(Screen):
                title="%s\n%s\n%s\n%s" % (title1, title2, title3, title4)
                self.session.open(MessageBox,("%s") % (title),  MessageBox.TYPE_INFO)
            elif mfselected is "mfschdf":
-               #self.session.openWithCallback(self.FantasticMenu(""),HDF_Downloader)
                try:
 					self.session.open(downloader.Hdf_Downloader)
                except:
 					self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
-               #self.session.open(downloader.Hdf_Downloader)
-               #self.HDF_Downloader()
            elif mfselected is "mfsc":
                self.session.openWithCallback(self.FantasticMenu(""),ScSelection)
            elif mfselected is "mfsc2":
@@ -803,6 +780,3 @@ class FantasticLCD(Screen):
 
 	def cancel(self):
 		self.close()
-
-
-
