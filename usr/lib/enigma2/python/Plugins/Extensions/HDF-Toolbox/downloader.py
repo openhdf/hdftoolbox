@@ -21,7 +21,7 @@ import sys
 
 #check the boxtype#
 try:
-    from enigma import getBoxType
+    from boxbranding import getBoxType,getMachineBrand, getMachineName
     #ET Boxen
     #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
     if getBoxType() == "et9x00":
