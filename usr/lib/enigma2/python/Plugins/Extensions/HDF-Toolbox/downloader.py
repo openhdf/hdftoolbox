@@ -18,22 +18,34 @@ from enigma import ePicLoad, eTimer
 from twisted.web.client import downloadPage
 import os
 import sys
+from boxbranding import getBoxType,getMachineBrand, getMachineName
 
 #check the boxtype#
-try:
-    from boxbranding import getBoxType,getMachineBrand, getMachineName
+try:    
     #ET Boxen
     #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
     if getBoxType() == "et9x00":
         box = "et9000"
         boxname = "ET9x00"
+    elif getBoxType() == "et9000":
+        box = "et9000"
+        boxname = "ET9x00"
     elif getBoxType() == "et6x00":
+        box = "et9000"
+        boxname = "ET6x00"
+    elif getBoxType() == "et6000":
         box = "et9000"
         boxname = "ET6x00"
     elif getBoxType() == "et5x00":
         box = "et9000"
         boxname = "ET5x00"
+    elif getBoxType() == "et5000":
+        box = "et9000"
+        boxname = "ET5x00"
     elif getBoxType() == "et4x00":
+        box = "et9000"
+        boxname = "ET4x00"
+    elif getBoxType() == "et4000":
         box = "et9000"
         boxname = "ET4x00"
     #VU Boxen

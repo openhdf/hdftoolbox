@@ -1,17 +1,44 @@
 import os
-from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
+from enigma import *
+from Screens.Screen import Screen
+from Screens.Standby import *
+from Screens.MessageBox import MessageBox
+from Screens.InputBox import InputBox
+from Screens.ChoiceBox import ChoiceBox
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ScrollLabel import ScrollLabel
+from Components.GUIComponent import *
+from Components.MenuList import MenuList
+from Components.Input import Input
+from Screens.Console import Console
+from Screens.About import *
+from Plugins.Plugin import PluginDescriptor
+from RecordTimer import *
+from time import *
+from Tools import Directories, Notifications
+import NavigationInstance
+import downloader
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 #check the boxtype#
 try:
     #ET Boxen
     #if getBoxType().startswith('et'): (Alternativer Weg um alle Gleichzeitig zu casten)
-    if getBoxType() == "et9x00":
+    if getBoxType() == 'et9x00':
+        box = "ET9x00"
+    elif getBoxType() == "et9000":
         box = "ET9x00"
     elif getBoxType() == "et6x00":
         box = "ET6x00"
+    elif getBoxType() == "et6000":
+        box = "ET6x00"
     elif getBoxType() == "et5x00":
         box = "ET5x00"
+    elif getBoxType() == "et5000":
+        box = "ET5x00"
     elif getBoxType() == "et4x00":
+        box = "ET4x00"
+    elif getBoxType() == "et4000":
         box = "ET4x00"
     #VU Boxen
     elif getBoxType() == "vuduo":
@@ -82,32 +109,13 @@ if os.path.exists(machinefile) is True:
 	machine.close()
 
 #change some names that are reading in .brand file
-if box == "opticum":
+if box == 'opticum':
 	box = "Opticum AX-Odin"
 
 os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
 os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
-from enigma import *
-from Screens.Screen import Screen
-from Screens.Standby import *
-from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
-from Screens.ChoiceBox import ChoiceBox
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.ScrollLabel import ScrollLabel
-from Components.GUIComponent import *
-from Components.MenuList import MenuList
-from Components.Input import Input
-from Screens.Console import Console
-from Screens.About import *
-from Plugins.Plugin import PluginDescriptor
-from RecordTimer import *
-from time import *
-from Tools import Directories, Notifications
-import NavigationInstance
-import downloader
 #try:
 #   import downloader
 #except:
@@ -173,7 +181,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 19.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 20.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
