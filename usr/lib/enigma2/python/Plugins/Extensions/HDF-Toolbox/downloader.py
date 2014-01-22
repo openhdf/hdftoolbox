@@ -91,8 +91,9 @@ try:
     elif getBoxType() == "e3hd":
         box = "e3hd"
         boxname = "E3HD"
-    elif getBoxType() == "inihde":
-        box = "inihde"	
+	#Xpeed LX-x
+    elif getMachineBrand().startswith('GI'):
+        box = "inihde"
         boxname = "GI Xpeed LX"
 
 except:
