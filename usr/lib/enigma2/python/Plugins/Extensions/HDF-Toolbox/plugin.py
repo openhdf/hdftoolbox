@@ -20,17 +20,16 @@ import NavigationInstance
 import downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
 
-print "~~~~~~~~~~~~~~~~~ starting HDF-Toolbox ~~~~~~~~~~~~~~~~~~"
-MACHINENAME = getMachineName()
-MACHINEBRAND = getMachineBrand()
-MODEL = getBoxType()
-OEM = getOEM()
-print "~~~~~~~~~~~~~~~~ read box informations ~~~~~~~~~~~~~~~~~~"
-print MACHINENAME
-print MACHINEBRAND
-print MODEL
-print OEM
-		
+print "~~~~~~~~~~~~ HDF-Toolbox ~ read box informations ~~~~~~~~~~~~~~"
+print "MachineName =", getMachineName()
+print "MachineBrand =", getMachineBrand()
+print "BoxType =", getBoxType()
+print "OEM =", getOEM()
+print "Driverdate =", getDriverDate()
+print "Imageversion =", getImageVersion()
+print "Imagebuild =", getImageBuild()
+print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
 try:
     #ET Boxen
     if getBoxType().startswith('et9'):
@@ -112,9 +111,18 @@ if os.path.exists(machinefile) is True:
 #change some names that are reading in .brand file
 if box == 'opticum':
 	box = "Opticum AX-Odin"
-	
-os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
-os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
+
+os.system("echo ~~~~~~~~~~~~~~~~~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/.boxinformations")
+os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/.boxinformations")
+os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/.boxinformations")
+os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/.boxinformations")
+os.system("echo getOEM = " + getOEM() + " >> /etc/enigma2/.boxinformations")
+os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/.boxinformations")
+os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/.boxinformations")
+os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/.boxinformations")
+os.system("echo ~~~~~~~~~~~~~~~~~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/.boxinformations")
+os.system("cat /proc/cpuinfo >> /etc/enigma2/.boxinformations")
+
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
 # plugin calling support comes here ...
