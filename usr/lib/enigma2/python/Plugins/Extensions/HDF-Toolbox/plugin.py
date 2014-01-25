@@ -18,8 +18,19 @@ from time import *
 from Tools import Directories, Notifications
 import NavigationInstance
 import downloader
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
 
+print "~~~~~~~~~~~~~~~~~ starting HDF-Toolbox ~~~~~~~~~~~~~~~~~~"
+MACHINENAME = getMachineName()
+MACHINEBRAND = getMachineBrand()
+MODEL = getBoxType()
+OEM = getOEM()
+print "~~~~~~~~~~~~~~~~ read box informations ~~~~~~~~~~~~~~~~~~"
+print MACHINENAME
+print MACHINEBRAND
+print MODEL
+print OEM
+		
 try:
     #ET Boxen
     if getBoxType().startswith('et9'):
@@ -101,7 +112,7 @@ if os.path.exists(machinefile) is True:
 #change some names that are reading in .brand file
 if box == 'opticum':
 	box = "Opticum AX-Odin"
-
+	
 os.system("cat /proc/cpuinfo > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.cpuinfo")
 os.system("echo " + box + " > /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.boxtype")
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
@@ -161,7 +172,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 23.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 25.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
