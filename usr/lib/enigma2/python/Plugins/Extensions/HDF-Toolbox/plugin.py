@@ -118,16 +118,16 @@ if os.path.exists(machinefile) is True:
 if box == 'opticum':
 	box = "Opticum AX-Odin"
 
-os.system("echo ~~~~~~~~~~~~~~~~~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/.boxinformations")
-os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/.boxinformations")
-os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/.boxinformations")
-os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/.boxinformations")
-os.system("echo getOEM = " + getOEM() + " >> /etc/enigma2/.boxinformations")
-os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/.boxinformations")
-os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/.boxinformations")
-os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/.boxinformations")
-os.system("echo ~~~~~~~~~~~~~~~~~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/.boxinformations")
-os.system("cat /proc/cpuinfo >> /etc/enigma2/.boxinformations")
+os.system("echo ~~~~~~~~~~~~~~~~~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/boxinformations")
+os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
+os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
+os.system("echo getOEM = " + getOEM() + " >> /etc/enigma2/boxinformations")
+os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
+os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
+os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
+os.system("echo ~~~~~~~~~~~~~~~~~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
 
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
