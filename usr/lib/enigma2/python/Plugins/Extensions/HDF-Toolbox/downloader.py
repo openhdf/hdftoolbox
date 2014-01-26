@@ -18,7 +18,7 @@ from enigma import ePicLoad, eTimer
 from twisted.web.client import downloadPage
 import os
 import sys
-from boxbranding import getBoxType,getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
 
 try:    
     #ET Boxen
@@ -65,7 +65,7 @@ try:
         box = "tmtwin"
         boxname = "TM-Single"
     #Ixussone
-    elif getBoxType().startswith('ixuss'):
+    elif getOEM().startswith('ixuss'):
         box = "ixuss"
         boxname = "Ixuss One/Zero"
     #Maram/OdinM9/M9

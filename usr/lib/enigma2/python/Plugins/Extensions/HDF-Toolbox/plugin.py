@@ -30,6 +30,8 @@ print "Imageversion =", getImageVersion()
 print "Imagebuild =", getImageBuild()
 print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
+boxdesc = getMachineBrand() + " " + getMachineName()
+
 try:
     #ET Boxen
     if getBoxType().startswith('et9'):
@@ -58,7 +60,7 @@ try:
     elif getBoxType() == "tmtwin":
         box = "TM-Twin"
     #Ixussone
-    elif getBoxType().startswith('ixuss'):
+    elif getOEM().startswith('ixuss'):
         box = "Ixuss"
     #Maram/OdinM9
     elif getBoxType() == "odinm9":
@@ -92,6 +94,10 @@ try:
 		box = "GI Xpeed LX"
 	elif getMachineName() == 'SF8 HD':
 		box = "SF8 HD"
+	elif getOEM() == 'ixussone':
+		boxdesc = "Ixuss One"
+	elif getOEM() == 'ixusszero':
+		boxdesc = "Ixuss Zero"
 except:
     pass
 
@@ -157,17 +163,17 @@ def autostart(reason, **kwargs):
 
 def menu(menuid, **kwargs):
     if menuid == "mainmenu":
-        return [(_("HDF Toolbox " + box + ""), main, "hdf_toolbox", 10)]
+        return [(_("HDF Toolbox " + boxdesc + ""), main, "hdf_toolbox", 10)]
     return []
 
 def Plugins(**kwargs):
     try:
 	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-			PluginDescriptor(name=" HDF Toolbox " + box + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
-            PluginDescriptor(name="HDF Toolbox " + box + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc=menu),
+			PluginDescriptor(name=" HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
+            PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc=menu),
             PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
     except:
-	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),PluginDescriptor(name="HDFreaks Toolbox " + box + "", description="Addons, Scripts, Tools", where = [PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name = "HDFreaks Toolbox " + box + "", description = "Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
+	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = [PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name = "HDFreaks Toolbox " + boxdesc + "", description = "Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
 
 def main(session,**kwargs):
     try:
@@ -180,7 +186,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 25.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 26.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
