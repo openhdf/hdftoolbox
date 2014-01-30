@@ -65,7 +65,7 @@ try:
         box = "tmtwin"
         boxname = "TM-Single"
     #Ixussone
-    elif getOEM().startswith('ixuss'):
+    elif getBoxType().lower().startswith('ixuss'):
         box = "ixuss"
         boxname = "Ixuss One/Zero"
     #Maram/OdinM9/M9

@@ -60,7 +60,7 @@ try:
     elif getBoxType() == "tmtwin":
         box = "TM-Twin"
     #Ixussone
-    elif getOEM().startswith('ixuss'):
+    elif getBoxType().lower().startswith('ixuss'):
         box = "Ixuss"
     #Maram/OdinM9
     elif getBoxType() == "odinm9":
@@ -94,9 +94,9 @@ try:
 		box = "GI Xpeed LX"
 	elif getMachineName() == 'SF8 HD':
 		box = "SF8 HD"
-	elif getOEM() == 'ixussone':
+	elif getBoxType() == 'Ixuss One':
 		boxdesc = "Ixuss One"
-	elif getOEM() == 'ixusszero':
+	elif getBoxType() == 'Ixuss Zero':
 		boxdesc = "Ixuss Zero"
 except:
     pass
@@ -186,7 +186,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 26.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 31.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
