@@ -19,7 +19,7 @@ from Tools import Directories, Notifications
 import NavigationInstance
 import downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
-
+		
 print "~~~~~~~~~~~~ HDF-Toolbox ~ read box informations ~~~~~~~~~~~~~~"
 print "MachineName =", getMachineName()
 print "MachineBrand =", getMachineBrand()
@@ -30,8 +30,11 @@ print "Imageversion =", getImageVersion()
 print "Imagebuild =", getImageBuild()
 print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
-boxdesc = getMachineBrand() + " " + getMachineName()
-
+try:
+	boxdesc = getMachineBrand() + " " + getMachineName()
+except:
+    boxdesc = "HDFreaks Toolbox"
+	
 try:
     #ET Boxen
     if getBoxType().startswith('et9'):
@@ -96,8 +99,10 @@ try:
 		box = "SF8 HD"
 	elif getBoxType() == 'Ixuss One':
 		boxdesc = "Ixuss One"
+		getMachineName = "Ixuss On"
 	elif getBoxType() == 'Ixuss Zero':
 		boxdesc = "Ixuss Zero"
+		getMachineName = "Ixuss Zero"
 except:
     pass
 
@@ -118,16 +123,19 @@ if os.path.exists(machinefile) is True:
 if box == 'opticum':
 	box = "Opticum AX-Odin"
 
-os.system("echo ~~~~~~~~~~~~~~~~~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/boxinformations")
-os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
-os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
-os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
-os.system("echo getOEM = " + getOEM() + " >> /etc/enigma2/boxinformations")
-os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
-os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
-os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
-os.system("echo ~~~~~~~~~~~~~~~~~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
-os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
+try:
+	os.system("echo ~~~~~~~~~~~~~~~~~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/boxinformations")
+	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getOEM = " + getOEM() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
+	os.system("echo ~~~~~~~~~~~~~~~~~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+	os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
+except:
+    pass
 
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
@@ -186,7 +194,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 31.01.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 01.02.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
