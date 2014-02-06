@@ -18,7 +18,7 @@ from enigma import ePicLoad, eTimer
 from twisted.web.client import downloadPage
 import os
 import sys
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getOEM, getBrandOEM
 
 try:    
     #ET Boxen
