@@ -83,7 +83,7 @@ try:
         box = "dreambox"
         boxname = "Dreambox"
     #XP1000
-    elif getBoxType() == "xp1000":
+    elif getBoxType().startswith('xp1000'):
         box = "xp1000"
         boxname = "XP1000"
     elif getBoxType().startswith('venton'):
