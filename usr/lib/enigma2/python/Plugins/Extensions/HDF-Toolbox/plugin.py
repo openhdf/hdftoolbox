@@ -19,16 +19,32 @@ from Tools import Directories, Notifications
 import NavigationInstance
 import downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
-		
-print "~~~~~~~ HDF-Toolbox ~ read box informations ~~~~~~~"
-print "MachineName =", getMachineName()
-print "MachineBrand =", getMachineBrand()
-print "BoxType =", getBoxType()
-print "OEM =", getBrandOEM()
-print "Driverdate =", getDriverDate()
-print "Imageversion =", getImageVersion()
-print "Imagebuild =", getImageBuild()
-print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.OKBLUE = ''
+        self.OKGREEN = ''
+        self.WARNING = ''
+        self.FAIL = ''
+        self.ENDC = ''
+
+print bcolors.OKGREEN + "~~~~~~~ HDF-Toolbox ~ read box informations ~~~~~~~" + bcolors.ENDC
+print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
+print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
+print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
+print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
+print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
+print bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC
+print bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC
+print bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC
 
 try:
 	boxdesc = getMachineBrand() + " " + getMachineName()
@@ -194,7 +210,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Version .OE. 14.02.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Version .OE. 20.02.2014" position="205,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -202,7 +218,7 @@ class Fantastic(Screen):
         self.session = session
         Screen.__init__(self, session)
         self.menu = args
-
+	
         global mfcommand
         global mfmenu
         global mfmenuold
@@ -782,8 +798,6 @@ class FantasticApplication(Screen):
 		eRCInput.getInstance().unlock()
 		eDBoxLCD.getInstance().unlock()
 		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
-
-
 
 class FantasticLCD(Screen):
         # use size 0,0 to show text on LCD only
