@@ -95,6 +95,9 @@ try:
     elif getMachineBrand().startswith('GI'):
         box = "inihde"
         boxname = "GI Xpeed LX"
+    elif getBoxType() == "axodin":
+        box = "xp1000"
+        boxname = "Opticum AX-Odin"
 
 except:
     pass
