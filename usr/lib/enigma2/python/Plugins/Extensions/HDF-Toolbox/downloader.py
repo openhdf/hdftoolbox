@@ -34,6 +34,12 @@ try:
     elif getBoxType().startswith('et4'):
         box = "et9000"
         boxname = "ET4x00"
+    if getBoxType().startswith('et8'):
+        box = "et9000"
+        boxname = "ET8000"
+    if getBoxType().startswith('et1'):
+        box = "et9000"
+        boxname = "ET10000"
     #VU Boxen
     elif getBoxType() == "vuduo":
         box = "vuduo"
