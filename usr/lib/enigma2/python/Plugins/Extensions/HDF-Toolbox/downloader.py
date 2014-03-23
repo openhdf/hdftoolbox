@@ -104,7 +104,12 @@ try:
     elif getBoxType() == "axodin":
         box = "xp1000"
         boxname = "Opticum AX-Odin"
-
+    elif getBoxType() == "starsatlx":
+        box = "xp1000"
+        boxname = "Starsat LX"
+    elif getBoxType() == "classm":
+        box = "xp1000"
+        boxname = "Axas Class M"
 except:
     pass
 
