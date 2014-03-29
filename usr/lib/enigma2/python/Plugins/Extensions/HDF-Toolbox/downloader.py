@@ -20,6 +20,8 @@ import os
 import sys
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
+box = getBoxType()
+
 try:    
     #ET Boxen
     if getBoxType().startswith('et9'):
@@ -82,6 +84,15 @@ try:
         box = "odinm7"
         boxname = "Odin M7"
     elif getBoxType() == "odinm6":
+        box = "odinm7"
+        boxname = "Odin M6"
+    elif getBoxType() == "maram9":
+        box = "odinm9"
+        boxname = "Odin M9"
+    elif getBoxType() == "maram7":
+        box = "odinm7"
+        boxname = "Odin M7"
+    elif getBoxType() == "maram6":
         box = "odinm7"
         boxname = "Odin M6"
     #Dreambox
