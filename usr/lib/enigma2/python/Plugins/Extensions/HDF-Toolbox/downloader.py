@@ -21,6 +21,7 @@ import sys
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
 box = getBoxType()
+boxname = getBoxType()
 
 try:    
     #ET Boxen
