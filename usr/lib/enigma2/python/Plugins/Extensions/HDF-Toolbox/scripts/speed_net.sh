@@ -1,6 +1,6 @@
 #!/bin/sh
 
-target=`cat /proc/mounts | grep -m 1 net | cut -d" " -f2`
+target=`cat /proc/mounts | grep -m 1 media/net | cut -d" " -f2`
 
 if [ -z $target ]
 	then
