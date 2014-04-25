@@ -41,26 +41,26 @@ else
 fi
 
 ##reinstall mediaportal skins after update
-echo
-mediaportal=`opkg list-installed | grep extensions-mediaportal | cut -d" " -f1`
-if [ -z $mediaportal ]; then
-	echo "mediaportal is currently not installed"
-else
-	IP=hdfreaks.cc
-	ping -c 1 $IP  > /dev/null 2>&1
-		if [ $? == 0 ]; then
-			echo -n "box online ... "
-				if [ -f /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins/weed_EvoBlue/haupt_Screen.xml ]; then
-					echo "mediaportal skins are installed ... nothing to do"
-				else
-					echo -n "missing mediaportal skin ... install now"
-					opkg install --force-reinstall enigma2-plugin-skins-mediaportal > /dev/null 2>&1
-					echo " ... done"
-				fi
-		else
-			echo "box offline"
-		fi
-fi
+#echo
+#mediaportal=`opkg list-installed | grep extensions-mediaportal | cut -d" " -f1`
+#if [ -z $mediaportal ]; then
+#	echo "mediaportal is currently not installed"
+#else
+#	IP=hdfreaks.cc
+#	ping -c 1 $IP  > /dev/null 2>&1
+#		if [ $? == 0 ]; then
+#			echo -n "box online ... "
+#				if [ -f /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins/weed_EvoBlue/haupt_Screen.xml ]; then
+#					echo "mediaportal skins are installed ... nothing to do"
+#				else
+#					echo -n "missing mediaportal skin ... install now"
+#					opkg install --force-reinstall enigma2-plugin-skins-mediaportal > /dev/null 2>&1
+#					echo " ... done"
+#				fi
+#		else
+#			echo "box offline"
+#		fi
+#fi
 
 ##remove old videomode if new screen videomode is installed
 echo
