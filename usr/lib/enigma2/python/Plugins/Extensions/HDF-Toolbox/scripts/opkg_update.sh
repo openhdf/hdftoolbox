@@ -2,6 +2,7 @@
 
 echo
 echo "Please wait ... searching for updates ..."
+rm -f /var/lib/opkg/lists/*
 opkg update > /dev/null 2>&1
 echo
 upgrades=`opkg list-upgradable`
