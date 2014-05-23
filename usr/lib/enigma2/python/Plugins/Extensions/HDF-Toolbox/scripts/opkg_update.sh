@@ -11,6 +11,7 @@ lines=`cat /etc/last-upgrades-git.log | wc -l`
 if [ -z "$upgrades" ]; then
 	echo "Nothing to upgrade at this point."
 	echo
+	wget -q -O /tmp/.message.txt "http://127.0.0.1/web/message?text=Nothing%20to%20update%20at%20this%20point%20...&type=2" &  > /dev/null 2>&1 
 else
 	echo
 	echo "There are $lines updates available in /etc/last-upgrades-git.log."
@@ -28,6 +29,7 @@ else
 	echo "Update Done ... Please reboot your Box now!"
 	echo
 	echo
+	wget -q -O /tmp/.message.txt "http://127.0.0.1/web/message?text=Update%20done%20...%20please%20reboot%20your%20STB%20now%20...&type=2" &  > /dev/null 2>&1
 fi
 
 exit 0
