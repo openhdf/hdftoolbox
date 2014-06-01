@@ -28,18 +28,23 @@ else
 	echo "Update is done, if you can close this screen with OK button."
 	echo
 	opkg upgrade > /dev/null 2>&1
-	echo "remove old openhdf-version-info"
+	echo "remove openhdf-version-info - old version"
 	sleep 1
 	opkg remove --force-depends openhdf-version-info > /dev/null 2>&1
-	echo "install new openhdf-version-info"
+	echo "install openhdf-version-info - new version"
 	sleep 1
 	opkg install openhdf-version-info > /dev/null 2>&1
-	echo "remove openhdf-enigma2 old version"
+	echo "install oe-alliance-branding - new version"
 	sleep 1
-	opkg remove --force-depends enigma2
-	echo "install openhdf-enigma2 new version"
+	opkg remove --force-depends oe-alliance-branding
 	sleep 1
-	opkg install enigma2  > /dev/null 2>&1
+	opkg install oe-alliance-branding > /dev/null 2>&1
+	echo "remove openhdf-enigma2 - old version"
+	sleep 1
+	opkg remove --force-depends enigma2	
+	echo "install openhdf-enigma2 - new version"
+	sleep 1
+	opkg install enigma2
 	echo
 	echo "Update Done ... Please reboot your Box now!"
 	echo
