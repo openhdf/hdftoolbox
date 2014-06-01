@@ -29,7 +29,6 @@ else
 	opkg remove --force-depends enigma2-plugin-systemplugins-osd3dmodsetup > /dev/null 2>&1
 	sleep 1
 	opkg upgrade > /dev/null 2>&1
-	echo "remove openhdf-version-info - old version"
 	sleep 1
 	opkg remove --force-depends openhdf-version-info > /dev/null 2>&1
 	echo "install openhdf-version-info - new version"
@@ -40,10 +39,9 @@ else
 	opkg remove --force-depends oe-alliance-branding > /dev/null 2>&1
 	sleep 1
 	opkg install oe-alliance-branding > /dev/null 2>&1
-	echo "remove openhdf-enigma2 - old version"
 	sleep 1
-	opkg remove --force-depends enigma2	> /dev/null 2>&1
 	echo "install openhdf-enigma2 - new version"
+	opkg remove --force-depends enigma2	> /dev/null 2>&1
 	sleep 1
 	opkg install enigma2 > /dev/null 2>&1
 	echo
