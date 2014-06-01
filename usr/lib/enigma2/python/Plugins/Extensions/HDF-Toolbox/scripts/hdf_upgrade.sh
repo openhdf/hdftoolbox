@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo
-echo "Please wait ... updating HDF version ..."
+echo "Please wait ... upgrading HDF version ..."
 rm -f /var/lib/opkg/lists/*
 echo "change feed version"
 find /etc/opkg/*-feed.conf -type f -exec sed -i 's!V4/!V4.1/!' {} \;
@@ -21,12 +21,13 @@ else
 	echo "There are $lines updates available in /etc/last-upgrades-git.log."
 	echo
 	sleep 1
-	echo "Please wait ... update is starting now."
+	echo "Please wait ... upgrade in progress."
 	sleep 1
 	echo "Don't stop this, close the windows or switch off your box!"
 	sleep 1
-	echo "Update is done, if you can close this screen with OK button."
 	echo
+	opkg remove --force-depends enigma2-plugin-systemplugins-osd3dmodsetup > /dev/null 2>&1
+	sleep 1
 	opkg upgrade > /dev/null 2>&1
 	echo "remove openhdf-version-info - old version"
 	sleep 1
@@ -36,17 +37,17 @@ else
 	opkg install openhdf-version-info > /dev/null 2>&1
 	echo "install oe-alliance-branding - new version"
 	sleep 1
-	opkg remove --force-depends oe-alliance-branding
+	opkg remove --force-depends oe-alliance-branding > /dev/null 2>&1
 	sleep 1
 	opkg install oe-alliance-branding > /dev/null 2>&1
 	echo "remove openhdf-enigma2 - old version"
 	sleep 1
-	opkg remove --force-depends enigma2	
+	opkg remove --force-depends enigma2	> /dev/null 2>&1
 	echo "install openhdf-enigma2 - new version"
 	sleep 1
-	opkg install enigma2
+	opkg install enigma2 > /dev/null 2>&1
 	echo
-	echo "Update Done ... Please reboot your Box now!"
+	echo "Upgrade Done ... Your box is now launching new!"
 	echo
 	echo
 	wget -q -O /tmp/.message.txt "http://127.0.0.1/web/message?text=Update%20done%20...%20please%20wait%20...%20Your%20STB%20reboot%20now%20...&type=2" &  > /dev/null 2>&1
