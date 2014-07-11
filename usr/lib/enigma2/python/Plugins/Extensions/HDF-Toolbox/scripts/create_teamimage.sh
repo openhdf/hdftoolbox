@@ -5,6 +5,7 @@ echo "This script create a teamimage ... almost but not complete"
 echo
 echo "please wait".
 echo
+opkg update > /dev/null 2>&1
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove old plugins"
 opkg remove enigma2-plugin-extensions-remotestreamconvert
@@ -23,6 +24,8 @@ echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-skyrecorder \
+enigma2-plugin-systemplugins-sky-fanzone-plugin \
+enigma2-plugin-extensions-serienrecorder \
 enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-zaphistorybrowser.mod \
 enigma2-plugin-extensions-virtualzap.mod \
