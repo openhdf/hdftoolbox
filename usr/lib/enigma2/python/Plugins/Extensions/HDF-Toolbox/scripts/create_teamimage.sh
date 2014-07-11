@@ -12,6 +12,7 @@ echo
 echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo \
 sqlite3 \
+enigma2-plugin-systemplugins-weathercomponenthandler \
 enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
