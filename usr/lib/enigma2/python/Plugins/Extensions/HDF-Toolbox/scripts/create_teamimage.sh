@@ -18,7 +18,6 @@ enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-recordinfobar \
-enigma2-plugin-systemplugins-vixbackuptools \
 enigma2-plugin-systemplugins-osd3dmodsetup
 echo
 echo "install extensions"
@@ -29,6 +28,7 @@ enigma2-plugin-extensions-serienrecorder \
 enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-zaphistorybrowser.mod \
 enigma2-plugin-extensions-virtualzap.mod \
+enigma2-plugin-extensions-cooltvguide \
 enigma2-plugin-extensions-openairplaymod \
 enigma2-plugin-extensions-picturecenterfs \
 enigma2-plugin-extensions-webinterface-old-package \
