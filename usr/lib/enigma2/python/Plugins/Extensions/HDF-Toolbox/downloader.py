@@ -122,6 +122,9 @@ try:
     elif getBoxType() == "classm":
         box = "xp1000"
         boxname = "Axas Class M"
+    elif getBoxType().startswith('optimuss'):
+        box = "optimuss"
+        boxname = "Edision Optimuss"
 except:
     pass
 
