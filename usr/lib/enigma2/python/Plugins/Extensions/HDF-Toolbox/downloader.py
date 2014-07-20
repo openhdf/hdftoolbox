@@ -125,6 +125,9 @@ try:
     elif getBoxType().startswith('optimuss'):
         box = "optimuss"
         boxname = "Edision Optimuss"
+    elif getBoxType().startswith('atemio'):
+        box = "atemio"
+        boxname = "Atemio"
 except:
     pass
 
