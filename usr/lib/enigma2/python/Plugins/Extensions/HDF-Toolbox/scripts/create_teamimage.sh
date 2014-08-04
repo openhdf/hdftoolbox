@@ -18,6 +18,7 @@ enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-recordinfobar \
+enigma2-plugin-systemplugins-aspectratioswitch \
 enigma2-plugin-systemplugins-osd3dmodsetup
 echo
 echo "install extensions"
