@@ -151,8 +151,8 @@ if box == 'opticum':
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
 # remove some unwanted entries in menu files
-if not getBoxType().startswith('et'):
-	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/tools.cfg -type f -exec sed -i '/HbbTV/d' {} \;")
+#if not getBoxType().startswith('et'):
+#	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/tools.cfg -type f -exec sed -i '/HbbTV/d' {} \;")
 if not getBoxType().startswith('gb'):
 	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/fixes.cfg -type f -exec sed -i '/fix_gb_display/d' {} \;")
 	
@@ -211,7 +211,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Toolbox Version - 12.08.2014" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Toolbox Version - 13.08.2014" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
