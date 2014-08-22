@@ -24,6 +24,7 @@ else
 	echo "Update is done, if you can close this screen with OK button."
 	echo
 	opkg upgrade > /dev/null 2>&1
+	cat /etc/last-upgrades-git.log
 	echo
 	echo
 	echo "Update Done ... Please reboot your Box now!"
