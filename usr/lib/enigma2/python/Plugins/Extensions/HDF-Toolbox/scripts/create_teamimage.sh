@@ -42,7 +42,7 @@ enigma2-plugin-extensions-enhancedpowersave \
 enigma2-plugin-extensions-tvcharts \
 enigma2-plugin-extensions-dreamexplorer \
 enigma2-plugin-extensions-remotechannelstreamimport \
-enigma2-plugin-extensions-epgrefresh_mod \
+enigma2-plugin-extensions-epgrefresh \
 enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-customsubservices \
