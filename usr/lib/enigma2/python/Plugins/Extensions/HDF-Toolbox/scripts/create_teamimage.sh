@@ -27,7 +27,6 @@ opkg install enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-skyrecorder \
 enigma2-plugin-systemplugins-sky-fanzone-plugin \
 enigma2-plugin-extensions-serienrecorder \
-enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-et-portal \
 enigma2-plugin-extensions-zaphistorybrowser.mod \
 enigma2-plugin-extensions-virtualzap.mod \
