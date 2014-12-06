@@ -28,6 +28,9 @@ try:
     if getBoxType().startswith('et9'):
         box = "et9000"
         boxname = "ET9x00"
+    elif getBoxType().startswith('et7'):
+        box = "et9000"
+        boxname = "ET7x00"
     elif getBoxType().startswith('et6'):
         box = "et9000"
         boxname = "ET6x00"
