@@ -131,6 +131,12 @@ try:
     elif getBoxType().startswith('atemio'):
         box = "atemio"
         boxname = "Atemio"
+    elif getBoxType() == "formuler1":
+        box = "atemio"
+        boxname = "Formuler F1"
+    elif getBoxType() == "formuler3":
+        box = "atemio"
+        boxname = "Formuler F3"
 except:
     pass
 
