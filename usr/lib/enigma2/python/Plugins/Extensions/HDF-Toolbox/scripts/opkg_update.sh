@@ -2,8 +2,8 @@
 
 echo
 echo "Please wait ... searching for updates ..."
-rm -f /var/lib/opkg/lists/*
-rm -f /var/lib/opkg/*
+rm -f /var/lib/opkg/lists/* > /dev/null 2>&1
+rm -f /var/lib/opkg/openhdf* > /dev/null 2>&1
 opkg update > /dev/null 2>&1
 echo
 upgrades=`opkg list-upgradable`
