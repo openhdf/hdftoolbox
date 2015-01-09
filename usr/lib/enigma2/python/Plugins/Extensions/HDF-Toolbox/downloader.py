@@ -50,6 +50,9 @@ try:
     elif getBoxType() == "vuduo":
         box = "vuduo"
         boxname = "VU+Duo"
+    elif getBoxType() == "vuzero":
+        box = "vuduo"
+        boxname = "VU+Zero"		
     elif getBoxType() == "vuduo2":
         box = "vuduo"
         boxname = "VU+Duo2"
