@@ -43,7 +43,7 @@ enigma2-plugin-extensions-yampmusicplayer \
 enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-extensions-audiosync \
-enigma2-plugin-extensions-piconmanager_0.2-20150104-r1_all \
+enigma2-plugin-extensions-piconmanager \
 enigma2-plugin-extensions-tvspielfilm
 echo
 
