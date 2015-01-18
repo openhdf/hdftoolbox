@@ -8,8 +8,7 @@ echo
 opkg update > /dev/null 2>&1
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove old plugins"
-opkg remove enigma2-plugin-extensions-remotestreamconvert \
-enigma2-plugin-systemplugins-osd3dsetup
+opkg remove enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo \
@@ -19,8 +18,7 @@ enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-recordinfobar \
-enigma2-plugin-systemplugins-aspectratioswitch \
-enigma2-plugin-systemplugins-osd3dmodsetup
+enigma2-plugin-systemplugins-aspectratioswitch
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-webradiofs \
