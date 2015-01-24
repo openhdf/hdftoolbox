@@ -173,19 +173,19 @@ class Hdf_Downloader(Screen):
                 <widget name="downloadmenu" position="10,10" size="400,300" scrollbarMode="showOnDemand" />
                 <ePixmap name="white" position="420,15" zPosition="10" size="2,300" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/whiter.png" transparent="0" alphatest="on" />
                 <ePixmap name="1" position="760,225" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_1.png" transparent="1" alphatest="on" />
-                <widget name="key_1" position="655,227" zPosition="2" size="100,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_1" position="550,227" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="2" position="760,250" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_2.png" transparent="1" alphatest="on" />
-                <widget name="key_2" position="655,252" zPosition="2" size="100,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_2" position="550,252" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="3" position="760,275" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_3.png" transparent="1" alphatest="on" />
-                <widget name="key_3" position="655,277" zPosition="2" size="100,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_3" position="550,277" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="4" position="760,300" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_4.png" transparent="1" alphatest="on" />
-                <widget name="key_4" position="655,302" zPosition="2" size="100,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_4" position="550,302" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="5" position="760,325" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_5.png" transparent="1" alphatest="on" />
-                <widget name="key_5" position="655,327" zPosition="2" size="100,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_5" position="550,327" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="6" position="760,350" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_6.png" transparent="1" alphatest="on" />
-                <widget name="key_6" position="555,352" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_6" position="550,352" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="0" position="760,375" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_0.png" transparent="1" alphatest="on" />
-                <widget name="key_0" position="655,377" zPosition="2" size="100,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <widget name="key_0" position="550,377" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="red" position="30,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
                 <ePixmap name="green" position="200,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
                 <widget name="blue" position="370,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
@@ -247,11 +247,11 @@ class Hdf_Downloader(Screen):
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Download"))
         self["key_blue"] = Label(_(" "))
-        self["key_1"] = Label(_("   Plugins"))
-        self["key_2"] = Label(_("   Updates"))
-        self["key_3"] = Label(_("   Softcams"))
-        self["key_4"] = Label(_("   Skins"))
-        self["key_5"] = Label(_("   Picons"))
+        self["key_1"] = Label(_("   Extra/Special-Plugins"))
+        self["key_2"] = Label(_("   Extra/Special-Updates"))
+        self["key_3"] = Label(_("   Softcams/Cardreader"))
+        self["key_4"] = Label(_("   Bootlogos/Spinner"))
+        self["key_5"] = Label(_("   Picons (not activ)"))
         self["key_6"] = Label(_("   ipk, tar.gz, tgz Installer"))
         self["key_0"] = Label(_("   Uninstaller"))
         self["size"] = StaticText(_(" "))
@@ -439,7 +439,7 @@ class Hdf_Downloader(Screen):
 ###### Easter Egg
 
     def info(self):
-        self.session.open(MessageBox, ("(c) HDF 2012\nSpecial thanks to koivo for testing\nGoogle for amounts of questions\nand\nTBX for telling me what Google couldn't"), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Info"))
+        self.session.open(MessageBox, ("(c) HDF 2014\nSpecial thanks to koivo for testing\nGoogle for amounts of questions\nand\nTBX for telling me what Google couldn't"), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Info"))
 
 ###### Special Controls
 
