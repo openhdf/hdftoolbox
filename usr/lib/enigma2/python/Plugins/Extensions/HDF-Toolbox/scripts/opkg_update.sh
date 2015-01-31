@@ -12,7 +12,9 @@ else
 	echo "Please wait ... searching for updates ..."
 	rm -f /var/lib/opkg/lists/* > /dev/null 2>&1
 	rm -f /var/lib/opkg/openhdf* > /dev/null 2>&1
+	sleep 3
 	opkg update > /dev/null 2>&1
+	sleep 3
 	echo
 	if [ -z "$upgrades" ]; then
 		echo "Nothing to upgrade at this point."
@@ -21,11 +23,8 @@ else
 		echo
 		echo "There are $lines updates available in /etc/last-upgrades-git.log."
 		echo
-		sleep 1
 		echo "Please wait ... update is starting now."
-		sleep 1
 		echo "Don't stop this, close the windows or switch off your box!"
-		sleep 1
 		echo "Update is done, if you can close this screen with OK button."
 		echo
 		opkg upgrade > /dev/null 2>&1
