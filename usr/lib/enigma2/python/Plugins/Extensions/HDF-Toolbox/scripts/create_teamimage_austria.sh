@@ -10,7 +10,8 @@ opkg update > /dev/null 2>&1
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove preinstalled unwanted plugins"
 opkg remove enigma2-plugin-extensions-enhancedmoviecenter \
-opkg remove enigma2-plugin-extensions-remotestreamconvert 
+opkg remove enigma2-plugin-extensions-remotestreamconvert \
+opkg remove enigma2-plugin-extensions-remotechannelstreamimport
 echo
 echo "install system plugins"
 opkg install enigma2-plugin-extensions-bootvideo \
@@ -31,7 +32,7 @@ enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-piconmanager \
 enigma2-plugin-extensions-picturecenterfs \
-enigma2-plugin-extensions-remotechannelstreamimport \
+enigma2-plugin-extensions-remotechannelstreamconverter \
 enigma2-plugin-extensions-tvspielfilm \
 enigma2-plugin-extensions-webradiofs  \
 enigma2-plugin-extensions-werbezapper \
