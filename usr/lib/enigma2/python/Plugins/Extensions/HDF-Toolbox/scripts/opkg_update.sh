@@ -2,6 +2,7 @@
 
 upgrades=`opkg list-upgradable`
 opkg list-upgradable > /etc/last-upgrades-git.log
+sleep 3
 lines=`cat /etc/last-upgrades-git.log | wc -l`
 	
 echo
