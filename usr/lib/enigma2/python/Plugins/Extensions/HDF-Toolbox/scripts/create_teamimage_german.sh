@@ -61,3 +61,5 @@ else
 fi
 
 echo
+echo "And what now? I think a reboot would be great."
+echo
