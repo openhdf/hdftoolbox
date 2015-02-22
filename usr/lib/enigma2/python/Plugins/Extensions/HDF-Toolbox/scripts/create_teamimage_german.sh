@@ -45,6 +45,7 @@ enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-extensions-audiosync \
 enigma2-plugin-extensions-piconmanager \
+enigma2-plugin-extensions-moviecut \
 enigma2-plugin-extensions-tvspielfilm
 echo
 
@@ -54,8 +55,6 @@ if [ -n $? ]; then
 	echo $line
 	opkg remove enigma2-plugin-systemplugins-pipservicerelation
 	#opkg install enigma2-plugin-systemplugins-ice-network-tuner
-	opkg install enigma2-plugin-extensions-moviecut
-	opkg install enigma2-plugin-extensions-pipservicerelation.mod
 else
     echo "Ixuss Box found"
 fi
