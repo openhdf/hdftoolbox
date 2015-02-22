@@ -1,6 +1,9 @@
 #!/bin/sh
 
 upgrades=`opkg list-upgradable`
+echo
+echo "... update packages from feed ..."
+opkg update > /dev/null 2>&1
 opkg list-upgradable > /etc/last-upgrades-git.log
 sleep 3
 lines=`cat /etc/last-upgrades-git.log | wc -l`
