@@ -163,6 +163,25 @@ if not getBoxType().startswith('gb'):
 # plugin calling support comes here ...
 pluginpath = "/usr/lib/enigma2/python/Plugins/"
 
+#create symlinks for SystemPlugins and Extensions
+if os.path.exists("/Extensions"):
+	print "symlink Extensions exists"
+	pass
+else:
+	src = '/usr/lib/enigma2/python/Plugins/Extensions'
+	dst = '/Extensions'
+	os.symlink(src, dst)
+	print "symlink Extensions created"
+
+if os.path.exists("/SystemPlugins"):
+	print "symlink SystemPlugins exists"
+	pass
+else:
+	src = '/usr/lib/enigma2/python/Plugins/SystemPlugins'
+	dst = '/SystemPlugins'
+	os.symlink(src, dst)
+	print "symlink SystemPlugins created"
+
 from Screens.Ci import *
 from Screens.PluginBrowser import *
 from Screens.SkinSelector import SkinSelector
@@ -215,7 +234,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Toolbox Version - 25.02.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Toolbox Version - 12.03.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
