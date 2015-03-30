@@ -4,9 +4,12 @@ upgrades=`opkg list-upgradable`
 echo
 echo "... update packages from feed ..."
 opkg update > /dev/null 2>&1
-sleep 2
+opkg update > /dev/null 2>&1
+sleep 1
 opkg list-upgradable > /etc/last-upgrades-git.log
-sleep 3
+sleep 1
+opkg list-upgradable > /etc/last-upgrades-git.log
+sleep 1
 lines=`cat /etc/last-upgrades-git.log | wc -l`
 	
 echo
@@ -17,9 +20,11 @@ else
 	echo "Please wait ... searching for updates ..."
 	rm -f /var/lib/opkg/lists/* > /dev/null 2>&1
 	rm -f /var/lib/opkg/openhdf* > /dev/null 2>&1
-	sleep 3
+	sleep 1
 	opkg update > /dev/null 2>&1
-	sleep 3
+	sleep 1
+	opkg update > /dev/null 2>&1
+	sleep 1
 	echo
 	if [ -z "$upgrades" ]; then
 		echo "Nothing to upgrade at this point."
