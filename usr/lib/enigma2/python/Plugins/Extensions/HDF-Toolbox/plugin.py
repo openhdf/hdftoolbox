@@ -195,6 +195,8 @@ if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
    from Plugins.Extensions.SoftcamManager.Sc import *
 if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
    from Plugins.PLi.SoftcamSetup.Sc import *
+if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
+   from Plugins.SystemPlugins.SoftcamSetup.Sc import *
 
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
 fantastic_pluginpath = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox"
@@ -234,7 +236,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Toolbox Version - 30.03.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Toolbox Version - 05.04.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -298,9 +300,6 @@ class Fantastic(Screen):
         else:
            mainmenu.append(("no %s.cfg found - please reboot" %mfmenu, "mfnomenu"))
 
-        if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/hdf.png") is True:
-           mainmenu.append(("HDF-Downloader" , "mfschdf"))
-
 		# SoftcamManager
         if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
@@ -310,6 +309,12 @@ class Fantastic(Screen):
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
            mainmenu.append((" " , "mfxyz"))
            mainmenu.append(("About" , "mfabout"))
+        elif os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
+           mainmenu.append(("Image Softcam Cardserver Manager", "mfsc"))
+           mainmenu.append((" " , "mfxyz"))
+           mainmenu.append(("About" , "mfabout"))
+        elif os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/hdf.png") is True:
+           mainmenu.append(("HDF-Downloader" , "mfschdf"))
         else:
            mainmenu.append(("About" , "mfabout"))
 
