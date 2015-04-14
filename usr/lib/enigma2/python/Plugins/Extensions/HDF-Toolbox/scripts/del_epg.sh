@@ -3,6 +3,7 @@
 echo
 echo "find and destroy epg.dat"
 export epgfilename=`find / -name epg.dat`
+echo $epgfilename
 
 if [ -f "$epgfilename" ]; then
 	echo "found epg = $epgfilename"
