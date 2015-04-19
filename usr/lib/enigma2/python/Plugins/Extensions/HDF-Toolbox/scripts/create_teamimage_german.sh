@@ -46,7 +46,8 @@ enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-extensions-audiosync \
 enigma2-plugin-extensions-piconmanager \
 enigma2-plugin-extensions-moviecut \
-enigma2-plugin-extensions-tvspielfilm
+enigma2-plugin-extensions-tvspielfilm \
+enigma2-plugin-extensions-mediaportal
 echo
 
 echo "check box now"
