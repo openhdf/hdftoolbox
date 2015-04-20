@@ -236,7 +236,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Toolbox Version - 20.04.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Toolbox Version - 21.04.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -303,24 +303,19 @@ class Fantastic(Screen):
 		# SoftcamManager
         if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
-           mainmenu.append(("HDF-Downloader" , "mfschdf"))
-           mainmenu.append((" " , "mfxyz"))
-           mainmenu.append(("---------------------------------" , "mfxyz"))
-           mainmenu.append(("About" , "mfabout"))
         elif os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
-           mainmenu.append(("HDF-Downloader" , "mfschdf"))
-           mainmenu.append((" " , "mfxyz"))
-           mainmenu.append(("---------------------------------" , "mfxyz"))
-           mainmenu.append(("About" , "mfabout"))
         elif os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
            mainmenu.append(("Image Softcam Cardserver Manager", "mfsc"))
-           mainmenu.append(("HDF-Downloader" , "mfschdf"))
-           mainmenu.append((" " , "mfxyz"))
-           mainmenu.append(("---------------------------------" , "mfxyz"))
-           mainmenu.append(("About" , "mfabout"))
         else:
-           mainmenu.append(("About" , "mfabout"))
+		   pass
+
+        if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.pyo") is True:
+           mainmenu.append(("openHDF-Downloader" , "mfschdf"))
+
+        mainmenu.append(("---------------------------------" , "mfxyz"))
+        mainmenu.append((" " , "mfxyz"))
+        mainmenu.append(("About" , "mfabout"))
 
         self["menu"] = MenuList(mainmenu)
         self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.FantasticMainMenu,"back": self.close,}, -1)
