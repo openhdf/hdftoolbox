@@ -14,7 +14,7 @@ opkg remove enigma2-plugin-extensions-remotestreamconverter \
 opkg remove enigma2-plugin-extensions-remotechannelstreamimport
 echo
 echo "install system plugins"
-sqlite3 \
+opkg install sqlite3 \
 enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-weathercomponenthandler
