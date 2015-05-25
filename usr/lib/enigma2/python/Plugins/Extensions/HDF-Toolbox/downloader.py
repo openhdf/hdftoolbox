@@ -635,7 +635,7 @@ class downloadfile(Screen):
             self.Shown = True
 
     def exit(self):
-        self.session.openWithCallback(self.StopDownLoad, MessageBox, _("Do you realy want to stop the download?"), MessageBox.TYPE_YESNO).setTitle(_("Abort Download?"))
+        self.session.openWithCallback(self.StopDownLoad, MessageBox, _("Do you really want to stop the download?"), MessageBox.TYPE_YESNO).setTitle(_("Abort Download?"))
 
     def StopDownLoad(self, result):
         if result is True:
