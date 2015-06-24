@@ -1,9 +1,6 @@
 #!/bin/sh
 
-echo "remove all picon from flash"
-rm -f /usr/share/enigma2/picon/coolpico/*.* > /dev/null 2>&1
-rm -f /usr/share/enigma2/picon/*.* > /dev/null 2>&1
-rmdir /usr/share/enigma2/picon > /dev/null 2>&1
+echo "remove all picon from usb/hdd"
 rm -f /media/usb/picon/*.* > /dev/null 2>&1
 rmdir /media/usb/picon > /dev/null 2>&1
 rm -f /media/hdd/picon/*.* > /dev/null 2>&1
