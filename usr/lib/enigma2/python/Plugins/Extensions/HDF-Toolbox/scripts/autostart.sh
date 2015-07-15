@@ -17,6 +17,15 @@ cat /proc/stb/info/chipset >> /tmp/hdf.txt
 echo "" >> /tmp/hdf.txt
 cat /proc/cpuinfo >> /tmp/hdf.txt
 
+#check spinner symlink
+if [ -L /usr/share/enigma2/skin_default/spinner ]; then
+		echo "spinner symlink found"
+	else
+		echo "create spinner symlink"
+		rm -fr /usr/share/enigma2/skin_default/spinner > /dev/null 2>&1
+		ln -s /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/
+fi
+	
 ##use transponder or ntd date and time
 if [ -f /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/dvbdate ]; then
 	if [ -f /etc/enigma2/.transponderupdate ]; then
@@ -40,30 +49,7 @@ else
 	echo "no binary dvbdate found"
 fi
 
-##reinstall mediaportal skins after update
-#echo
-#mediaportal=`opkg list-installed | grep extensions-mediaportal | cut -d" " -f1`
-#if [ -z $mediaportal ]; then
-#	echo "mediaportal is currently not installed"
-#else
-#	IP=hdfreaks.cc
-#	ping -c 1 $IP  > /dev/null 2>&1
-#		if [ $? == 0 ]; then
-#			echo -n "box online ... "
-#				if [ -f /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins/weed_EvoBlue/haupt_Screen.xml ]; then
-#					echo "mediaportal skins are installed ... nothing to do"
-#				else
-#					echo -n "missing mediaportal skin ... install now"
-#					opkg install --force-reinstall enigma2-plugin-skins-mediaportal > /dev/null 2>&1
-#					echo " ... done"
-#				fi
-#		else
-#			echo "box offline"
-#		fi
-#fi
-
 ##remove old videomode if new screen videomode is installed
-echo
 videomode=`opkg list-installed | grep systemplugins-videomode | cut -d" " -f1`
 if [ -z $videomode ]; then
 	echo "no old videomode found ... nothing to do"
@@ -76,7 +62,3 @@ else
 		echo "no old videomode found ... nothing to do"
 	fi
 fi
-
-
-
-echo
