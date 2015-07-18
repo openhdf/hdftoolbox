@@ -8,7 +8,6 @@ opkg remove --force-depends kernel-module-ath9k kernel-module-carl9170 kernel-mo
 opkg remove --force-depends kernel-module-rt2500usb kernel-module-rt2800lib kernel-module-rt2800usb kernel-module-rt2x00usb kernel-module-rt73usb kernel-module-rt2x00lib
 opkg remove --force-depends rt5572 enigma2-plugin-drivers-network-usb-rt5572
 
-rm -rf /lib/modules/3.4.3/kernel/drivers/staging/* > /dev/null 2>&1
 echo
 echo "Now reboot your box to unload the drivers and modules"
 echo
