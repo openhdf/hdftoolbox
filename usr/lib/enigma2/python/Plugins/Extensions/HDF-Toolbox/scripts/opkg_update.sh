@@ -3,9 +3,9 @@
 upgrades=`opkg list-upgradable`
 echo
 echo "... update packages from feed ..."
-opkg update > /dev/null 2>&1
-opkg update > /dev/null 2>&1
+opkg update
 sleep 1
+opkg update > /dev/null 2>&1
 opkg list-upgradable > /etc/last-upgrades-git.log
 sleep 1
 opkg list-upgradable > /etc/last-upgrades-git.log
@@ -21,7 +21,7 @@ else
 	rm -f /var/lib/opkg/lists/* > /dev/null 2>&1
 	rm -f /var/lib/opkg/openhdf* > /dev/null 2>&1
 	sleep 1
-	opkg update > /dev/null 2>&1
+	opkg update
 	sleep 1
 	opkg update > /dev/null 2>&1
 	sleep 1
