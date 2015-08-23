@@ -114,6 +114,7 @@ try:
 except:
     pass
 
+## use another boxname for hdf-toolbox in mainmenu
 try:		
 	if getMachineName() == 'STARSAT-LX':
 		if os.path.exists("/etc/enigma2/.opticum") is True: #touch this file to show boxtye in toolbox
@@ -124,6 +125,8 @@ try:
 		box = "GI Xpeed LX"
 	elif getMachineName() == 'SF8 HD':
 		box = "SF8 HD"
+	elif getBoxType() == 'twinboxlcd':
+		boxdesc = "RE TWINBOX LCD"
 	elif getBoxType() == 'Ixuss One':
 		boxdesc = "Ixuss One"
 		getMachineName = "Ixuss On"
@@ -135,7 +138,7 @@ try:
 except:
     pass
 
-##read .brand and .machine for other OEMs
+## read .brand and .machine for other OEMs
 brandfile = "/etc/.brand"
 if os.path.exists(brandfile) is True:
 	brand = open(brandfile,"r")
@@ -236,7 +239,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Toolbox Version - 30.07.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Toolbox Version - 23.08.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):
