@@ -17,6 +17,21 @@ cat /proc/stb/info/chipset >> /tmp/hdf.txt
 echo "" >> /tmp/hdf.txt
 cat /proc/cpuinfo >> /tmp/hdf.txt
 
+#check image version and write to issue.net
+imageversion=`less /etc/enigma2/boxinformations | grep "getImageVersion = 5.2" | cut -d" " -f3`
+if [ $imageversion = "4.2" ]; then
+	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V4.2 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V4.2 ~/' {} \;
+fi
+if [ $imageversion = "5.1" ]; then
+	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V5.1 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.1 ~/' {} \;
+fi
+if [ $imageversion = "5.2" ]; then
+	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.2 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.2 ~/' {} \;
+fi 
+
 #check spinner symlink
 if [ -L /usr/share/enigma2/skin_default/spinner ]; then
 		echo "spinner symlink found"
