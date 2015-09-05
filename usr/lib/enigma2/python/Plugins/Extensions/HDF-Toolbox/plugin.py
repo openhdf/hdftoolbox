@@ -124,9 +124,9 @@ try:
 	elif getMachineName().startswith('Golden'):
 		box = "GI Xpeed LX"
 	elif getBoxType() == 'xpeedlxcc':
-		boxdesc = "XPEED LX CLASS C"
+		boxdesc = "GI XPEED LX CC"
 	elif getBoxType() == 'xpeedlxcs2':
-		boxdesc = "XPEED LX CLASS S2"
+		boxdesc = "GI XPEED LX CS2"
 	elif getMachineName() == 'SF8 HD':
 		boxdesc = "SF8 HD"
 	elif getBoxType() == 'twinboxlcd':
