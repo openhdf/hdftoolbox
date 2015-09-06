@@ -20,6 +20,23 @@ import NavigationInstance
 import downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
+try:
+	os.system("rm -f /tmp/.ImageVersion")
+	os.system("touch /tmp/.ImageVersion")
+	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /tmp/.ImageVersion")
+	os.system("echo getMachineName = " + getMachineName() + " >> /tmp/.ImageVersion")
+	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /tmp/.ImageVersion")
+	os.system("echo getBoxType = " + getBoxType() + " >> /tmp/.ImageVersion")
+	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /tmp/.ImageVersion")
+	os.system("echo getDriverDate = " + getDriverDate() + " >> /tmp/.ImageVersion")
+	os.system("echo getImageVersion = " + getImageVersion() + " >> /tmp/.ImageVersion")
+	os.system("echo getImageBuild = " + getImageBuild() + " >> /tmp/.ImageVersion")
+	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /tmp/.ImageVersion")
+	os.system("cat /proc/cpuinfo >> /tmp/.ImageVersion")
+	os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/autostart.sh")
+except:
+    pass
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -243,7 +260,7 @@ class Fantastic(Screen):
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
 		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
-        <eLabel text="Toolbox Version - 06.09.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
+        <eLabel text="Toolbox Version - 07.09.2015" position="180,315" size="990,45" font="Regular;12" valign="right" transparent="1" />
         </screen>"""
 
     def __init__(self, session, args = 0):

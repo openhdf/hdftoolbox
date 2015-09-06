@@ -18,7 +18,7 @@ echo "" >> /tmp/hdf.txt
 cat /proc/cpuinfo >> /tmp/hdf.txt
 
 #check image version and write to issue.net
-imageversion=`less /etc/enigma2/boxinformations | grep "getImageVersion = 5.2" | cut -d" " -f3`
+imageversion=`less /tmp/.ImageVersion | grep "getImageVersion" | cut -d" " -f3`
 if [ $imageversion = "4.2" ]; then
 	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V4.2 ~/' {} \;
 	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V4.2 ~/' {} \;
