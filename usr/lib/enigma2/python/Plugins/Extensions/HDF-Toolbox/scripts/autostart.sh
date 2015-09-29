@@ -31,7 +31,11 @@ if [ $imageversion = "5.2" ]; then
 	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.2 ~/' {} \;
 	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.2 ~/' {} \;
 fi 
-
+if [ $imageversion = "5.3" ]; then
+	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.3 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V5.3 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.3 ~/' {} \;
+fi 
 #check spinner symlink
 if [ -L /usr/share/enigma2/skin_default/spinner ]; then
 		echo "spinner symlink found"
