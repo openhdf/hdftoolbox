@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##googgi - 20.01.2015
+##googgi - 01.10.2015
 
 echo "Ein Teamimage Austria Edition wird erstellt..."
 echo
@@ -9,8 +9,8 @@ echo
 opkg update > /dev/null 2>&1
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove preinstalled unwanted plugins"
-opkg remove enigma2-plugin-extensions-remotestreamconverter
-opkg remove enigma2-plugin-extensions-remotechannelstreamimport
+opkg remove enigma2-plugin-extensions-enhancedmoviecenter \
+opkg remove enigma2-plugin-extensions-remotestreamconvert 
 echo
 echo "install system plugins"
 opkg install sqlite3 \
@@ -29,12 +29,9 @@ enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-piconmanager \
-enigma2-plugin-extensions-picturecenterfs \
-enigma2-plugin-extensions-remotechannelstreamconverter \
-enigma2-plugin-extensions-tvspielfilm \
+enigma2-plugin-extensions-remotechannelstreamimport \
 enigma2-plugin-extensions-webradiofs  \
 enigma2-plugin-extensions-werbezapper \
-enigma2-plugin-extensions-wikipedia \
 enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-zaphistorybrowser
 echo
