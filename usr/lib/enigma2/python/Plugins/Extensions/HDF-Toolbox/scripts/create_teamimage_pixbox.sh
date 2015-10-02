@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 22.09.2015
+##pixbox - 02.10.2015
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -13,14 +13,13 @@ echo "remove all picon"
 rm -f /usr/share/enigma2/picon/*.* > /dev/null 2>&1
 echo
 echo "remove preinstalled unwanted plugins"
-opkg remove defaultsat
-opkg remove enigma2-plugin-systemplugins-autobouquetsmaker
-opkg remove enigma2-plugin-systemplugins-cablescan
-opkg remove enigma2-plugin-systemplugins-blindscan
-opkg remove enigma2-plugin-extensions-volume-adjust
-opkg remove enigma2-plugin-extensions-audiosync
-opkg remove enigma2-plugin-extensions-remotestreamconverter
-opkg remove enigma2-plugin-extensions-remotechannelstreamimport
+opkg remove defaultsat \
+opkg remove enigma2-plugin-systemplugins-autobouquetsmaker \
+opkg remove enigma2-plugin-systemplugins-cablescan \
+opkg remove enigma2-plugin-systemplugins-blindscan \
+opkg remove enigma2-plugin-extensions-volume-adjust \
+opkg remove enigma2-plugin-extensions-audiosync \
+opkg remove enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
 opkg install livestreamersrv \
@@ -37,7 +36,7 @@ enigma2-plugin-extensions-iptvlistupdater \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-piconmanager \
-enigma2-plugin-extensions-remotechannelstreamconverter \
+enigma2-plugin-extensions-remotechannelstreamimport \
 enigma2-plugin-extensions-moviecut \
 enigma2-plugin-extensions-webradiofs  \
 enigma2-plugin-extensions-werbezapper
