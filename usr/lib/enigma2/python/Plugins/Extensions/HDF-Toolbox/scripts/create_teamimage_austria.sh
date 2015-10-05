@@ -4,13 +4,14 @@
 
 echo "Ein Teamimage Austria Edition wird erstellt..."
 echo
+echo "(c) 2015 by googgi"
+echo
 echo "bitte warten".
 echo
 opkg update > /dev/null 2>&1
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove preinstalled unwanted plugins"
-opkg remove enigma2-plugin-extensions-enhancedmoviecenter \
-opkg remove enigma2-plugin-extensions-remotestreamconvert 
+opkg remove enigma2-plugin-extensions-enhancedmoviecenter
 echo
 echo "install system plugins"
 opkg install sqlite3 \
@@ -24,7 +25,6 @@ enigma2-plugin-extensions-cooltvguide \
 enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-extensions-dreamexplorer \
 enigma2-plugin-extensions-et-portal \
-enigma2-plugin-extensions-imdb \
 enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
