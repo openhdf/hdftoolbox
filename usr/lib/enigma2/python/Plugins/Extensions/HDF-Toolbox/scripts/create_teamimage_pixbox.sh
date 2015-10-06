@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 02.10.2015
+##pixbox - 06.10.2015
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -13,13 +13,13 @@ echo "remove all picon"
 rm -f /usr/share/enigma2/picon/*.* > /dev/null 2>&1
 echo
 echo "remove preinstalled unwanted plugins"
-opkg remove defaultsat \
-opkg remove enigma2-plugin-systemplugins-autobouquetsmaker \
-opkg remove enigma2-plugin-systemplugins-cablescan \
-opkg remove enigma2-plugin-systemplugins-blindscan \
-opkg remove enigma2-plugin-extensions-volume-adjust \
-opkg remove enigma2-plugin-extensions-audiosync \
-opkg remove enigma2-plugin-extensions-remotestreamconvert
+opkg remove defaultsat
+opkg remove --force-depends enigma2-plugin-systemplugins-autobouquetsmaker
+opkg remove --force-depends enigma2-plugin-systemplugins-cablescan
+opkg remove --force-depends enigma2-plugin-systemplugins-blindscan
+opkg remove --force-depends enigma2-plugin-extensions-volume-adjust
+opkg remove --force-depends enigma2-plugin-extensions-audiosync
+opkg remove --force-depends enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
 opkg install livestreamersrv \
@@ -46,6 +46,16 @@ opkg install enigma2-plugin-settings-astra-pixbox
 echo
 echo "install metrixhd-binicknich-hdfmod-skin"
 opkg install enigma2-plugin-skins-metrixhd-binicknich-hdfmod
+echo
+echo "check box now"
+line=$(grep -e vuduo2 -e vusolo2 -e vusolose /etc/enigma2/boxinformations)
+if [ -n $? ]; then
+	echo $line
+	opkg install enigma2-plugin-systemplugins-animationsetup
+  opkg flag hold enigma2-plugin-extensions-lcd4linux
+else
+    echo "Vu Duo2/Solo2/SoloSE not found"
+fi
 echo
 echo "Installation erfolgreich abgeschlossen!"
 echo
