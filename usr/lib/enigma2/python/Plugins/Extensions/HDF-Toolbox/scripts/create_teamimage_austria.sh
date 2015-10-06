@@ -11,7 +11,6 @@ echo
 opkg update > /dev/null 2>&1
 ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo "remove preinstalled unwanted plugins"
-opkg remove enigma2-plugin-extensions-enhancedmoviecenter
 echo
 echo "install system plugins"
 opkg install sqlite3 \
