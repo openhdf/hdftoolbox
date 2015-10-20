@@ -22,14 +22,17 @@ imageversion=`less /tmp/.ImageVersion | grep "getImageVersion" | cut -d" " -f3`
 if [ $imageversion = "4.2" ]; then
 	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V4.2 ~/' {} \;
 	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V4.2 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V4.2 ~/' {} \;
 fi
 if [ $imageversion = "5.1" ]; then
 	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V5.1 ~/' {} \;
 	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.1 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V5.1 ~/' {} \;
 fi
 if [ $imageversion = "5.2" ]; then
 	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.2 ~/' {} \;
 	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.2 ~/' {} \;
+	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V5.2 ~/' {} \;
 fi 
 if [ $imageversion = "5.3" ]; then
 	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.3 ~/' {} \;
