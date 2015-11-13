@@ -337,7 +337,7 @@ class Fantastic(Screen):
            mainmenu.append(("openHDF-Downloader" , "mfschdf"))
 
         mainmenu.append(("--------------------------------------------------" , "mfxyz"))
-        mainmenu.append(("Toolbox Version - 09.11.2015" , "mfxyz"))
+        mainmenu.append(("Toolbox Version - 13.11.2015" , "mfxyz"))
         #mainmenu.append((" " , "mfxyz"))
         mainmenu.append(("About" , "mfabout"))
 
