@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 06.10.2015
+##pixbox - 16.11.2015
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -18,7 +18,6 @@ opkg remove --force-depends enigma2-plugin-systemplugins-autobouquetsmaker
 opkg remove --force-depends enigma2-plugin-systemplugins-cablescan
 opkg remove --force-depends enigma2-plugin-systemplugins-blindscan
 opkg remove --force-depends enigma2-plugin-extensions-volume-adjust
-opkg remove --force-depends enigma2-plugin-extensions-audiosync
 opkg remove --force-depends enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
@@ -48,13 +47,12 @@ echo "install metrixhd-binicknich-hdfmod-skin"
 opkg install enigma2-plugin-skins-metrixhd-binicknich-hdfmod
 echo
 echo "check box now"
-line=$(grep -e vuduo2 -e vusolo2 -e vusolose /etc/enigma2/boxinformations)
+line=$(grep -e vusolose -e vuduo2 -e vusolo2 /etc/enigma2/boxinformations)
 if [ -n $? ]; then
 	echo $line
 	opkg install enigma2-plugin-systemplugins-animationsetup
-  opkg flag hold enigma2-plugin-extensions-lcd4linux
 else
-    echo "Vu Duo2/Solo2/SoloSE not found"
+    echo "Vu SoloSE/Duo2/Solo2 not found"
 fi
 echo
 echo "Installation erfolgreich abgeschlossen!"
