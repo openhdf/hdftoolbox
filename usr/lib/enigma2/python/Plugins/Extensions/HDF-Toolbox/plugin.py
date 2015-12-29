@@ -17,7 +17,7 @@ from RecordTimer import *
 from time import *
 from Tools import Directories, Notifications
 import NavigationInstance
-from downloader import Hdf_Downloaderw
+from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
 try:
