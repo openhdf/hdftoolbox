@@ -23,7 +23,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDa
 box = getBoxType()
 boxname = getBoxType()
 
-try:    
+try:
     #ET Boxen
     if getBoxType().startswith('et9'):
         box = "et9000"
@@ -52,7 +52,7 @@ try:
         boxname = "VU+Duo"
     elif getBoxType() == "vuzero":
         box = "vuduo"
-        boxname = "VU+Zero"		
+        boxname = "VU+Zero"
     elif getBoxType() == "vuduo2":
         box = "vuduo"
         boxname = "VU+Duo2"
@@ -198,9 +198,10 @@ class Hdf_Downloader(Screen):
                 <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
                 <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
           </screen>"""
-
     def __init__(self, session , **kwargs):
         self.session = session
+        self.skinAttributes = (())
+
 ##### Variables and lists
         self.box = box
         self.anyNewInstalled = False

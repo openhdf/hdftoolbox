@@ -17,7 +17,7 @@ from RecordTimer import *
 from time import *
 from Tools import Directories, Notifications
 import NavigationInstance
-import downloader
+from downloader import Hdf_Downloaderw
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
 try:
@@ -58,7 +58,7 @@ try:
 	box = getBoxType()
 except:
     boxdesc = "HDFreaks Toolbox"
-	
+
 try:
     #ET Boxen
     if getBoxType().startswith('et9'):
@@ -132,7 +132,7 @@ except:
     pass
 
 ## use another boxname for hdf-toolbox in mainmenu
-try:		
+try:
 	if getMachineName() == 'STARSAT-LX':
 		if os.path.exists("/etc/enigma2/.opticum") is True: #touch this file to show boxtye in toolbox
 			box = "Opticum AX-Odin"
@@ -183,7 +183,7 @@ os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 #	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/tools.cfg -type f -exec sed -i '/HbbTV/d' {} \;")
 if not getBoxType().startswith('gb'):
 	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/fixes.cfg -type f -exec sed -i '/fix_gb_display/d' {} \;")
-	
+
 # plugin calling support comes here ...
 pluginpath = "/usr/lib/enigma2/python/Plugins/"
 
@@ -267,7 +267,7 @@ class Fantastic(Screen):
         self.session = session
         Screen.__init__(self, session)
         self.menu = args
-	
+
         global mfcommand
         global mfmenu
         global mfmenuold
@@ -374,7 +374,7 @@ class Fantastic(Screen):
                self.session.open(MessageBox,("%s") % (title),  MessageBox.TYPE_INFO)
            elif mfselected is "mfschdf":
                try:
-					self.session.open(downloader.Hdf_Downloader)
+					self.session.open(Hdf_Downloader)
                except:
 					self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
            elif mfselected is "mfsc":
