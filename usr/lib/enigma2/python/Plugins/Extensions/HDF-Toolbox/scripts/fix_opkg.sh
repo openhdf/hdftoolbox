@@ -4,6 +4,7 @@ echo
 echo "fix opkg package problems"
 sleep 1
 find /var/lib/opkg/status -type f -exec sed -i 's/Version: 1.6.0-r0/Version: 1.6.1-r0/' {} \;
+find /var/lib/opkg/status -type f -exec sed -i 's/Conflicts: /d/' {} \;
 echo
 echo "opkg update"
 opkg update
