@@ -40,7 +40,7 @@ enigma2-plugin-extensions-tvcharts \
 enigma2-plugin-extensions-dreamexplorer \
 enigma2-plugin-extensions-remotechannelstreamconverter \
 enigma2-plugin-extensions-epgrefresh \
-enigma2-plugin-extensions-yampmusicplayer \
+enigma2-plugin-extensions-yampmusicplayerfullhd \
 enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-extensions-audiosync \
