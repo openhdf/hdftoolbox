@@ -47,7 +47,7 @@ echo "install metrixhd-binicknich-hdfmod-skin"
 opkg install enigma2-plugin-skins-metrixhd-binicknich-hdfmod
 echo
 echo "check box now"
-line=$(grep -e vusolose -e vuduo2 -e vusolo2 /etc/enigma2/boxinformations)
+line=$(grep -e 'vusolose\|vuduo2\|vusolo2' /etc/enigma2/boxinformations)
 if [ -n $? ]; then
 	echo $line
 	opkg install enigma2-plugin-systemplugins-animationsetup

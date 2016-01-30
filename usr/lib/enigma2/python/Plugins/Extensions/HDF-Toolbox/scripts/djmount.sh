@@ -5,19 +5,12 @@ if [ -f /etc/.djmount ]; then
 	/etc/init.d/djmount stop
 	chmod 644 /etc/init.d/djmount
 	rm -f /etc/.djmount
-	echo
-	echo "djmount DLNA Client autostart is now OFF"
-	echo
-	echo
+	echo -e "\ndjmount DLNA Client autostart is now OFF\n\n"
 else
 	echo
 	chmod 755 /etc/init.d/djmount
 	touch /etc/.djmount
 	/etc/init.d/djmount start
-	echo
-	echo "djmount DLNA Client autostart is now ON"
-	echo "You can find the UPNP/DLNA Server inside /media/upnp/"
-	echo
-	echo
+	echo -e "\ndjmount DLNA Client autostart is now ON\nYou can find the UPNP/DLNA Server inside /media/upnp/\n\n"
 fi
 exit 0 

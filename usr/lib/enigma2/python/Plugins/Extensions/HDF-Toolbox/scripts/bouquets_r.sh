@@ -1,28 +1,19 @@
 #!/bin/sh
 
-echo "Restore your Bouquets/Timers/Automounts from HDD to /etc/enigma2/"
-echo
+echo -e "Restore your Bouquets/Timers/Automounts from HDD to /etc/enigma2/\n"
 
 if [ -f /hdd/backup/HDF_Backup.tar.gz ]; then 
 	echo "Backup found ... restore now"
 	cd /etc/enigma2
-	rm -f *bouquet*
-	rm -f lamedb
-	rm -f automounts.xml
-	rm -f *timer*
+	rm -f *bouquet* lamedb automounts.xml *timer*
 	tar xzf /hdd/backup/HDF_Backup.tar.gz
-	echo
-	echo "Restore complete"
-	echo "Please wait ... restart GUI"
+	echo -e "\nRestore complete\nPlease wait ... restart GUI"
 	sleep 5
 	init 4
 	sleep 1
 	init 3
-	echo
-	echo
+	echo -e "\n\n"
 else
-	echo "No backup /hdd/backup/HDF_Backup.tar.gz found!"
-	echo "Can't restore old data"
-	echo
+	echo -e "No backup /hdd/backup/HDF_Backup.tar.gz found"\!"\nCan't restore old data\n"
 fi
 exit 0 

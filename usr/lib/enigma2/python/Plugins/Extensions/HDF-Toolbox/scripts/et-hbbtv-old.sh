@@ -1,10 +1,8 @@
 #!/bin/sh
 
 if [ -f /usr/local/browser/browser ]; then 
-	echo opkg list-installed | grep webbrowser
-	echo
-	echo "HbbTV Browser found ... remove ETXx00 HbbTV"
-	echo
+	opkg list-installed | grep webbrowser
+	echo -e "\nHbbTV Browser found ... remove ETXx00 HbbTV\n"
 	opkg remove enigma2-plugin-extensions-et-hbbtv enigma2-plugin-extensions-et-hbbtv-old > /dev/null 2>&1
 	echo "done"
 	sync
