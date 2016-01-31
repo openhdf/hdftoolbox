@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 16.11.2015
+##pixbox - 30.01.2016
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -22,6 +22,7 @@ opkg remove --force-depends enigma2-plugin-extensions-remotestreamconvert
 echo
 echo "install system plugins"
 opkg install livestreamersrv \
+python-youtube-dl \ 
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-autoswitch3d \
 enigma2-plugin-systemplugins-automaticvolumeadjustment
@@ -43,9 +44,6 @@ echo
 echo "install Astra 19.2 settings"
 opkg install enigma2-plugin-settings-astra-pixbox
 echo
-echo "install metrixhd-binicknich-hdfmod-skin"
-opkg install enigma2-plugin-skins-metrixhd-binicknich-hdfmod
-echo
 echo "check box now"
 line=$(grep -e 'vusolose\|vuduo2\|vusolo2' /etc/enigma2/boxinformations)
 if [ -n $? ]; then
@@ -59,9 +57,7 @@ echo "Installation erfolgreich abgeschlossen!"
 echo
 echo "Nun bitte neu booten, zuvor aber Hinweise lesen!"
 echo
-echo "Hinweis 1: nach dem Reboot Favoriten > Sender neu waehlen"
-echo
-echo "Hinweis 2: HDF-Toolbox > Skin Selector > Skin wechseln auf: metrix.hdf.mod"
+echo "Hinweis: nach dem Reboot Favoriten > Sender neu waehlen"
 echo
 echo "Das Teamimage pixbox Edition ist damit fertig"
 echo "Viel Spass damit wuenscht pixbox"
