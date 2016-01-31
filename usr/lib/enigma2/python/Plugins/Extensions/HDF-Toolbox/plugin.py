@@ -21,9 +21,7 @@ from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
 try:
-	os.system("rm -f /tmp/.ImageVersion")
-	os.system("touch /tmp/.ImageVersion")
-	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /tmp/.ImageVersion")
+	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")
 	os.system("echo getMachineName = " + getMachineName() + " >> /tmp/.ImageVersion")
 	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /tmp/.ImageVersion")
 	os.system("echo getBoxType = " + getBoxType() + " >> /tmp/.ImageVersion")
@@ -337,7 +335,7 @@ class Fantastic(Screen):
            mainmenu.append(("openHDF-Downloader" , "mfschdf"))
 
         mainmenu.append(("--------------------------------------------------" , "mfxyz"))
-        mainmenu.append(("Toolbox Version - 30.01.2016" , "mfxyz"))
+        mainmenu.append(("Toolbox Version - 31.01.2016" , "mfxyz"))
         #mainmenu.append((" " , "mfxyz"))
         mainmenu.append(("About" , "mfabout"))
 
