@@ -4,6 +4,7 @@ echo -e "\nfix opkg package problems"
 sleep 1
 sed -i 's/Version: 1.6.0-r0/Version: 1.6.1-r0/' /var/lib/opkg/status
 sed -i 's/Conflicts: /#Conflicts:/' /var/lib/opkg/status
+sed -i '/2.0+git61+1aa27e9-r12/d' /var/lib/opkg/status
 sed -i 's/Version: 1.6.1-r0/Version: 1.7.1-r0/' /var/lib/opkg/status
 sed -i 's/Version: 1.7+git14825+3674742/Version: 1.7.1-r0/' /var/lib/opkg/status
 echo -e "\nopkg update"
