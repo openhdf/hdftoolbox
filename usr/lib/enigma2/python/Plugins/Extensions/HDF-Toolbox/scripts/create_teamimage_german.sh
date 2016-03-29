@@ -15,7 +15,6 @@ echo "install system plugins"
 opkg install sqlite3 \
 enigma2-plugin-systemplugins-weathercomponenthandler \
 enigma2-plugin-systemplugins-extnumberzap \
-enigma2-plugin-systemplugins-crossepg \
 enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-recordinfobar \
 enigma2-plugin-systemplugins-aspectratioswitch
@@ -47,6 +46,7 @@ enigma2-plugin-extensions-audiosync \
 enigma2-plugin-extensions-piconsupdater \
 enigma2-plugin-extensions-moviecut \
 enigma2-plugin-extensions-tvspielfilm \
+enigma2-plugin-extensions-xmltvimport \
 enigma2-plugin-extensions-mediaportal
 echo
 
