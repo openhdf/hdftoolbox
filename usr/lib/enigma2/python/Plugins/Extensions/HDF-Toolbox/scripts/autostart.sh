@@ -18,33 +18,11 @@ echo "" >> /tmp/hdf.txt
 cat /proc/cpuinfo >> /tmp/hdf.txt
 
 #check image version and write to issue.net
-imageversion=`less /tmp/.ImageVersion | grep "getImageVersion" | cut -d" " -f3`
-if [ $imageversion = "4.2" ]; then
-	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V4.2 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V4.2 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V4.2 ~/' {} \;
+imageversion=`grep ^getImageVersion /tmp/.ImageVersion | cut -d" " -f3`
+if ! grep $imageversion /etc/issue.net >/dev/null ;then
+	sed -i "s|^~ HDFreaks Image.*|~ HDFreaks Image V$imageversion ~|" /etc/issue.net
 fi
-if [ $imageversion = "5.1" ]; then
-	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V5.1 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.1 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V5.1 ~/' {} \;
-fi
-if [ $imageversion = "5.2" ]; then
-	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.2 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.2 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V5.2 ~/' {} \;
-fi 
-if [ $imageversion = "5.3" ]; then
-	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.3 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V5.3 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.3 ~/' {} \;
-fi
-if [ $imageversion = "5.4" ]; then
-	find /etc/issue.net -type f -exec sed -i 's/V5.1 ~/V5.4 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.2 ~/V5.4 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V5.3 ~/V5.4 ~/' {} \;
-	find /etc/issue.net -type f -exec sed -i 's/V4.2 ~/V5.4 ~/' {} \;
-fi
+
 #check spinner symlink
 if [ -L /usr/share/enigma2/skin_default/spinner ]; then
 		echo "spinner symlink found"
