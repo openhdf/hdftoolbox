@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 30.01.2016
+##pixbox - 22.04.2016
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -17,20 +17,23 @@ opkg remove defaultsat
 opkg remove --force-depends enigma2-plugin-systemplugins-autobouquetsmaker
 opkg remove --force-depends enigma2-plugin-systemplugins-cablescan
 opkg remove --force-depends enigma2-plugin-systemplugins-blindscan
+opkg remove --force-depends enigma2-plugin-extensions-audiosync
 opkg remove --force-depends enigma2-plugin-extensions-volume-adjust
 opkg remove --force-depends enigma2-plugin-extensions-remotestreamconvert
 echo
-echo "install system plugins"
+echo "install depends"
 opkg install livestreamersrv \
-python-youtube-dl \ 
-enigma2-plugin-systemplugins-satelliteequipmentcontrol \
+python-youtube-dl \
+python-mutagen
+echo
+echo "install system plugins" 
+opkg install enigma2-plugin-systemplugins-satelliteequipmentcontrol \
 enigma2-plugin-systemplugins-autoswitch3d \
+enigma2-plugin-systemplugins-extnumberzap \
 enigma2-plugin-systemplugins-automaticvolumeadjustment
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-customsubservices \
-enigma2-plugin-extensions-mediaplayer \
-enigma2-plugin-extensions-imdb \
 enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-iptvlistupdater \
 enigma2-plugin-extensions-mediainfo \
@@ -38,8 +41,9 @@ enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-piconmanager \
 enigma2-plugin-extensions-remotechannelstreamimport \
 enigma2-plugin-extensions-moviecut \
-enigma2-plugin-extensions-webradiofs  \
-enigma2-plugin-extensions-werbezapper
+enigma2-plugin-extensions-webradiofs \
+enigma2-plugin-extensions-werbezapper \
+enigma2-plugin-extensions-zaphistorybrowser
 echo
 echo "install Astra 19.2 settings"
 opkg install enigma2-plugin-settings-astra-pixbox
