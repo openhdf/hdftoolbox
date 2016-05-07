@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 27.04.2016
+##pixbox - 07.05.2016
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -24,7 +24,10 @@ echo
 echo "install depends"
 opkg install livestreamersrv \
 python-youtube-dl \
-python-mutagen
+python-mutagen \
+python-textutils \
+curl \
+udpxy
 echo
 echo "install system plugins" 
 opkg install enigma2-plugin-systemplugins-satelliteequipmentcontrol \
@@ -53,7 +56,7 @@ echo "check box now"
 line=$(grep -e 'vusolose\|vuduo2\|vusolo2' /etc/enigma2/boxinformations)
 if [ -n $? ]; then
 	echo $line
-	opkg install enigma2-plugin-systemplugins-animationsetup
+	opkg install enigma2-plugin-systemplugins-animationsetup > /dev/null 2>&1
 else
     echo "Vu SoloSE/Duo2/Solo2 not found"
 fi
