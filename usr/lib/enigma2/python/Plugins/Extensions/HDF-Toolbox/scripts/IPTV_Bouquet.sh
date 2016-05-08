@@ -1,4 +1,6 @@
 #!/bin/sh
+opkg install curl > /dev/null 2>&1
+sleep 2
 echo "IPTV Bouquet updating"
 curl -O https://raw.githubusercontent.com/pixbox-hdf/HDFreaks/master/IPTV/userbouquet.iptv.tv > /dev/null 2>&1
 if [ $? -eq 0 -a -s /home/root/userbouquet.iptv.tv ]; then
