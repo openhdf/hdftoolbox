@@ -205,7 +205,7 @@ class Hdf_Downloader(Screen):
 ##### Variables and lists
         self.box = box
         self.anyNewInstalled = False
-        self.switch = "extensions"
+        self.switch = "softcam"
         self.filesArray = []
         self.filesArrayClean = []
         self.filesArraySplit = []
@@ -248,9 +248,9 @@ class Hdf_Downloader(Screen):
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Download"))
         self["key_blue"] = Label(_(" "))
-        self["key_1"] = Label(_("   Extra/Special-Plugins"))
+        self["key_1"] = Label(_("   Softcams/Cardreader"))
         self["key_2"] = Label(_("   Extra/Special-Updates"))
-        self["key_3"] = Label(_("   Softcams/Cardreader"))
+        self["key_3"] = Label(_("   Extra/Special-Plugins"))
         self["key_4"] = Label(_("   Bootlogos/Spinner"))
         self["key_5"] = Label(_("   Picons (not activ)"))
         self["key_6"] = Label(_("   ipk, tar.gz, tgz Installer"))
@@ -484,7 +484,7 @@ class Hdf_Downloader(Screen):
 ###### Category Controls
 
     def one(self):
-        self.switch = "extensions"
+        self.switch = "softcam"
         self.mkNewMenu()
 
     def two(self):
@@ -492,7 +492,7 @@ class Hdf_Downloader(Screen):
         self.mkNewMenu()
 
     def three(self):
-        self.switch = "softcam"
+        self.switch = "extensions"
         self.mkNewMenu()
 
     def four(self):
@@ -557,7 +557,6 @@ class BufferThread():
             self.error = str(string)
         else:
             self.error = ""
-
 
     def httpFailed(self, failure_instance=None, error_message=""):
         self.downloading = False
