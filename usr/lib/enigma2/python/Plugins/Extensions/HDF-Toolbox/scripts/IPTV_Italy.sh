@@ -1,7 +1,5 @@
 #!/bin/sh
-opkg install curl > /dev/null 2>&1
-sleep 2
-echo "IPTV Bouquet updating"
+echo "IPTV Italy Bouquet Download"
 curl -O https://raw.githubusercontent.com/pixbox-hdf/HDFreaks/master/IPTV/userbouquet.iptv_italy.tv > /dev/null 2>&1
 if [ $? -eq 0 -a -s /home/root/userbouquet.iptv_italy.tv ]; then
 		rm -rf /etc/enigma2/userbouquet.iptv_italy.tv
