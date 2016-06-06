@@ -8,5 +8,5 @@ echo "----------------------------------------------------------"
 echo "If you will share new IPTV or webcam streams," 
 echo "write a PM to pixbox or Googgi"
 echo " "
+opkg install curl > /dev/null 2>&1
 exit 1
-
