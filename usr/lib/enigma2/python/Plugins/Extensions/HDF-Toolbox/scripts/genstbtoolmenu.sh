@@ -32,7 +32,7 @@ BOXNAME=$(echo ${ez}${r})
 hdftoolpath=/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox
 CREATEDIRECTORY=${MEDIAPATH}/${BOXNAME}-UserTools
 
-# User Tools directory on USB/HDD:/home/root
+# User Tools directory on /usr/scripts
 if [ ! -d ${CREATEDIRECTORY} ];then
 echo -e "\n### Create ${BOXNAME} Tools directory ###\n${CREATEDIRECTORY}\n"
 mkdir -p ${CREATEDIRECTORY}/${BOXNAME}_menu
