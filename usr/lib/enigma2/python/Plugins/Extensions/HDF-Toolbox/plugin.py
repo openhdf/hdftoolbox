@@ -20,7 +20,7 @@ import NavigationInstance
 from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
-toolboxversion = "Toolbox Version - 24.07.2016"
+toolboxversion = "Toolbox Version - 02.09.2016"
 
 try:
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")

@@ -5,10 +5,7 @@ echo "####################### running HDFreaks autostart scripts ###############
 echo
 
 ##set temp output file
-rm /tmp/hdf.txt
-touch /tmp/hdf.txt
-cat /proc/stb/info/boxtype >> /tmp/hdf.txt
-echo "" >> /tmp/hdf.txt
+cat /proc/stb/info/boxtype > /tmp/hdf.txt
 cat /proc/version >> /tmp/hdf.txt
 echo "" >> /tmp/hdf.txt
 less /etc/version >> /tmp/hdf.txt
@@ -19,8 +16,9 @@ cat /proc/cpuinfo >> /tmp/hdf.txt
 
 #check image version and write to issue.net
 imageversion=`grep ^getImageVersion /tmp/.ImageVersion | cut -d" " -f3`
-if ! grep $imageversion /etc/issue.net >/dev/null ;then
-	sed -i "s|^~ HDFreaks Image.*|~ HDFreaks Image V$imageversion ~|" /etc/issue.net
+imagebuild=`grep ^version /etc/image-version | cut -f2 -d=`
+if ! grep "$imageversion build: $imagebuild" /etc/issue.net >/dev/null ;then
+	sed -i "s|^~ HDFreaks Image.*|~ HDFreaks Image V$imageversion build: $imagebuild ~|" /etc/issue.net
 fi
 
 #check spinner symlink
