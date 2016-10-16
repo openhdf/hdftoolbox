@@ -19,6 +19,9 @@
 #  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# 16.10.16 - add to all cfg M:menu/${BOXNAME}:Return to ${BOXNAME} Tools menu ##
+#
 
 MEDIAPATH=/usr/scripts
 
@@ -70,6 +73,11 @@ echo -e "\nGenerate ${BOXNAME} menu, scripts, cfg... symbolik link\nPlease reloa
 ln -sf ${CREATEDIRECTORY}/${BOXNAME}.cfg ${hdftoolpath}/menu/.
 ln -sf ${CREATEDIRECTORY}/${BOXNAME}_menu ${hdftoolpath}/.
 ln -sf ${CREATEDIRECTORY}/${BOXNAME}_scripts ${hdftoolpath}/.
-)
+cd menu
+menucfg=$(ls | grep -v ${BOXNAME})
+for cfg in $menucfg; do
+if ! grep "M:menu/${BOXNAME}" $cfg >/dev/null;then
+sed -i "/M:main:Return to Main Menu/i\M:menu/${BOXNAME}:Return to ${BOXNAME} Tools menu" $e
+fi;done )
 
 exit 0
