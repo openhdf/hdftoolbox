@@ -43,3 +43,8 @@ else
 		echo "no old videomode found ... nothing to do"
 	fi
 fi
+
+##create iptv symlinks to /usr/scripts/ for cronjobs
+echo "check scripts and create symlinks"
+[ -d /usr/scripts ] || mkdir /usr/scripts
+ln -s /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/IPTV_* /usr/scripts/ > /dev/null 2>&1
