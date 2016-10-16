@@ -77,7 +77,7 @@ cd menu
 menucfg=$(ls | grep -v ${BOXNAME})
 for cfg in $menucfg; do
 if ! grep "M:menu/${BOXNAME}" $cfg >/dev/null;then
-sed -i "/M:main:Return to Main Menu/i\M:menu/${BOXNAME}:Return to ${BOXNAME} Tools menu" $e
+sed -i "/M:main:Return to Main Menu/i\M:menu/${BOXNAME}:Return to ${BOXNAME} Tools menu" $cfg
 fi;done )
 
 exit 0
