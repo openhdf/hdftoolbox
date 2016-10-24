@@ -20,20 +20,27 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# 16.10.16 - add to all cfg M:menu/${BOXNAME}:Return to ${BOXNAME} Tools menu ##
+## 16.10.16 - add to all cfg M:menu/${BOXNAME}:Return to ${BOXNAME} Tools menu ##
+## 22.10.16 - add /usr/scripts/boxtoolmenu.conf for Image ${BOXNAME} Tools, User can define the PATH itself ##
+## 22.10.16 - fixed tr ##
 #
 
 MEDIAPATH=/usr/scripts
 
 #BOXNAME=$(cat /proc/stb/info/boxtype)
-ez=$(uname -n | cut -c 1-1 | tr [a-z] [A-Z])
+ez=$(uname -n | cut -c 1-1 | tr '[a-z]' '[A-Z]')
 l=$(uname -n | wc -L)
 r=$(uname -n | cut -c 2-$l)
 
 BOXNAME=$(echo ${ez}${r})
 
 hdftoolpath=/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox
-CREATEDIRECTORY=${MEDIAPATH}/${BOXNAME}-UserTools
+if [ -r $MEDIAPATH/boxtoolmenu.conf ];then
+	CREATEDIRECTORY=$(grep ^BOXDIRTOOLPATH $MEDIAPATH/boxtoolmenu.conf | cut -f2 -d=)
+else
+	CREATEDIRECTORY=${MEDIAPATH}/${BOXNAME}-UserTools
+	echo -e "#Image ${BOXNAME} Tools PATH - define the PATH itself\n\nBOXDIRTOOLPATH=${MEDIAPATH}/${BOXNAME}-UserTools" >$MEDIAPATH/boxtoolmenu.conf
+fi
 
 # User Tools directory on /usr/scripts
 if [ ! -d ${CREATEDIRECTORY} ];then
