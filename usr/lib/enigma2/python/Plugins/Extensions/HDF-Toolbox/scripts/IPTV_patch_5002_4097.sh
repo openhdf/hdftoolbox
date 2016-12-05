@@ -12,9 +12,9 @@ if ! opkg list-installed | egrep 'ffmpeg' >/dev/null; then
 	opkg install ffmpeg
 fi
 
-if ! opkg list-installed | egrep 'enigma2-plugin-extensions-serviceapp' >/dev/null; then
+if ! opkg list-installed | egrep 'enigma2-plugin-systemplugins-serviceapp' >/dev/null; then
 	echo "install serviceapp"
-	opkg install enigma2-plugin-extensions-serviceapp
+	opkg install enigma2-plugin-systemplugins-serviceapp
 fi
 
 echo
