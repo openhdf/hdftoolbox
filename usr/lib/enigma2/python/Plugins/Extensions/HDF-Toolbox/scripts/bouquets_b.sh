@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd /etc/enigma2/
-ls lamedb *bouquet* *.xml >/tmp/hdf_b.cfg
+ls lamedb *bouquet* *.xml *mp* >/tmp/hdf_b.cfg
 
 echo -e "Backup your Bouquets/Timers/Automounts from /etc/enigma2/ to HDD\n"
 [ -d /hdd/backup ] || mkdir /hdd/backup
