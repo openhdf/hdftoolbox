@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 07.05.2016
+##pixbox - 28.03.2017
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -46,7 +46,7 @@ enigma2-plugin-extensions-remotechannelstreamimport \
 enigma2-plugin-extensions-moviecut \
 enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-werbezapper \
-enigma2-plugin-extensions-xmltvimport \
+enigma2-plugin-extensions-epgimport \
 enigma2-plugin-extensions-zaphistorybrowser
 echo
 echo "install Astra 19.2 settings"
