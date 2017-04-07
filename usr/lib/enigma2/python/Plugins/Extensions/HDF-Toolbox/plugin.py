@@ -250,8 +250,7 @@ def doIptvUpdate(**kwargs):
         url = "http://iptv.hdfreaks.cc/" + filename
         iptvfile = "/etc/enigma2/" + str(filename)
         try:
-            request = urllib2.Request(url, headers={"User-Agent" : "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenHDF;;;)"})
-            i = urllib2.urlopen(request)
+            i = urllib2.urlopen(url)
             html = i.read()
             f = open(iptvfile, 'w')
             f.write(html)
