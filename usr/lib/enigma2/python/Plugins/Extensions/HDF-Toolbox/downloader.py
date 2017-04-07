@@ -690,10 +690,14 @@ class downloadfile(Screen):
         elif "tv" in self.filename:
             os.system("cp " + self.filename + " /etc/enigma2/")
             filename = self.filename.split('/')[2]
-            f = open("/usr/uninstall/hdf_" + filename + "_delfile.sh", "w")
-            print >> f, '#!/bin/sh \n\n', 'rm /etc/enigma2/' + filename , '\nsed -i \'' + filename + '// {$!N;d;}\' /etc/enigma2/bouquets.tv\n', 'wget -qO - http://127.0.0.1/web/servicelistreload?mode=0 &'
+            f = open("/etc/enigma2/bouquets.tv", "r")
+            exists = False
+            for line in f.readlines() :
+                if filename in line.split("\""):
+                    exists = True
             f.close()
-            os.system("echo '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet' >> /etc/enigma2/bouquets.tv" % (filename))
+            if not exists:
+                os.system("echo '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet' >> /etc/enigma2/bouquets.tv" % (filename))
          #   os.system("wget -qO - http://127.0.0.1/web/servicelistreload?mode=0 &")
             eDVBDB.getInstance().reloadBouquets()
             eDVBDB.getInstance().reloadServicelist()
