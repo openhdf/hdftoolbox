@@ -14,7 +14,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Tools.Downloader import downloadWithProgress
-from enigma import ePicLoad, eTimer
+from enigma import ePicLoad, eTimer, eDVBDB
 from twisted.web.client import downloadPage
 import os
 import sys
@@ -167,6 +167,9 @@ else:
    os.system("ln -s /usr/bin/opkg-cl /usr/bin/ipkg")
    os.system("ln -s /usr/bin/opkg-cl /usr/bin/ipkg-cl")
 
+if os.path.exists("/usr/uninstall") == False:
+    os.system("mkdir /usr/uninstall")
+
 class Hdf_Downloader(Screen):
     skin = """
           <screen name="DownloadMenu" position="center,center" size="800,400" title="Select your Download">
@@ -184,8 +187,10 @@ class Hdf_Downloader(Screen):
                 <widget name="key_5" position="550,327" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="6" position="760,350" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_6.png" transparent="1" alphatest="on" />
                 <widget name="key_6" position="550,352" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="0" position="760,375" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_0.png" transparent="1" alphatest="on" />
-                <widget name="key_0" position="550,377" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <ePixmap name="7" position="760,375" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_7.png" transparent="1" alphatest="on" />
+                <widget name="key_7" position="550,377" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                <ePixmap name="0" position="760,400" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_0.png" transparent="1" alphatest="on" />
+                <widget name="key_0" position="550,402" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
                 <ePixmap name="red" position="30,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
                 <ePixmap name="green" position="200,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
                 <widget name="blue" position="370,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
@@ -233,6 +238,7 @@ class Hdf_Downloader(Screen):
             "4" : self.four,
             "5" : self.five,
             "6" : self.six,
+            "7" : self.seven,
             "0" : self.zero,
             "back": self.cancel,
             "blue": self.preview,
@@ -254,6 +260,7 @@ class Hdf_Downloader(Screen):
         self["key_4"] = Label(_("   Bootlogos/Spinner"))
         self["key_5"] = Label(_("   Picons (not activ)"))
         self["key_6"] = Label(_("   ipk, tar.gz, tgz Installer"))
+        self["key_7"] = Label(_("   ipvt Streams"))
         self["key_0"] = Label(_("   Uninstaller"))
         self["size"] = StaticText(_(" "))
         self["description"] = StaticText(_(" "))
@@ -272,6 +279,7 @@ class Hdf_Downloader(Screen):
                 newLines = lines.split('#')
                 self.filesArrayClean.append(newLines[1])
                 self.filesArraySplit.append(lines.split('#'))
+                print newLines[1].split('-')
                 self.filesArray.append(newLines[1].split('-'))
 
         sourceread.close()
@@ -316,7 +324,7 @@ class Hdf_Downloader(Screen):
                     if self.switch == "picon":
                         self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif self.box in self.filesArraySplit[i][0]:
-                if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
+                if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i] or self.switch in self.filesArray[i][0].replace('_','.').split('.'):
                     if self.switch == "extensions":
                         if "2.7" in sys.version:
                             if "mips32el" in self.filesArrayClean[i] or "_all" in self.filesArrayClean[i]:
@@ -331,6 +339,8 @@ class Hdf_Downloader(Screen):
                         self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "picon":
                         self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                    if self.switch == "iptv":
+                        self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
 
             i = i + 1
         self.list.append((_(" "), "none"))
@@ -447,12 +457,15 @@ class Hdf_Downloader(Screen):
     def ok(self):
         if "download" in self["downloadmenu"].l.getCurrentSelection():
             file = self["downloadmenu"].l.getCurrentSelection()[1]
-            url = "http://addons.hdfreaks.cc/feeds/" + file
+            if not self.switch == "iptv":
+                url = "http://addons.hdfreaks.cc/feeds/" + file
+            else:
+                url = "http://iptv.hdfreaks.cc/" + file
             path = "/tmp/" + file
             self.session.open(downloadfile, path, url)
-            self.anyNewInstalled = True
+            if not self.switch == "iptv":
+                self.anyNewInstalled = True
 
-#            os.remove(path)
         elif "tmpinst" in self["downloadmenu"].l.getCurrentSelection():
             file = self["downloadmenu"].l.getCurrentSelection()[0]
             filetype = file.split(".")[1]
@@ -507,9 +520,11 @@ class Hdf_Downloader(Screen):
         self.switch = "tmpinst"
         self.mkNewMenu()
 
+    def seven(self):
+        self.switch = "iptv"
+        self.mkNewMenu()
+
     def zero(self):
-        if os.path.exists("/usr/uninstall") == False:
-            os.system("mkdir /usr/uninstall")
         self.switch = "uninstall"
         self.mkNewMenu()
 
@@ -670,6 +685,16 @@ class downloadfile(Screen):
                 os.chmod("/usr/uninstall/hdf_" + self.filename.split("-")[3].split('_')[0] + "_delfile_ipk.sh", 755)
             else:
                 pass
+        elif "tv" in self.filename:
+            os.system("cp " + self.filename + " /etc/enigma2/")
+            filename = self.filename.split('/')[2]
+            f = open("/usr/uninstall/hdf_" + filename + "_delfile.sh", "w")
+            print >> f, '#!/bin/sh \n\n', 'rm /etc/enigma2/' + filename , '\nsed -i \'' + filename + '// {$!N;d;}\' /etc/enigma2/bouquets.tv\n', 'wget -qO - http://127.0.0.1/web/servicelistreload?mode=0 &'
+            f.close()
+            os.system("echo '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet' >> /etc/enigma2/bouquets.tv" % (filename))
+         #   os.system("wget -qO - http://127.0.0.1/web/servicelistreload?mode=0 &")
+            eDVBDB.getInstance().reloadBouquets()
+            eDVBDB.getInstance().reloadServicelist()
         os.remove(self.filename)
 
 ###########################################################################
@@ -720,68 +745,9 @@ class PictureScreen(Screen):
 
 ###### Standard Stuff
 
-#def Plugins(**kwargs):
-#    return [PluginDescriptor(
-#                            name="HDF Downloader " + boxname,
-#                            description=_("HDF Downloader"),
-#                            icon="hdf.png",
-#                            where=PluginDescriptor.WHERE_EXTENSIONSMENU,
-#                            fnc=main),
-#                            PluginDescriptor(name="HDF Downloader " + boxname,
-#                            description=_("HDF Downloader"),
-#                            icon="hdf.png",
-#                            where=PluginDescriptor.WHERE_PLUGINMENU,
-#                            fnc=main)]
-
 def main(session, **kwargs):
     try:
         session.open(Hdf_Downloader)
     except:
         self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
 
-#Recent Updates:
-# Die Discription tut
-# descrition und size widgets  von center/center auf left/top gesetzt
-# Download schreibt keine scheisse mehr
-# Namen im Menu werden jetzt ohne Dateiendung angezeigt
-# datenbank datei umbenannt von test.txt zu down.hdf
-# TryQuitMainloop tut
-# Crash Bei Kategorie Wechsel gefixt...
-# einlesen ueberprueft jetzt switch switch + "s" und switch + "shd"
-## so liest er zum Beispiel picon, picons und piconshd alle in eine liste
-# Download + Install tut jetzt.. finally
-# Uninstaller hinzugefuegt
-# Labels und StaticTexte je nach Situation agepasst
-# Messegabox Titles angepasst
-# Message Boxes Angepasst
-# Ordentlich Sortiert
-# Skin Titel zu loadInfo hinzugefuegt ;)
-# uninstall angepasst neuer dateiname bsp: hdf_Noad_delfile_gz.sh
-## bzw hdf_cccaminfo_delfile_ipk_sh
-# beim installieren von ipk dateien wird eine hdf_*_delfile_ipk.sh erstellt
-# Preview fuer Skins eingebaut
-# install Option fuer tar.gz, tgz, ipk von /tmp
-# vuduo cpu info fix
-# Rueckmeldung beim tmp install hinzugefuegt
-# os.chmod beim uninstall hinzugefuegt
-# os.remove der datei im tmp nach download angepasst
-# Zuron-One hinzugefuegt mit folder vom et9000
-# tmpinstall im def ok geaendert: bei xxx.aaa.ipk wurde aaa als filetype erkannt, jetzt ists eine schleife ueber die laenge des am . getrennten dateinamens
-# Unterscheidung vusolo und gigablue eingebaut
-# Umgebaut auf allgemeinen feed ohne unterordner
-# .devdown datei eingebaut um alle Boxtypen im downloadmenu zu haben, nicht nur den eigenen
-# plugin selbst reload ohne enigma restart eingebaut
-# Menubutton zum Manuellen recompile eingebaut # tut nur, wenn .devdown aktiv ist
-# ipkg check und symlink eingebaut
-# Liste 0 Sortiert
-# selbst loeschen der py eingefuegt
-# uninstall ordner wird angelegt falls nicht vorhanden
-# check auf python 2.7
-## -> falls ja: mips23el einlesen
-#added gbquad as boxtype
-#added tmtwin as boxtype
-#Try block um main
-#added Dreambox
-#getBoxType eingebaut, boxname im Title mit eingebaut (eigentlich eher zu dev zwecken, aber sieht net schlecht aus)
-# Removed Unused Boxtypes
-# Ixusszero eingebaut/ Code korrigiert

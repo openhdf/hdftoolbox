@@ -1,4 +1,5 @@
 import os
+import glob
 from enigma import *
 from Screens.Screen import Screen
 from Screens.Standby import *
@@ -235,6 +236,30 @@ def autostart(reason, **kwargs):
        session = kwargs["session"]
        session.open(FantasticBoot)
 
+def iptvUdate(reason, **kwargs):
+    print "[HDF-Toolbox]: IPTV autoupdate"
+    global session
+    if reason == 0:
+         doIptvUpdate()
+
+def doIptvUpdate(**kwargs):
+    import urllib2
+    print "[HDF-Toolbox] IPTV list update"
+    os.chdir("/etc/enigma2")
+    for filename in glob.glob("*iptv*.tv"):
+        url = "http://iptv.hdfreaks.cc/" + filename
+        iptvfile = "/etc/enigma2/" + str(filename)
+        try:
+            request = urllib2.Request(url, headers={"User-Agent" : "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenHDF;;;)"})
+            i = urllib2.urlopen(request)
+            html = i.read()
+            f = open(iptvfile, 'w')
+            f.write(html)
+            f.close()
+            changed = True
+        except urllib2.HTTPError as e:
+            pass
+
 def menu(menuid, **kwargs):
     if menuid == "mainmenu":
         return [(_("HDF Toolbox " + boxdesc + ""), main, "hdf_toolbox", 10)]
@@ -242,16 +267,17 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
     try:
-	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-			PluginDescriptor(name=" HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
-            PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc=menu),
-            PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
+        return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
+                PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = iptvUdate),
+                PluginDescriptor(name=" HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
+                PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc=menu),
+                PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
     except:
-	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = [PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name = "HDFreaks Toolbox " + boxdesc + "", description = "Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
+        return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = [PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name = "HDFreaks Toolbox " + boxdesc + "", description = "Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
 
 def main(session,**kwargs):
     try:
-     	session.open(Fantastic)
+        session.open(Fantastic)
     except:
         print "[FANTASTIC] Pluginexecution failed"
 
@@ -259,7 +285,7 @@ class Fantastic(Screen):
     skin = """
         <screen position="150,150" size="360,395" title="HDF Toolbox">
         <widget name="menu" position="10,10" size="340,340" scrollbarMode="showOnDemand" enableWrapAround="1" />
-		<ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
+            <ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
         </screen>"""
 
     def __init__(self, session, args = 0):
@@ -323,7 +349,7 @@ class Fantastic(Screen):
         else:
            mainmenu.append(("no %s.cfg found - please reboot" %mfmenu, "mfnomenu"))
 
-		# SoftcamManager
+        # SoftcamManager
         if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
         elif os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
@@ -331,7 +357,7 @@ class Fantastic(Screen):
         elif os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
            mainmenu.append(("Image Softcam Cardserver Manager", "mfsc"))
         else:
-		   pass
+            pass
 
         if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.pyo") is True:
            mainmenu.append(("openHDF-Downloader" , "mfschdf"))
@@ -373,9 +399,9 @@ class Fantastic(Screen):
                self.session.open(MessageBox,("%s") % (title),  MessageBox.TYPE_INFO)
            elif mfselected is "mfschdf":
                try:
-					self.session.open(Hdf_Downloader)
+                   self.session.open(Hdf_Downloader)
                except:
-					self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
+                    self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
            elif mfselected is "mfsc":
                self.session.openWithCallback(self.FantasticMenu(""),ScSelection)
            elif mfselected is "mfsc2":
