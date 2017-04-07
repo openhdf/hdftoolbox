@@ -324,7 +324,7 @@ class Hdf_Downloader(Screen):
                     if self.switch == "picon":
                         self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif self.box in self.filesArraySplit[i][0]:
-                if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i] or self.switch in self.filesArray[i][0].replace('_','.').split('.'):
+                if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
                     if self.switch == "extensions":
                         if "2.7" in sys.version:
                             if "mips32el" in self.filesArrayClean[i] or "_all" in self.filesArrayClean[i]:
@@ -339,6 +339,8 @@ class Hdf_Downloader(Screen):
                         self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "picon":
                         self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+            elif "all" in self.filesArraySplit[i][0]:
+                if self.switch in self.filesArray[i][0].replace('_','.').split('.'):
                     if self.switch == "iptv":
                         self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
 
