@@ -260,7 +260,7 @@ class Hdf_Downloader(Screen):
         self["key_4"] = Label(_("   Bootlogos/Spinner"))
         self["key_5"] = Label(_("   Picons (not activ)"))
         self["key_6"] = Label(_("   ipk, tar.gz, tgz Installer"))
-        self["key_7"] = Label(_("   ipvt Streams"))
+        self["key_7"] = Label(_("   IPTV Streams"))
         self["key_0"] = Label(_("   Uninstaller"))
         self["size"] = StaticText(_(" "))
         self["description"] = StaticText(_(" "))
