@@ -27,4 +27,5 @@ ln -fs /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/.
 ##create iptv symlinks to /usr/scripts/ for cronjobs
 echo "check scripts and create symlinks"
 [ -d /usr/scripts ] || mkdir /usr/scripts
-ln -fs /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/IPTV_* /usr/scripts/.
+rm -f /usr/scripts/IPTV_*
+#ln -fs /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/IPTV_* /usr/scripts/.
