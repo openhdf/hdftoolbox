@@ -24,8 +24,10 @@ fi
 #check spinner symlink
 ln -fs /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/.
 
+#check ld-linux symlink
+ln -fs /lib/ld-linux-armhf.so.3 /lib/ld-linux.so.3
+
 ##create iptv symlinks to /usr/scripts/ for cronjobs
 echo "check scripts and create symlinks"
 [ -d /usr/scripts ] || mkdir /usr/scripts
 rm -f /usr/scripts/IPTV_*
-#ln -fs /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/IPTV_* /usr/scripts/.
