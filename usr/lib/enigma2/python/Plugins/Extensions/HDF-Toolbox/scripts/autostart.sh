@@ -27,7 +27,7 @@ ln -fs /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/.
 #check ld-linux symlink
 python /usr/lib/enigma2/python/BoxBrandingTest.pyo | sed 's/<$//' | sed 's/ /_/g' > /tmp/boxbranding.cfg
 if grep -Eqs 'cortexa15hf-neon-vfpv4' cat /tmp/boxbranding.cfg; then
-	ln -fs /lib/ld-2.24.so /lib/ld-linux-armhf.so.3
+	ln -fs /lib/ld-2.24.so /lib/ld-linux.so.3
 fi
 
 ##create iptv symlinks to /usr/scripts/ for cronjobs
