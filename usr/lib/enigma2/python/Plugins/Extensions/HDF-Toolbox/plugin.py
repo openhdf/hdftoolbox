@@ -242,23 +242,40 @@ def iptvUdate(reason, **kwargs):
     if reason == 0:
          doIptvUpdate()
 
+try:
+    import httplib
+except:
+    import http.client as httplib
+
+def connected():
+    c = httplib.HTTPConnection("www.google.com", timeout=2)
+    try:
+        conn.request("HEAD", "/")
+        conn.close()
+        return True
+    except:
+        conn.close()
+        return False
+
+
 def doIptvUpdate(**kwargs):
     import urllib2
-    print "[HDF-Toolbox] IPTV list update"
-    os.chdir("/etc/enigma2")
-    for filename in glob.glob("*iptv*.tv"):
-        url = "http://iptv.hdfreaks.cc/" + filename
-        iptvfile = "/etc/enigma2/" + str(filename)
-        try:
-            i = urllib2.urlopen(url)
-            html = i.read()
-            f = open(iptvfile, 'w')
-            f.write(html)
-            f.close()
-            changed = True
-        except urllib2.HTTPError as e:
-            print "[HDF-Toolbox] IPTV list update ... download error"
-            pass
+    if connected():
+        print "[HDF-Toolbox] IPTV list update"
+        os.chdir("/etc/enigma2")
+        for filename in glob.glob("*iptv*.tv"):
+            url = "http://iptv.hdfreaks.cc/" + filename
+            iptvfile = "/etc/enigma2/" + str(filename)
+            try:
+                i = urllib2.urlopen(url)
+                html = i.read()
+                f = open(iptvfile, 'w')
+                f.write(html)
+                f.close()
+                changed = True
+            except urllib2.HTTPError as e:
+                print "[HDF-Toolbox] IPTV list update ... download error"
+                pass
 
 def menu(menuid, **kwargs):
     if menuid == "mainmenu":
