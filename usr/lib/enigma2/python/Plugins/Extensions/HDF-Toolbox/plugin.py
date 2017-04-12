@@ -21,7 +21,7 @@ import NavigationInstance
 from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
-toolboxversion = "Toolbox Version - 11.04.2017"
+toolboxversion = "Toolbox Version - 12.04.2017"
 
 try:
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")
@@ -249,10 +249,8 @@ def doIptvUpdate(**kwargs):
     for filename in glob.glob("*iptv*.tv"):
         url = "http://iptv.hdfreaks.cc/" + filename
         iptvfile = "/etc/enigma2/" + str(filename)
-        print iptvfile
         try:
             i = urllib2.urlopen(url)
-            print url
             html = i.read()
             f = open(iptvfile, 'w')
             f.write(html)
