@@ -250,11 +250,11 @@ except:
 def connected():
     c = httplib.HTTPConnection("www.google.com", timeout=2)
     try:
-        conn.request("HEAD", "/")
-        conn.close()
+        c.request("HEAD", "/")
+        c.close()
         return True
     except:
-        conn.close()
+        c.close()
         return False
 
 
