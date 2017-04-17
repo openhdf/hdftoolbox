@@ -9,6 +9,8 @@ from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Components.PluginList import *
+from Components.config import config, ConfigSubsection, ConfigYesNo, getConfigListEntry, configfile, ConfigText
+from Components.ConfigList import ConfigListScreen
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -250,6 +252,7 @@ class Hdf_Downloader(Screen):
             "down": self.down,
             "left": self.left,
             "right": self.right,
+            "menu": self.menu,
         }, -1)
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Download"))
@@ -262,6 +265,7 @@ class Hdf_Downloader(Screen):
         self["key_6"] = Label(_("   ipk, tar.gz, tgz Installer"))
         self["key_7"] = Label(_("   IPTV Streams"))
         self["key_0"] = Label(_("   Uninstaller"))
+        self["menu"] = Label(_("   Config Menu"))
         self["size"] = StaticText(_(" "))
         self["description"] = StaticText(_(" "))
         self["blue"] = Pixmap()
@@ -279,7 +283,6 @@ class Hdf_Downloader(Screen):
                 newLines = lines.split('#')
                 self.filesArrayClean.append(newLines[1])
                 self.filesArraySplit.append(lines.split('#'))
-                print newLines[1].split('-')
                 self.filesArray.append(newLines[1].split('-'))
 
         sourceread.close()
@@ -530,6 +533,9 @@ class Hdf_Downloader(Screen):
         self.switch = "uninstall"
         self.mkNewMenu()
 
+    def menu(self):
+		self.session.open(ConfigMenu)
+
 ##### Basic Controls
 
     def up(self):
@@ -749,6 +755,88 @@ class PictureScreen(Screen):
     def cancel(self):
         self.close(None)
 
+class ConfigMenu(ConfigListScreen, Screen):
+	skin = """
+		<screen name="config" position="center,center" size="300,300" title="Download File" >
+				<widget name="config" position="10,10" size="290,210" scrollbarMode="showOnDemand" />
+				<ePixmap name="red" position="10,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<ePixmap name="green" position="150,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+				<widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+				<widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		</screen>"""
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skinAttributes = (())
+		Screen.setTitle(self, _("Config Menu..."))
+		self["status"] = StaticText()
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("Save"))
+
+		self.onChangedEntry = [ ]
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.createSetup()
+
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+		{
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave
+		}, -2)
+
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def createSetup(self):
+		self.editListEntry = None
+		self.list = []
+		self.list.append(getConfigListEntry(_("IPTV AutoUpdate"), config.downloader.autoupdate, _("Update IPTV list on start?")))
+
+
+		self["config"].list = self.list
+		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def selectionChanged(self):
+		self["status"].setText(self["config"].getCurrent()[2])
+
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	def keySave(self):
+		self.saveAll()
+		self.close()
+
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
+
 ###### Standard Stuff
 
 def main(session, **kwargs):
@@ -756,4 +844,3 @@ def main(session, **kwargs):
         session.open(Hdf_Downloader)
     except:
         self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
-

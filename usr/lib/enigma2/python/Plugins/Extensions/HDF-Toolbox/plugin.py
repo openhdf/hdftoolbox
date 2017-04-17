@@ -7,6 +7,7 @@ from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.GUIComponent import *
 from Components.MenuList import MenuList
@@ -237,10 +238,11 @@ def autostart(reason, **kwargs):
        session.open(FantasticBoot)
 
 def iptvUdate(reason, **kwargs):
-    print "[HDF-Toolbox]: IPTV autoupdate"
-    global session
-    if reason == 0:
-         doIptvUpdate()
+    if config.downloader.autoupdate.value:
+        print "[HDF-Toolbox]: IPTV autoupdate"
+        global session
+        if reason == 0:
+             doIptvUpdate()
 
 try:
     import httplib
