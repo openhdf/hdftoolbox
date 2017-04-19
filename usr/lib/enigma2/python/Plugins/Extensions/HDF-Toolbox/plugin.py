@@ -237,7 +237,7 @@ def autostart(reason, **kwargs):
        session = kwargs["session"]
        session.open(FantasticBoot)
 
-def iptvUdate(reason, **kwargs):
+def iptvUpdate(reason, **kwargs):
     if config.downloader.autoupdate.value:
         print "[HDF-Toolbox]: IPTV autoupdate"
         global session
@@ -287,7 +287,7 @@ def menu(menuid, **kwargs):
 def Plugins(**kwargs):
     try:
         return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-                PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = iptvUdate),
+                PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = iptvUpdate),
                 PluginDescriptor(name=" HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
                 PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc=menu),
                 PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
