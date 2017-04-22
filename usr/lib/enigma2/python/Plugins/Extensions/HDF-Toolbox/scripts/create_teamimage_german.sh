@@ -21,8 +21,6 @@ enigma2-plugin-systemplugins-aspectratioswitch
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-webradiofs \
-enigma2-plugin-extensions-bootvideo \
-enigma2-plugin-extensions-skyrecorder \
 enigma2-plugin-systemplugins-skyfanzone \
 enigma2-plugin-extensions-serienrecorder \
 enigma2-plugin-extensions-et-portal \
@@ -33,8 +31,9 @@ enigma2-plugin-extensions-picturecenterfs \
 enigma2-plugin-extensions-menusort \
 enigma2-plugin-extensions-jobmanager \
 enigma2-plugin-extensions-mediainfo \
-enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-enhancedpowersave \
+enigma2-plugin-extensions-werbezapper \
+enigma2-plugin-extensions-epgimport \
 enigma2-plugin-extensions-tvcharts \
 enigma2-plugin-extensions-dreamexplorer \
 enigma2-plugin-extensions-remotechannelstreamconverter \
@@ -55,7 +54,6 @@ line=$(grep ixuss /etc/enigma2/boxinformations)
 if [ -n $? ]; then
 	echo $line
 	opkg remove enigma2-plugin-systemplugins-pipservicerelation
-	#opkg install enigma2-plugin-systemplugins-ice-network-tuner
 else
     echo "Ixuss Box found"
 fi
