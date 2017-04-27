@@ -4,8 +4,9 @@ from enigma import *
 from Screens.Screen import Screen
 from Screens.Standby import *
 from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
+from Screens.InputBox import InputBox, PinInput
 from Screens.ChoiceBox import ChoiceBox
+import Components.ParentalControl
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
@@ -22,7 +23,7 @@ import NavigationInstance
 from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 
-toolboxversion = "Toolbox Version - 23.04.2017"
+toolboxversion = "Toolbox Version - 27.04.2017"
 
 try:
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")
@@ -312,6 +313,10 @@ class Fantastic(Screen):
         self.session = session
         Screen.__init__(self, session)
         self.menu = args
+        self.protectContextMenu = True
+
+        if self.isProtected():
+           self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
 
         global mfcommand
         global mfmenu
@@ -387,6 +392,17 @@ class Fantastic(Screen):
 
         self["menu"] = MenuList(mainmenu)
         self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.FantasticMainMenu,"back": self.close,}, -1)
+
+    def isProtected(self):
+        return self.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.hdftoolbox.value
+
+    def protectResult(self, answer):
+        if answer:
+            self.protectContextMenu = False
+        elif answer is not None:
+            self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+        else:
+            self.close()
 
     def FantasticMainMenu(self):
 
