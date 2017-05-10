@@ -18,9 +18,12 @@ from Screens.Standby import TryQuitMainloop
 from Tools.Downloader import downloadWithProgress
 from enigma import ePicLoad, eTimer, eDVBDB
 from twisted.web.client import downloadPage
+from time import localtime, mktime, time, strftime
 import os
 import sys
+import glob
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
+from IPTVTimer import iptvtimer, IPTVTimerEntry
 
 box = getBoxType()
 boxname = getBoxType()
@@ -219,8 +222,13 @@ class Hdf_Downloader(Screen):
         self.list = []
 ##### Download Source File
         try:
-            import urllib
-            urllib.urlretrieve ("http://addons.hdfreaks.cc/feeds/down.hdf", "/tmp/.down.hdf")
+            import urllib2
+            url = "http://addons.hdfreaks.cc/feeds/down.hdf"
+            i = urllib2.urlopen(url)
+            downfile = i.read()
+            f = open("/tmp/.down.hdf", 'w')
+            f.write(downfile)
+            f.close()
         except:
             os.system("touch /tmp/.down.hdf")
 ##### Lets Start
@@ -245,7 +253,6 @@ class Hdf_Downloader(Screen):
             "back": self.cancel,
             "blue": self.preview,
             "info": self.info,
-            "menu": self.recompile,
             "red": self.cancel,
             "green": self.ok,
             "up": self.up,
@@ -416,7 +423,6 @@ class Hdf_Downloader(Screen):
         if answer is True:
             plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
             self.close()
-            #self.session.open(TryQuitMainloop, 3)
         else:
             self.close()
 
@@ -437,7 +443,6 @@ class Hdf_Downloader(Screen):
             url = "http://addons.hdfreaks.cc/feeds/" + file
             path = "/tmp/" + file
             import urllib
-            print urllib.urlretrieve (url , path)
             if "<title>404 Not Found</title>" in open(path, "r").read():
                 self.session.open(MessageBox, ("Sorry, no Preview available."), MessageBox.TYPE_ERROR).setTitle(_("No Preview"))
             else:
@@ -762,7 +767,8 @@ class ConfigMenu(ConfigListScreen, Screen):
 				<ePixmap name="red" position="10,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 				<ePixmap name="green" position="150,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 				<widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-				<widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+                                <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="help" render="Label" position="5,345" size="690,105" font="Regular;21" />
 		</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -770,6 +776,7 @@ class ConfigMenu(ConfigListScreen, Screen):
 		self.skinAttributes = (())
 		Screen.setTitle(self, _("Config Menu..."))
 		self["status"] = StaticText()
+		self["help"] = StaticText()
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 
@@ -778,23 +785,58 @@ class ConfigMenu(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
+		self["config"].onSelectionChanged.append(self.updateHelp)
+
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
 			"red": self.keyCancel,
-			"green": self.keySave
+			"green": self.keySave,
+			"info": self.info
 		}, -2)
 
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
+		self.changedEntry()
+
+	def info(self):
+		lastscan = config.downloader.autoupdate_last.value
+		if lastscan:
+			from Tools.FuzzyDate import FuzzyTime
+			scanDate = ', '.join(FuzzyTime(lastscan))
+		else:
+			scanDate = _("never")
+
+		self.session.open(
+			MessageBox,
+			_("Last refresh was %s\nNext timer: %s") % (scanDate,str(iptvtimer.getNextTimerEntry()).split(",")[0].split("(")[1]),
+			type=MessageBox.TYPE_INFO
+			)
+		# just for debugging
+		#iptvtimer.show()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+		self.createSetup()
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		self.createSetup()
 
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("IPTV AutoUpdate"), config.downloader.autoupdate, _("Update IPTV list on start?")))
-
+		self.list.append(getConfigListEntry(_("IPTV AutoUpdate"), config.downloader.autoupdate, _("Start Update on enigma2 start?")))
+		if config.downloader.autoupdate.getValue():
+			self.list.append(getConfigListEntry(_("IPTV AutoUpdate Type"), config.downloader.autoupdate_type, _("Choose the type of AutoUpdate."), True))
+			if config.downloader.autoupdate_type.value == "auto":
+				self.list.append(getConfigListEntry(_("Start Update every Day at (hh:mm)"), config.downloader.autoupdate_time, _("An automated refresh will start at this time."), False))
+			elif config.downloader.autoupdate_type.value == "periodic":
+				self.list.append(getConfigListEntry(_("Start Update every "), config.downloader.autoupdate_timer, _("An automated refresh will start after this duration."), False))
+			if config.downloader.autoupdate_type.value != "startup":
+				self.list.append(getConfigListEntry(_("Run in Standby?"), config.downloader.autoupdate_runinstandby, _("Start Update when in Standby?")))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -815,12 +857,22 @@ class ConfigMenu(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
+	def updateHelp(self):
+		cur = self["config"].getCurrent()
+		if cur:
+			self["help"].text = cur[2]
+
 	def saveAll(self):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
 
 	def keySave(self):
+		iptvtimer.clear()
+		if config.downloader.autoupdate.getValue():
+			iptvtimer.setRefreshTimer(self.createWaitTimer)
+		else:
+			self.stop()
 		self.saveAll()
 		self.close()
 
@@ -837,10 +889,63 @@ class ConfigMenu(ConfigListScreen, Screen):
 		else:
 			self.close()
 
+	def createWaitTimer(self):
+		# Add wait timer to iptvtimer
+		iptvtimer.add(IPTVTimerEntry(time() + 30, self.prepareRefresh))
+
+	def prepareRefresh(self):
+		self.isrunning = True
+		return
+
+	def stop(self):
+		print "[IPTVTimer] Stopping Timer"
+		iptvtimer.clear()
+
+#### IPTV Updater Calls
+
+try:
+	import httplib
+except:
+	import http.client as httplib
+
+def connected():
+	c = httplib.HTTPConnection("www.google.com", timeout=2)
+	try:
+		c.request("HEAD", "/")
+		c.close()
+		return True
+	except:
+		c.close()
+		return False
+
+
+def doIptvUpdate(**kwargs):
+	import urllib2
+	if connected():
+		print "[HDF-Toolbox] IPTV list update"
+		os.chdir("/etc/enigma2")
+		for filename in glob.glob("*iptv*.tv"):
+			url = "http://iptv.hdfreaks.cc/" + filename
+			iptvfile = "/etc/enigma2/" + str(filename)
+			try:
+				i = urllib2.urlopen(url)
+				html = i.read()
+				f = open(iptvfile, 'w')
+				f.write(html)
+				f.close()
+				changed = True
+			except urllib2.HTTPError as e:
+				print "[HDF-Toolbox] IPTV list update ... download error"
+				pass
+		return True
+	else:
+		return False
+
+
 ###### Standard Stuff
 
 def main(session, **kwargs):
-    try:
-        session.open(Hdf_Downloader)
-    except:
-        self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
+	try:
+		session.open(Hdf_Downloader)
+	except:
+		self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))

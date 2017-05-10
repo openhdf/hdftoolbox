@@ -1,5 +1,4 @@
 import os
-import glob
 from enigma import *
 from Screens.Screen import Screen
 from Screens.Standby import *
@@ -243,42 +242,10 @@ def iptvUpdate(reason, **kwargs):
         print "[HDF-Toolbox]: IPTV autoupdate"
         global session
         if reason == 0:
-             doIptvUpdate()
-
-try:
-    import httplib
-except:
-    import http.client as httplib
-
-def connected():
-    c = httplib.HTTPConnection("www.google.com", timeout=2)
-    try:
-        c.request("HEAD", "/")
-        c.close()
-        return True
-    except:
-        c.close()
-        return False
-
-
-def doIptvUpdate(**kwargs):
-    import urllib2
-    if connected():
-        print "[HDF-Toolbox] IPTV list update"
-        os.chdir("/etc/enigma2")
-        for filename in glob.glob("*iptv*.tv"):
-            url = "http://iptv.hdfreaks.cc/" + filename
-            iptvfile = "/etc/enigma2/" + str(filename)
-            try:
-                i = urllib2.urlopen(url)
-                html = i.read()
-                f = open(iptvfile, 'w')
-                f.write(html)
-                f.close()
-                changed = True
-            except urllib2.HTTPError as e:
-                print "[HDF-Toolbox] IPTV list update ... download error"
-                pass
+             import downloader
+             from downloader import iptvtimer, ConfigMenu
+             downloader.doIptvUpdate()
+             iptvtimer.setRefreshTimer(ConfigMenu.createWaitTimer)
 
 def menu(menuid, **kwargs):
     if menuid == "mainmenu":
