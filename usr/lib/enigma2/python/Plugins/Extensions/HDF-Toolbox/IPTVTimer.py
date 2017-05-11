@@ -3,6 +3,7 @@ import timer
 from time import localtime, mktime, time, strftime
 from Components.config import config
 from enigma import eDVBDB
+import os
 
 import inspect
 
@@ -81,6 +82,10 @@ class IPTVTimer(timer.Timer):
 	def getNextTimerEntry(self):
 		return self.timer_list[0]
 
+if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/IPTVTimer.py"):
+    os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/IPTVTimer.py")
+else:
+    pass
 
 class IPTVTimerEntry(timer.TimerEntry):
 	"""TimerEntry ..."""
