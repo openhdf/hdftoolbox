@@ -809,9 +809,14 @@ class ConfigMenu(ConfigListScreen, Screen):
 		else:
 			scanDate = _("never")
 
+		try:
+			nextTimer = str(iptvtimer.getNextTimerEntry()).split(",")[0].split("(")[1]
+		except:
+			nextTimer = "No Timer Configured"
+
 		self.session.open(
 			MessageBox,
-			_("Last refresh was %s\nNext timer: %s") % (scanDate,str(iptvtimer.getNextTimerEntry()).split(",")[0].split("(")[1]),
+			_("Last refresh was %s\nNext timer: %s") % (scanDate,nextTimer),
 			type=MessageBox.TYPE_INFO
 			)
 		# just for debugging
