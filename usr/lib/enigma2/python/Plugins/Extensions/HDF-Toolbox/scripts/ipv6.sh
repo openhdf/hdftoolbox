@@ -33,8 +33,10 @@ disable)
         ln -sf /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/ipv6.sh /etc/init.d/ipv6
            /usr/sbin/update-rc.d -f ipv6 defaults
           /etc/init.d/ipv6 start
-         /etc/init.d/rdnssd stop
-        /usr/sbin/update-rc.d -f rdnssd remove
+         kill -9 $(pidof -s odhcp6c) >/dev/null 2>&1
+         [ -d /etc/network/disabled ] || mkdir /etc/network/disabled
+         mv /etc/network/if-down.d/odhcp6c /etc/network/disabled/ifdownd-odhcp6c
+         mv /etc/network/if-up.d/odhcp6c /etc/network/disabled/ifupd.odhcp6c
         echo "done."
         ;;
 
@@ -46,8 +48,10 @@ enable)
            /etc/init.d/ipv6 stop
           /usr/sbin/update-rc.d -f ipv6 remove
         rm -f /etc/init.d/ipv6
-	   /etc/init.d/rdnssd start
-	  /usr/sbin/update-rc.d -f rdnssd defaults
+       mv /etc/network/disabled/ifdownd-odhcp6c /etc/network/if-down.d/odhcp6c
+       mv /etc/network/disabled/ifupd.odhcp6c /etc/network/if-up.d/odhcp6c
+       rm -rf /etc/network/disabled
+     echo -e "\nPlease reboot your $(uname -n) BOX...\n "
 	 echo "done."
         ;;
 
