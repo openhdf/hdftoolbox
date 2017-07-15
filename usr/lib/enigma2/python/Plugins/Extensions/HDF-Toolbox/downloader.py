@@ -68,13 +68,16 @@ try:
         box = "vusolo"
         boxname = "VU+Solo2"
     #GigaBlues
-    elif getBoxType().startswith('gb'):
-        box = "gigablue"
-        boxname = "GigaBlue"
+#    elif getBoxType().startswith('gb'):
+#        box = "gigablue"
+#        boxname = "GigaBlue"
     elif getBoxType() == "gbquad":
         box = "gbquad"
         boxname = "GigaBlue"
-    #Technomates
+    elif getBoxType() == "gbquad4k":
+        box = "gbquad4k"
+        boxname = "GB UHD QUAD 4K"
+	#Technomates
     elif getBoxType() == "tmtwin":
         box = "tmtwin"
         boxname = "TM-Twin"
