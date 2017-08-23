@@ -34,3 +34,5 @@ fi
 echo "check scripts and create symlinks"
 [ -d /usr/scripts ] || mkdir /usr/scripts
 rm -f /usr/scripts/IPTV_*
+cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/e2scripts/* /usr/scripts/
+chmod -R 755 /usr/scripts
