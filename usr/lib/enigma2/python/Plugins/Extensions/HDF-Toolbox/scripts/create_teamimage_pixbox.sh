@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 28.03.2017
+##pixbox - 17.09.2017
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -25,15 +25,10 @@ echo "install depends"
 opkg install livestreamersrv \
 python-youtube-dl \
 python-mutagen \
-python-textutils \
-curl \
-udpxy
+python-textutils
 echo
 echo "install system plugins" 
-opkg install enigma2-plugin-systemplugins-satelliteequipmentcontrol \
-enigma2-plugin-systemplugins-autoswitch3d \
-enigma2-plugin-systemplugins-extnumberzap \
-enigma2-plugin-systemplugins-automaticvolumeadjustment
+opkg install enigma2-plugin-systemplugins-automaticvolumeadjustment
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-customsubservices \
@@ -41,25 +36,15 @@ enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-albatros \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
-enigma2-plugin-extensions-piconmanager \
-enigma2-plugin-extensions-remotechannelstreamimport \
+enigma2-plugin-extensions-piconupdater \
 enigma2-plugin-extensions-moviecut \
 enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-werbezapper \
 enigma2-plugin-extensions-epgimport \
-enigma2-plugin-extensions-zaphistorybrowser
+enigma2-plugin-extensions-mpgz
 echo
 echo "install Astra 19.2 settings"
 opkg install enigma2-plugin-settings-astra-pixbox
-echo
-echo "check box now"
-line=$(grep -e 'vusolose\|vuduo2\|vusolo2' /etc/enigma2/boxinformations)
-if [ -n $? ]; then
-	echo $line
-	opkg install enigma2-plugin-systemplugins-animationsetup > /dev/null 2>&1
-else
-    echo "Vu SoloSE/Duo2/Solo2 not found"
-fi
 echo
 echo "Installation erfolgreich abgeschlossen!"
 echo
