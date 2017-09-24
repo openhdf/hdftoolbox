@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 17.09.2017
+##pixbox - 24.09.2017
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -15,11 +15,14 @@ echo
 echo "remove preinstalled unwanted plugins"
 opkg remove --force-depends enigma2-plugin-settings-defaultsat
 opkg remove --force-depends enigma2-plugin-systemplugins-autobouquetsmaker
+opkg remove --force-depends enigma2-plugin-systemplugins-fastscan
 opkg remove --force-depends enigma2-plugin-systemplugins-cablescan
 opkg remove --force-depends enigma2-plugin-systemplugins-blindscan
 opkg remove --force-depends enigma2-plugin-extensions-audiosync
 opkg remove --force-depends enigma2-plugin-extensions-volume-adjust
 opkg remove --force-depends enigma2-plugin-extensions-remotestreamconvert
+opkg remove --force-depends enigma2-plugin-extensions-cdinfo
+opkg remove --force-depends enigma2-plugin-extensions-dvdburn
 echo
 echo "install depends"
 opkg install livestreamersrv \
@@ -32,11 +35,11 @@ opkg install enigma2-plugin-systemplugins-automaticvolumeadjustment
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-customsubservices \
-enigma2-plugin-extensions-infobartunerstate \
 enigma2-plugin-extensions-albatros \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
-enigma2-plugin-extensions-piconupdater \
+enigma2-plugin-extensions-piconsupdater \
+enigma2-plugin-extensions-iptvplayer \
 enigma2-plugin-extensions-moviecut \
 enigma2-plugin-extensions-webradiofs \
 enigma2-plugin-extensions-werbezapper \
