@@ -35,3 +35,13 @@ echo "check scripts and create symlinks"
 rm -f /usr/scripts/IPTV_*
 cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/e2scripts/* /usr/scripts/
 chmod -R 755 /usr/scripts
+
+#check mediaportal skins
+if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal ]; then
+	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/XionHDF ]; then
+		echo "MP skins are currently installed"
+	else
+		opkg update
+		opkg install mediaportal-skins --force-reinstall
+	fi
+fi
