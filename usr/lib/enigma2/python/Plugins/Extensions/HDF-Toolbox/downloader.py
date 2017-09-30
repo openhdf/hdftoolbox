@@ -917,12 +917,13 @@ except:
 	import http.client as httplib
 
 def connected():
-	c = httplib.HTTPConnection("www.google.com", timeout=2)
+	c = httplib.HTTPConnection("hdfreaks.cc", timeout=3)
 	try:
 		c.request("HEAD", "/")
 		c.close()
 		return True
 	except:
+		print "Server offline"
 		c.close()
 		return False
 
