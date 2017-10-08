@@ -14,11 +14,11 @@ echo "" >> /tmp/hdf.txt
 cat /proc/cpuinfo >> /tmp/hdf.txt
 
 #check image version and write to issue.net
-imageversion=`awk '/getImageVersion/ {print $3}' /tmp/.ImageVersion`
-imagebuild=`grep ^version /etc/image-version | cut -f2 -d=`
-if ! grep "$imageversion build: $imagebuild" /etc/issue.net >/dev/null ;then
-	sed -i "s|^~ HDFreaks Image.*|~ HDFreaks Image V$imageversion Build #$imagebuild ~|" /etc/issue.net
-fi
+issuenetlogo=/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/issue.net_logo
+grep "=" /tmp/.ImageVersion |sed -e 's/ //' -e 's//"/' -e 's/$/"/g' > /tmp/.version
+grep ^version /etc/image-version >> /tmp/.version
+source /tmp/.version
+cat $issuenetlogo | sed "s/#GETIMAGEVERSION/$getImageVersion/g;s/GETCURRENTBUILD/$version/g;s/#MACHINE/$getMachineBrand $getMachineName/g" >/etc/issue.net
 
 #check spinner symlink
 ln -fs /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/.
