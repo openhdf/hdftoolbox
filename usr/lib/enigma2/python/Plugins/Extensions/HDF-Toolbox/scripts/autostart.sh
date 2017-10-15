@@ -15,7 +15,7 @@ cat /proc/cpuinfo >> /tmp/hdf.txt
 
 #check image version and write to issue.net
 issuenetlogo=/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/issue.net_logo
-grep "=" /tmp/.ImageVersion |sed -e 's/ //' -e 's//"/' -e 's/$/"/g' > /tmp/.version
+grep "=" /tmp/.ImageVersion |sed 's/ //g' > /tmp/.version
 grep ^version /etc/image-version >> /tmp/.version
 source /tmp/.version
 cat $issuenetlogo | sed "s/#GETIMAGEVERSION/$getImageVersion/g;s/GETCURRENTBUILD/$version/g;s/#MACHINE/$getMachineBrand $getMachineName/g" >/etc/issue.net
