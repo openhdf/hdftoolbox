@@ -20,9 +20,25 @@ from time import *
 from Tools import Directories, Notifications
 import NavigationInstance
 from downloader import Hdf_Downloader
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType
 
-toolboxversion = "Toolbox Version - 15.12.2017"
+toolboxversion = "Toolbox Version - 01.01.2018"
+
+try:
+	os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
+	os.system("echo build_type=" + getImageType() + " >> /etc/image-version")
+	os.system("echo machine_brand=" + getMachineBrand() + " >> /etc/image-version")
+	os.system("echo machine_name=" + getMachineName() + " >> /etc/image-version")
+	os.system("echo version=" + getImageVersion() + " >> /etc/image-version")
+	os.system("echo build=" + getImageBuild() + " >> /etc/image-version")
+	os.system("echo date=`cat /etc/version`" + " >> /etc/image-version")
+	os.system("echo comment=HDFreaks" " >> /etc/image-version")
+	os.system("echo target=9" " >> /etc/image-version")
+	os.system("echo creator=OpenHDF" " >> /etc/image-version")
+	os.system("echo url=http://www.hdfreaks.cc" " >> /etc/image-version")
+	os.system("echo catalog=http://www.hdfreaks.cc" " >> /etc/image-version")
+except:
+	pass
 
 try:
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")
@@ -37,7 +53,7 @@ try:
 	os.system("cat /proc/cpuinfo >> /tmp/.ImageVersion")
 	os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/autostart.sh")
 except:
-    pass
+	pass
 
 class bcolors:
     HEADER = '\033[95m'
