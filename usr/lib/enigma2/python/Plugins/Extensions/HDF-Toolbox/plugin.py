@@ -31,7 +31,7 @@ try:
 	os.system("echo machine_name=" + getMachineName() + " >> /etc/image-version")
 	os.system("echo version=" + getImageVersion() + " >> /etc/image-version")
 	os.system("echo build=" + getImageBuild() + " >> /etc/image-version")
-	os.system("echo imageversion=" + getImageVersion() + "#" + getImageBuild() + " >> /etc/image-version")
+	os.system("echo imageversion=" + getImageVersion() + "-" + getImageBuild() + " >> /etc/image-version")
 	os.system("echo date=`cat /etc/version`" + " >> /etc/image-version")
 	os.system("echo comment=HDFreaks" " >> /etc/image-version")
 	os.system("echo target=9" " >> /etc/image-version")

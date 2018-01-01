@@ -16,9 +16,9 @@ cat /proc/cpuinfo >> /tmp/hdf.txt
 #check image version and write to issue.net
 issuenetlogo=/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/issue.net_logo
 grep 'getImageVersion\|getMachineBrand\|getMachineName' /tmp/.ImageVersion | sed "s/ \= /='/;s/$/'/"  > /tmp/.version
-grep ^version /etc/image-version >> /tmp/.version
+grep ^imageversion /etc/image-version >> /tmp/.version
 source /tmp/.version
-cat $issuenetlogo | sed "s/#GETIMAGEVERSION/$getImageVersion/g;s/GETCURRENTBUILD/$version/g;s/#MACHINE/$getMachineBrand $getMachineName/g" >/etc/issue.net
+cat $issuenetlogo | sed "s/#GETIMAGEVERSION/$getImageVersion/g;s/GETCURRENTBUILD/$imageversion/g;s/#MACHINE/$getMachineBrand $getMachineName/g" >/etc/issue.net
 
 #check spinner symlink
 ln -fs /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/.
