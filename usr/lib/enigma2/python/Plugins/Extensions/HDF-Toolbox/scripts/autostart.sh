@@ -55,3 +55,22 @@ if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
 		opkg install iptv-player-xxx --force-reinstall
 	fi
 fi
+
+# check streamlinkserver
+if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/sbin/streamlinksrv ]; then
+		echo "streamlinksrv installed"
+	else
+		opkg update
+		opkg install enigma2-plugin-extensions-streamlinkserver
+	fi
+fi
+if [ -e /usr/sbin/streamlinksrv ]; then
+	if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
+		chmod 755 /usr/sbin/streamlinksrv 
+		/etc/rc3.d/S50streamlinksrv start
+	else
+		/etc/rc3.d/S50streamlinksrv stop
+		chmod 644 /usr/sbin/streamlinksrv
+	fi
+fi
