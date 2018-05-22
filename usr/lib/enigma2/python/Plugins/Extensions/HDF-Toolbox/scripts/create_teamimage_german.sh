@@ -21,10 +21,9 @@ enigma2-plugin-systemplugins-aspectratioswitch
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-webradiofs \
-enigma2-plugin-systemplugins-skyfanzone \
 enigma2-plugin-extensions-serienrecorder \
 enigma2-plugin-extensions-et-portal \
-enigma2-plugin-extensions-zaphistorybrowser.mod \
+enigma2-plugin-extensions-zaphistorybrowser \
 enigma2-plugin-extensions-virtualzap.mod \
 enigma2-plugin-extensions-cooltvguide \
 enigma2-plugin-extensions-picturecenterfs \
@@ -43,10 +42,15 @@ enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-customsubservices \
 enigma2-plugin-extensions-audiosync \
 enigma2-plugin-extensions-piconsupdater \
+enigma2-plugin-extensions-iptvplayer \
+iptv-player-xxx \
 enigma2-plugin-extensions-moviecut \
+enigma2-plugin-extensions-reconstructapsc \
 enigma2-plugin-extensions-tvspielfilm \
+enigma2-plugin-extensions-youtube \
 enigma2-plugin-extensions-xmltvimport \
-enigma2-plugin-extensions-mediaportal
+enigma2-plugin-extensions-mediaportal \
+enigma2-plugin-extensions-mpgz
 echo
 
 echo "check box now"

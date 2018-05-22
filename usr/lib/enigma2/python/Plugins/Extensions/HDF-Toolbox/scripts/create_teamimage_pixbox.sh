@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 24.09.2017
+##pixbox - 22.05.2018
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -25,8 +25,7 @@ opkg remove --force-depends enigma2-plugin-extensions-cdinfo
 opkg remove --force-depends enigma2-plugin-extensions-dvdburn
 echo
 echo "install depends"
-opkg install livestreamersrv \
-python-youtube-dl \
+opkg install python-youtube-dl \
 python-mutagen \
 python-textutils
 echo
@@ -35,7 +34,7 @@ opkg install enigma2-plugin-systemplugins-automaticvolumeadjustment
 echo
 echo "install extensions"
 opkg install enigma2-plugin-extensions-customsubservices \
-enigma2-plugin-extensions-albatros \
+enigma2-plugin-extensions-streamlinkserver \
 enigma2-plugin-extensions-mediainfo \
 enigma2-plugin-extensions-mediaportal \
 enigma2-plugin-extensions-piconsupdater \
