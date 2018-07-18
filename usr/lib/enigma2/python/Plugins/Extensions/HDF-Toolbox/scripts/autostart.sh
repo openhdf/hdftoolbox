@@ -80,11 +80,15 @@ FREEsize=`df -k /usr/ | grep [0-9]% | tr -s " " | cut -d " " -f 4`
 if [ -f /usr/share/enigma2/picon/1_0_19_EF74_3F9_1_C00000_0_0_0.png ] >/dev/null; then
 	echo "default HDF picons already installed"
 else
-	echo "installing HDF default picons"
-	if [ "10576" -gt "$FREEsize" ]; then
-		echo "Piconsize 4MB is to big for your Flashsize with "$FREEsize"kb free"
+	if grep ^config.usage.hdfpicon=false /etc/enigma2/settings >/dev/null; then
+		echo "HDF picons not wanted"
 	else
-		opkg update
-		opkg install enigma2-plugin-picons-default-hdf
+		echo "installing HDF default picons"
+			if [ "10576" -gt "$FREEsize" ]; then
+				echo "Piconsize 4MB is to big for your Flashsize with "$FREEsize"kb free"
+			else
+				opkg update
+				opkg install enigma2-plugin-picons-default-hdf
+			fi
 	fi
 fi
