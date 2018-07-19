@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Teamimage Script by HDFreaks.cc
-##pixbox - 22.05.2018
+##pixbox - 19.07.2018
 
 echo "Ein Teamimage pixbox Edition wird erstellt..."
 echo
@@ -11,6 +11,7 @@ ln -s /usr/share/enigma2/spinner /usr/share/enigma2/skin_default/spinner
 echo
 echo "remove all picon"
 rm -f /usr/share/enigma2/picon/*.* > /dev/null 2>&1
+echo "config.usage.hdfpicon=false" >> /etc/enigma2/settings
 echo
 echo "remove preinstalled unwanted plugins"
 opkg remove --force-depends enigma2-plugin-settings-defaultsat
@@ -57,3 +58,7 @@ echo
 echo "Das Teamimage pixbox Edition ist damit fertig"
 echo "Viel Spass damit wuenscht pixbox"
 echo
+echo "Automatischer Enigma2 Neustart in 5 Sekunden!"
+echo
+sleep 5
+killall -9 enigma2
