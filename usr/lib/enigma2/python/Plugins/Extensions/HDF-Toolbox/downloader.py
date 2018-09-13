@@ -838,7 +838,7 @@ class ConfigMenu(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("IPTV AutoUpdate"), config.downloader.autoupdate, _("Start Update on enigma2 start?")))
 		if config.downloader.autoupdate.getValue():
-			self.list.append(getConfigListEntry(_("IPTV AutoUpdate Type"), config.downloader.autoupdate_type, _("Choose the type of AutoUpdate."), True))
+			self.list.append(getConfigListEntry(_("IPTV AutoUpdate Type"), config.downloader.autoupdate_type, _("Choose the type of AutoUpdate."), False))
 			if config.downloader.autoupdate_type.value == "auto":
 				self.list.append(getConfigListEntry(_("Start Update every Day at (hh:mm)"), config.downloader.autoupdate_time, _("An automated refresh will start at this time."), False))
 			elif config.downloader.autoupdate_type.value == "periodic":
