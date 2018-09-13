@@ -76,7 +76,7 @@ if [ -e /usr/sbin/streamlinksrv ]; then
 fi
 
 # install picons after flash
-FREEsize=`df -k /usr/ | grep [0-9]% | tr -s " " | cut -d " " -f 4`
+FREEsize=`df -k /usr/ | awk '/[0-9]%/ {print $4}'`
 if [ -f /usr/share/enigma2/picon/1_0_19_EF74_3F9_1_C00000_0_0_0.png ] >/dev/null; then
 	echo "default HDF picons already installed"
 else
