@@ -22,7 +22,7 @@ import NavigationInstance
 from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType
 
-toolboxversion = "Toolbox Version - 13.09.2018"
+toolboxversion = "Toolbox Version - 17.12.2018"
 
 try:
 	os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
@@ -240,6 +240,12 @@ if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
    from Plugins.PLi.SoftcamSetup.Sc import *
 if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
    from Plugins.SystemPlugins.SoftcamSetup.Sc import *
+
+# starting cardserver and softcam
+if os.path.exists("/etc/init.d/cardserver") is True:
+   os.system("/etc/init.d/cardserver restart &")
+if os.path.exists("/etc/init.d/softcam") is True:
+   os.system("/etc/init.d/softcam restart &")
 
 fantastic_pluginversion = "Version 0.1.2 .. HDF mod"
 fantastic_pluginpath = "/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox"
