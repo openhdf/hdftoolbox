@@ -22,7 +22,7 @@ import NavigationInstance
 from downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType
 
-toolboxversion = "Toolbox Version - 17.12.2018"
+toolboxversion = "Toolbox Version - 23.12.2018"
 
 try:
 	os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
@@ -207,20 +207,24 @@ if not getBoxType().startswith('gb'):
 pluginpath = "/usr/lib/enigma2/python/Plugins/"
 
 #create symlinks for SystemPlugins and Extensions
-if os.path.exists("/Extensions"):
-	print "symlink Extensions exists"
-	pass
-else:
+if not os.path.exists("/Extensions"):
 	src = '/usr/lib/enigma2/python/Plugins/Extensions'
+	dst = '/Extensions'
+	os.symlink(src, dst)
+	print "symlink Extensions created"	
+else:
+	src = '/usr/lib64/enigma2/python/Plugins/Extensions'
 	dst = '/Extensions'
 	os.symlink(src, dst)
 	print "symlink Extensions created"
 
-if os.path.exists("/SystemPlugins"):
-	print "symlink SystemPlugins exists"
-	pass
-else:
+if not os.path.exists("/SystemPlugins"):
 	src = '/usr/lib/enigma2/python/Plugins/SystemPlugins'
+	dst = '/SystemPlugins'
+	os.symlink(src, dst)
+	print "symlink SystemPlugins created"
+else:
+	src = '/usr/lib64/enigma2/python/Plugins/SystemPlugins'
 	dst = '/SystemPlugins'
 	os.symlink(src, dst)
 	print "symlink SystemPlugins created"
