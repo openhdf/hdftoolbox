@@ -208,26 +208,20 @@ pluginpath = "/usr/lib/enigma2/python/Plugins/"
 
 #create symlinks for SystemPlugins and Extensions
 if not os.path.exists("/Extensions"):
-	src = '/usr/lib/enigma2/python/Plugins/Extensions'
-	dst = '/Extensions'
-	os.symlink(src, dst)
-	print "symlink Extensions created"	
-else:
-	src = '/usr/lib64/enigma2/python/Plugins/Extensions'
-	dst = '/Extensions'
-	os.symlink(src, dst)
-	print "symlink Extensions created"
+    if os.path.islink("/usr/lib/enigma2"):
+        src = '/usr/lib64/enigma2/python/Plugins/Extensions'
+    else:
+        src = '/usr/lib/enigma2/python/Plugins/Extensions'
+    dst = '/Extensions'
+    os.symlink(src, dst)
 
 if not os.path.exists("/SystemPlugins"):
-	src = '/usr/lib/enigma2/python/Plugins/SystemPlugins'
-	dst = '/SystemPlugins'
-	os.symlink(src, dst)
-	print "symlink SystemPlugins created"
-else:
-	src = '/usr/lib64/enigma2/python/Plugins/SystemPlugins'
-	dst = '/SystemPlugins'
-	os.symlink(src, dst)
-	print "symlink SystemPlugins created"
+    if os.path.islink("/usr/lib/enigma2"):
+        src = '/usr/lib64/enigma2/python/Plugins/SystemPlugins'
+    else:
+        src = '/usr/lib/enigma2/python/Plugins/SystemPlugins'
+    dst = '/SystemPlugins'
+    os.symlink(src, dst)
 
 from Screens.Ci import *
 from Screens.PluginBrowser import *
