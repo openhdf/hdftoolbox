@@ -1,6 +1,6 @@
 #!/bin/sh
 ##Zeroimage Script by HDFreaks.cc
-##22.04.2016
+##02.02.2019
 
 echo "Deinstallation von nicht relevanten Plugins, Samba und WLAN"
 echo
@@ -28,6 +28,12 @@ opkg remove --force-depends rtl8192cu kernel-module-ath9k-htc kernel-module-ath9
 opkg remove --force-depends kernel-module-ath9k kernel-module-carl9170 kernel-module-zd1211rw kernel-module-ath kernel-module-at76c50x-usb kernel-module-dvb-usb-rtl2832
 opkg remove --force-depends kernel-module-rt2500usb kernel-module-rt2800lib kernel-module-rt2800usb kernel-module-rt2x00usb kernel-module-rt73usb kernel-module-rt2x00lib
 opkg remove --force-depends rt5572 enigma2-plugin-drivers-network-usb-rt5572 enigma2-plugin-drivers-network-usb-rtl8192cu
+echo "remove /usr/lib/locale/"
+cp -rf /usr/lib/locale/ /tmp/
+rm -rf /usr/lib/locale/*
+cp -rf /tmp/locale/de_DE/ /usr/lib/locale/de_DE/
+cp -rf /tmp/locale/en_US/ /usr/lib/locale/en_US/
+cp -rf /tmp/locale/C.UTF-8/ /usr/lib/locale/C.UTF-8/
 echo
 echo "Deinstallation erfolgreich abgeschlossen!"
 echo
