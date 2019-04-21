@@ -20,9 +20,9 @@ from time import *
 from Tools import Directories, Notifications
 import NavigationInstance
 from downloader import Hdf_Downloader
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType, getImageDistro, getOEVersion
 
-toolboxversion = "Toolbox Version - 17.02.2019"
+toolboxversion = "Toolbox Version - 21.04.2019"
 
 try:
 	os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
@@ -33,11 +33,14 @@ try:
 	os.system("echo build=" + getImageBuild() + " >> /etc/image-version")
 	os.system("echo imageversion=" + getImageVersion() + "-" + getImageBuild() + " >> /etc/image-version")
 	os.system("echo date=`cat /etc/version`" + " >> /etc/image-version")
-	os.system("echo comment=HDFreaks" " >> /etc/image-version")
+	os.system("echo comment=openHDF" " >> /etc/image-version")
 	os.system("echo target=9" " >> /etc/image-version")
 	os.system("echo creator=OpenHDF" " >> /etc/image-version")
 	os.system("echo url=http://www.hdfreaks.cc" " >> /etc/image-version")
 	os.system("echo catalog=http://www.hdfreaks.cc" " >> /etc/image-version")
+	os.system("echo distro=" + getImageDistro() + " >> /etc/image-version")
+	os.system("echo oeversion=" + getOEVersion() + " >> /etc/image-version")
+	os.system("echo date=" + getImageBuild() + " >> /etc/image-version")
 except:
 	pass
 
