@@ -75,6 +75,17 @@ if [ -e /usr/sbin/streamlinksrv ]; then
 	fi
 fi
 
+# check cleanmemlite
+if grep ^config.usage.cleanmemlite=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/ClearMem/plugin.py ]; then
+		echo "cleanmemlite installed"
+	else
+		opkg update
+		opkg install enigma2-plugin-extensions-clearmem-lite_1.0_all
+	fi
+fi
+
+
 # install picons after flash
 FREEsize=`df -k /usr/ | awk '/[0-9]%/ {print $4}'`
 if [ -f /usr/share/enigma2/picon/1_0_19_EF74_3F9_1_C00000_0_0_0.png ] >/dev/null; then
