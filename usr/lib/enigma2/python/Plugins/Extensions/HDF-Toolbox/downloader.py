@@ -917,13 +917,16 @@ except:
 	import http.client as httplib
 
 def connected():
-	c = httplib.HTTPConnection("hdfreaks.cc", timeout=3)
+	c = httplib.HTTPConnection('hddfreaks.cc', 80)
 	try:
-		c.request("HEAD", "/")
+		import socket
+		socket.setdefaulttimeout(3)
+		c.connect()
+		c.request("GET", "/")
 		c.close()
 		return True
 	except:
-		print "Server offline"
+		print "[HDF-Toolbox]: Server offline"
 		c.close()
 		return False
 
@@ -931,7 +934,7 @@ def connected():
 def doIptvUpdate(**kwargs):
 	import urllib2
 	if connected():
-		print "[HDF-Toolbox] IPTV list update"
+		print "[HDF-Toolbox]: IPTV list update"
 		os.chdir("/etc/enigma2")
 		for filename in glob.glob("*iptv*.tv"):
 			url = "http://iptv.hdfreaks.cc/" + filename
@@ -944,7 +947,7 @@ def doIptvUpdate(**kwargs):
 				f.close()
 				changed = True
 			except urllib2.HTTPError as e:
-				print "[HDF-Toolbox] IPTV list update ... download error"
+				print "[HDF-Toolbox]: IPTV list update ... download error"
 				pass
 		return True
 	else:
