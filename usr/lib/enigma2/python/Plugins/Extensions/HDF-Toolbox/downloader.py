@@ -917,7 +917,7 @@ except:
 	import http.client as httplib
 
 def connected():
-	c = httplib.HTTPConnection('hddfreaks.cc', 80)
+	c = httplib.HTTPConnection('hdfreaks.cc', 80)
 	try:
 		import socket
 		socket.setdefaulttimeout(3)
