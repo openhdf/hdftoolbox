@@ -922,7 +922,7 @@ def connected():
 		import socket
 		socket.setdefaulttimeout(3)
 		c.connect()
-		c.request("GET", "/")
+		c.request("HEAD", "/")
 		c.close()
 		return True
 	except:
