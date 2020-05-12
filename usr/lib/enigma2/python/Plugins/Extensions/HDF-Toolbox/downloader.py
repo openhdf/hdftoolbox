@@ -946,9 +946,15 @@ def doIptvUpdate(**kwargs):
 				f.write(html)
 				f.close()
 				changed = True
-			except urllib2.HTTPError as e:
-				print "[HDF-Toolbox]: IPTV list update ... download error"
-				pass
+                        except urllib2.HTTPError as e:
+                                print type(e)    #catched
+                                print "[HDF-Toolbox]: IPTV list update ... download error"
+                        except socket.timeout as e:
+                                print type(e)    #catched
+                                print "[HDF-Toolbox]: IPTV list update ... download error"
+                        except urllib2.URLError as e:
+                                print type(e)    #catched
+                                print "[HDF-Toolbox]: IPTV list update ... download error"
 		return True
 	else:
 		return False
