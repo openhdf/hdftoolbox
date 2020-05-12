@@ -22,6 +22,7 @@ from time import localtime, mktime, time, strftime
 import os
 import sys
 import glob
+import socket
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
 from IPTVTimer import iptvtimer, IPTVTimerEntry
 
@@ -919,7 +920,6 @@ except:
 def connected():
 	c = httplib.HTTPConnection('hdfreaks.cc', 80)
 	try:
-		import socket
 		socket.setdefaulttimeout(3)
 		c.connect()
 		c.request("HEAD", "/")
