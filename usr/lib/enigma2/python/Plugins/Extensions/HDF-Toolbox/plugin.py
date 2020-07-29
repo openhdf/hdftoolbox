@@ -25,39 +25,39 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDa
 toolboxversion = "Toolbox Version - 12.06.2019"
 
 try:
-	os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
-	os.system("echo build_type=" + getImageType() + " >> /etc/image-version")
-	os.system("echo machine_brand=" + getMachineBrand() + " >> /etc/image-version")
-	os.system("echo machine_name=" + getMachineName() + " >> /etc/image-version")
-	os.system("echo version=" + getImageVersion() + " >> /etc/image-version")
-	os.system("echo build=" + getImageBuild() + " >> /etc/image-version")
-	os.system("echo imageversion=" + getImageVersion() + "-" + getImageBuild() + " >> /etc/image-version")
-	os.system("echo date=`cat /etc/version`" + " >> /etc/image-version")
-	os.system("echo comment=openHDF" " >> /etc/image-version")
-	os.system("echo target=9" " >> /etc/image-version")
-	os.system("echo creator=OpenHDF" " >> /etc/image-version")
-	os.system("echo url=http://www.hdfreaks.cc" " >> /etc/image-version")
-	os.system("echo catalog=http://www.hdfreaks.cc" " >> /etc/image-version")
-	os.system("echo distro=" + getImageDistro() + " >> /etc/image-version")
-	os.system("echo oeversion=" + getOEVersion() + " >> /etc/image-version")
-	os.system("echo date=" + getImageBuild() + " >> /etc/image-version")
+    os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
+    os.system("echo build_type=" + getImageType() + " >> /etc/image-version")
+    os.system("echo machine_brand=" + getMachineBrand() + " >> /etc/image-version")
+    os.system("echo machine_name=" + getMachineName() + " >> /etc/image-version")
+    os.system("echo version=" + getImageVersion() + " >> /etc/image-version")
+    os.system("echo build=" + getImageBuild() + " >> /etc/image-version")
+    os.system("echo imageversion=" + getImageVersion() + "-" + getImageBuild() + " >> /etc/image-version")
+    os.system("echo date=`cat /etc/version`" + " >> /etc/image-version")
+    os.system("echo comment=openHDF" " >> /etc/image-version")
+    os.system("echo target=9" " >> /etc/image-version")
+    os.system("echo creator=OpenHDF" " >> /etc/image-version")
+    os.system("echo url=http://www.hdfreaks.cc" " >> /etc/image-version")
+    os.system("echo catalog=http://www.hdfreaks.cc" " >> /etc/image-version")
+    os.system("echo distro=" + getImageDistro() + " >> /etc/image-version")
+    os.system("echo oeversion=" + getOEVersion() + " >> /etc/image-version")
+    os.system("echo date=" + getImageBuild() + " >> /etc/image-version")
 except:
-	pass
+    pass
 
 try:
-	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")
-	os.system("echo getMachineName = " + getMachineName() + " >> /tmp/.ImageVersion")
-	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /tmp/.ImageVersion")
-	os.system("echo getBoxType = " + getBoxType() + " >> /tmp/.ImageVersion")
-	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /tmp/.ImageVersion")
-	os.system("echo getDriverDate = " + getDriverDate() + " >> /tmp/.ImageVersion")
-	os.system("echo getImageVersion = " + getImageVersion() + " >> /tmp/.ImageVersion")
-	os.system("echo getImageBuild = " + getImageBuild() + " >> /tmp/.ImageVersion")
-	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /tmp/.ImageVersion")
-	os.system("cat /proc/cpuinfo >> /tmp/.ImageVersion")
-	os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/autostart.sh")
+    os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /tmp/.ImageVersion")
+    os.system("echo getMachineName = " + getMachineName() + " >> /tmp/.ImageVersion")
+    os.system("echo getMachineBrand = " + getMachineBrand() + " >> /tmp/.ImageVersion")
+    os.system("echo getBoxType = " + getBoxType() + " >> /tmp/.ImageVersion")
+    os.system("echo getBrandOEM = " + getBrandOEM() + " >> /tmp/.ImageVersion")
+    os.system("echo getDriverDate = " + getDriverDate() + " >> /tmp/.ImageVersion")
+    os.system("echo getImageVersion = " + getImageVersion() + " >> /tmp/.ImageVersion")
+    os.system("echo getImageBuild = " + getImageBuild() + " >> /tmp/.ImageVersion")
+    os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /tmp/.ImageVersion")
+    os.system("cat /proc/cpuinfo >> /tmp/.ImageVersion")
+    os.system("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/autostart.sh")
 except:
-	pass
+    pass
 
 class bcolors:
     HEADER = '\033[95m'
@@ -76,27 +76,27 @@ class bcolors:
         self.ENDC = ''
 
 try:
-	boxdesc = getMachineBrand() + " " + getMachineName()
-	box = getBoxType()
+    boxdesc = getMachineBrand() + " " + getMachineName()
+    box = getBoxType()
 except:
     boxdesc = "HDFreaks Toolbox"
 
 try:
     #ET Boxen
     if getBoxType().startswith('et9'):
-		box = "ET9x00"
+        box = "ET9x00"
     elif getBoxType().startswith('et6'):
-		box = "ET6x00"
+        box = "ET6x00"
     elif getBoxType().startswith('et7'):
-		box = "ET7x00"
+        box = "ET7x00"
     elif getBoxType().startswith('et5'):
-		box = "ET5x00"
+        box = "ET5x00"
     elif getBoxType().startswith('et4'):
-		box = "ET4x00"
+        box = "ET4x00"
     if getBoxType().startswith('et1'):
-		box = "ET10000"
+        box = "ET10000"
     if getBoxType().startswith('et8'):
-		box = "ET8000"
+        box = "ET8000"
     #VU Boxen
     elif getBoxType() == "vuduo":
         box = "Vu+Duo"
@@ -155,56 +155,56 @@ except:
 
 ## use another boxname for hdf-toolbox in mainmenu
 try:
-	if getMachineName() == 'STARSAT-LX':
-		if os.path.exists("/etc/enigma2/.opticum") is True: #touch this file to show boxtye in toolbox
-			box = "Opticum AX-Odin"
-		else:
-			box = "Starsat-LX"
-	elif getMachineName().startswith('Golden'):
-		box = "GI Xpeed LX"
-	elif getBoxType() == 'xpeedlxcc':
-		boxdesc = "GI XPEED LX CC"
-	elif getBoxType() == 'xpeedlxcs2':
-		boxdesc = "GI XPEED LX CS2"
-	elif getMachineName() == 'SF8 HD':
-		boxdesc = "SF8 HD"
-	elif getBoxType() == 'twinboxlcd':
-		boxdesc = "RE TWINBOX LCD"
-	elif getBoxType() == 'Ixuss One':
-		boxdesc = "Ixuss One"
-		getMachineName = "Ixuss On"
-	elif getBoxType() == 'Ixuss Zero':
-		boxdesc = "Ixuss Zero"
-		getMachineName = "Ixuss Zero"
-	elif getBoxType().startswith('optimuss'):
-		boxdesc = "Edision Optimuss"
+    if getMachineName() == 'STARSAT-LX':
+        if os.path.exists("/etc/enigma2/.opticum") is True: #touch this file to show boxtye in toolbox
+            box = "Opticum AX-Odin"
+        else:
+            box = "Starsat-LX"
+    elif getMachineName().startswith('Golden'):
+        box = "GI Xpeed LX"
+    elif getBoxType() == 'xpeedlxcc':
+        boxdesc = "GI XPEED LX CC"
+    elif getBoxType() == 'xpeedlxcs2':
+        boxdesc = "GI XPEED LX CS2"
+    elif getMachineName() == 'SF8 HD':
+        boxdesc = "SF8 HD"
+    elif getBoxType() == 'twinboxlcd':
+        boxdesc = "RE TWINBOX LCD"
+    elif getBoxType() == 'Ixuss One':
+        boxdesc = "Ixuss One"
+        getMachineName = "Ixuss On"
+    elif getBoxType() == 'Ixuss Zero':
+        boxdesc = "Ixuss Zero"
+        getMachineName = "Ixuss Zero"
+    elif getBoxType().startswith('optimuss'):
+        boxdesc = "Edision Optimuss"
 except:
     pass
 
 ## read .brand and .machine for other OEMs
 brandfile = "/etc/.brand"
 if os.path.exists(brandfile) is True:
-	brand = open(brandfile,"r")
-	box = brand.readline().lower()
-	brand.close()
+    brand = open(brandfile,"r")
+    box = brand.readline().lower()
+    brand.close()
 
 machinefile = "/etc/.machine"
 if os.path.exists(machinefile) is True:
-	machine = open(machinefile,"r")
-	boxmachine = machine.readline().lower()
-	machine.close()
+    machine = open(machinefile,"r")
+    boxmachine = machine.readline().lower()
+    machine.close()
 
 #change some names that are reading in .brand file
 if box == 'opticum':
-	box = "Opticum AX-Odin"
+    box = "Opticum AX-Odin"
 
 os.system("chmod 755 -R /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox")
 
 # remove some unwanted entries in menu files
 #if not getBoxType().startswith('et'):
-#	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/tools.cfg -type f -exec sed -i '/HbbTV/d' {} \;")
+#    os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/tools.cfg -type f -exec sed -i '/HbbTV/d' {} \;")
 if not getBoxType().startswith('gb'):
-	os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/fixes.cfg -type f -exec sed -i '/fix_gb_display/d' {} \;")
+    os.system("find /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/menu/fixes.cfg -type f -exec sed -i '/fix_gb_display/d' {} \;")
 
 # plugin calling support comes here ...
 pluginpath = "/usr/lib/enigma2/python/Plugins/"
@@ -230,9 +230,6 @@ from Screens.Ci import *
 from Screens.PluginBrowser import *
 from Screens.SkinSelector import SkinSelector
 from Plugins.SystemPlugins.SoftwareManager.plugin import *
-
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py"):
-    os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.py")
 
 # SoftcamManager
 if os.path.exists("%s/Extensions/SoftcamManager" %pluginpath) is True:
@@ -610,22 +607,22 @@ class Fantastic(Screen):
                        self.session.openWithCallback(self.FantasticMenu(""),BackupSetup)
                     except:
                        pass
-		 elif mftextargument == "GboxSuite":
+                 elif mftextargument == "GboxSuite":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),GboxSuite)
                     except:
                        pass
-		 elif mftextargument == "KeyUpdater":
+                 elif mftextargument == "KeyUpdater":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),KeyUpdater)
                     except:
                        pass
-		 elif mftextargument == "CCcamInfo":
+                 elif mftextargument == "CCcamInfo":
                     try:
                        self.session.openWithCallback(self.FantasticMenu(""),CCcamInfo)
                     except:
                        pass
-		 elif mftextargument == "LasMail":
+                 elif mftextargument == "LasMail":
                     self.session.openWithCallback(self.FantasticMenu(""),LasMail)
                  elif mftextargument == "Tuxcom":
                     self.session.openWithCallback(self.FantasticMenu(""),TuxComStarter)
@@ -816,8 +813,8 @@ class Fantastic(Screen):
 
 class FantasticButton(Screen):
     def __init__(self,session,button):
-	Screen.__init__(self,session)
-	self.session = session
+        Screen.__init__(self,session)
+        self.session = session
 
         global mfcommand
         global mfmenu
@@ -838,95 +835,95 @@ class FantasticButton(Screen):
 
 
 class FantasticBoot(Screen):
-        skin = """
-            <screen position="100,100" size="500,400" title="HDFreaks.cc" >
-            </screen>"""
+    skin = """
+        <screen position="100,100" size="500,400" title="HDFreaks.cc" >
+        </screen>"""
 
-	def __init__(self,session):
-                self.skin = FantasticBoot.skin
-		Screen.__init__(self,session)
-		self.session = session
+    def __init__(self,session):
+        self.skin = FantasticBoot.skin
+        Screen.__init__(self,session)
+        self.session = session
 
-                mainmenufile = "%s/%s.cfg" % (fantastic_pluginpath,"main")
-                if os.path.exists(mainmenufile) is True:
-                   mfmain = open(mainmenufile,"r")
-                   line=mfmain.readline()
-                   parts=line.split(splitchar,3)
-                   index=len(parts)
-                   if index > 1:
-                      command=parts[0].upper().rstrip()
-                      # only if menu file contains S in first line startup is executed
-                      if command[0] is "S":
-                         if index > 3:
-                            cmd=parts[3].rstrip()
-                            if os.path.exists("%s/%s" %(fantastic_pluginpath,cmd)) is True:
-                               os.system("%s/%s" % (fantastic_pluginpath,cmd))
-                            else:
-                               os.system("%s" % (cmd))
+        mainmenufile = "%s/%s.cfg" % (fantastic_pluginpath,"main")
+            if os.path.exists(mainmenufile) is True:
+               mfmain = open(mainmenufile,"r")
+               line=mfmain.readline()
+               parts=line.split(splitchar,3)
+               index=len(parts)
+               if index > 1:
+                  command=parts[0].upper().rstrip()
+                  # only if menu file contains S in first line startup is executed
+                  if command[0] is "S":
+                     if index > 3:
+                        cmd=parts[3].rstrip()
+                        if os.path.exists("%s/%s" %(fantastic_pluginpath,cmd)) is True:
+                           os.system("%s/%s" % (fantastic_pluginpath,cmd))
+                        else:
+                           os.system("%s" % (cmd))
 
-                         mfmain.close()
+                     mfmain.close()
 
 
 class FantasticApplication(Screen):
 
-        def __init__(self, session):
-                self.session = session
-        	self.skin = Fantastic.skin
-		Screen.__init__(self, session)
-		self.container=eConsoleAppContainer()
-		self.container.appClosed.get().append(self.finished)
-		self.runapp()
+    def __init__(self, session):
+        self.session = session
+        self.skin = Fantastic.skin
+        Screen.__init__(self, session)
+        self.container=eConsoleAppContainer()
+        self.container.appClosed.get().append(self.finished)
+        self.runapp()
 
-	def runapp(self):
+    def runapp(self):
 
-                global mfcommand
-                global mfmenu
-                global mfmenuold
-                global mfexecute
-                global mfmenudescr
-                global mfintargument
-                global mftextargument
+        global mfcommand
+        global mfmenu
+        global mfmenuold
+        global mfexecute
+        global mfmenudescr
+        global mfintargument
+        global mftextargument
 
-		eDBoxLCD.getInstance().lock()
-		eRCInput.getInstance().lock()
-		fbClass.getInstance().lock()
-                self.session.nav.stopService()
-                if os.path.exists(mfexecute) is True:
- 		   self.container.execute("%s %s" %(mfexecute,mftextargument))
- 		else:
- 		   self.container.execute("%s/%s %s" %(fantastic_pluginpath,mfexecute,mftextargument))
+        eDBoxLCD.getInstance().lock()
+        eRCInput.getInstance().lock()
+        fbClass.getInstance().lock()
+        self.session.nav.stopService()
+        if os.path.exists(mfexecute) is True:
+           self.container.execute("%s %s" %(mfexecute,mftextargument))
+        else:
+           self.container.execute("%s/%s %s" %(fantastic_pluginpath,mfexecute,mftextargument))
 
-	def finished(self,retval):
-		fbClass.getInstance().unlock()
-		eRCInput.getInstance().unlock()
-		eDBoxLCD.getInstance().unlock()
-		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+    def finished(self,retval):
+        fbClass.getInstance().unlock()
+        eRCInput.getInstance().unlock()
+        eDBoxLCD.getInstance().unlock()
+        self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
 
 class FantasticLCD(Screen):
-        # use size 0,0 to show text on LCD only
-	skin = """
-		<screen position="0,0" size="0,0" title="LCD Text" >
-			<widget name="text" position="0,0" size="0,0" font="Regular;14" halign="center"/>
-		</screen>"""
+    # use size 0,0 to show text on LCD only
+    skin = """
+        <screen position="0,0" size="0,0" title="LCD Text" >
+            <widget name="text" position="0,0" size="0,0" font="Regular;14" halign="center"/>
+        </screen>"""
 
-	def __init__(self, session, title = "LCD Text"):
-		self.skin = FantasticLCD.skin
-		Screen.__init__(self, session)
+    def __init__(self, session, title = "LCD Text"):
+        self.skin = FantasticLCD.skin
+        Screen.__init__(self, session)
 
-		self["text"] = Label("")
+        self["text"] = Label("")
 
-                # minimal actions to be able to exit after showing LCD Label
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
-		{
-			"ok": self.cancel,
-			"back": self.cancel,
-		}, -1)
-                # now set passed Text Label for LCD output
-		self.newtitle = title
-		self.onShown.append(self.updateTitle)
+        # minimal actions to be able to exit after showing LCD Label
+        self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
+        {
+                "ok": self.cancel,
+                "back": self.cancel,
+        }, -1)
+        # now set passed Text Label for LCD output
+        self.newtitle = title
+        self.onShown.append(self.updateTitle)
 
-	def updateTitle(self):
-		self.setTitle(self.newtitle)
+    def updateTitle(self):
+        self.setTitle(self.newtitle)
 
-	def cancel(self):
-		self.close()
+    def cancel(self):
+        self.close()

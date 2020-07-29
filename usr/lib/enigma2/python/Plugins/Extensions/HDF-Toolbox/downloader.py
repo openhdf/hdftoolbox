@@ -68,17 +68,13 @@ try:
     elif getBoxType() == "vusolo2":
         box = "vusolo"
         boxname = "VU+Solo2"
-    #GigaBlues
-#    elif getBoxType().startswith('gb'):
-#        box = "gigablue"
-#        boxname = "GigaBlue"
     elif getBoxType() == "gbquad":
         box = "gbquad"
         boxname = "GigaBlue"
     elif getBoxType() == "gbquad4k":
         box = "gbquad4k"
         boxname = "GB UHD QUAD 4K"
-	#Technomates
+    #Technomates
     elif getBoxType() == "tmtwin":
         box = "tmtwin"
         boxname = "TM-Twin"
@@ -124,7 +120,7 @@ try:
     elif getBoxType() == "e3hd":
         box = "e3hd"
         boxname = "E3HD"
-	#Xpeed LX-x
+    #Xpeed LX-x
     elif getMachineBrand().startswith('GI'):
         box = "inihde"
         boxname = "GI Xpeed LX"
@@ -155,20 +151,15 @@ except:
 ##read brand and machine for other OEMs
 brandfile = "/etc/.brand"
 if os.path.exists(brandfile) is True:
-	brand = open(brandfile,"r")
-	box = brand.readline().lower()
-	brand.close()
+    brand = open(brandfile,"r")
+    box = brand.readline().lower()
+    brand.close()
 
 machinefile = "/etc/.machine"
 if os.path.exists(machinefile) is True:
-	machine = open(machinefile,"r")
-	boxmachine = machine.readline().lower()
-	machine.close()
-
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py"):
-    os.remove("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.py")
-else:
-    pass
+    machine = open(machinefile,"r")
+    boxmachine = machine.readline().lower()
+    machine.close()
 
 if os.path.exists("/usr/bin/ipkg"):
     pass
@@ -181,37 +172,37 @@ if os.path.exists("/usr/uninstall") == False:
 
 class Hdf_Downloader(Screen):
     skin = """
-          <screen name="DownloadMenu" position="center,center" size="800,400" title="Select your Download">
-                <widget name="downloadmenu" position="10,10" size="400,300" scrollbarMode="showOnDemand" />
-                <ePixmap name="white" position="420,15" zPosition="10" size="2,300" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/whiter.png" transparent="0" alphatest="on" />
-                <ePixmap name="1" position="760,225" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_1.png" transparent="1" alphatest="on" />
-                <widget name="key_1" position="550,227" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="2" position="760,250" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_2.png" transparent="1" alphatest="on" />
-                <widget name="key_2" position="550,252" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="3" position="760,275" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_3.png" transparent="1" alphatest="on" />
-                <widget name="key_3" position="550,277" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="4" position="760,300" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_4.png" transparent="1" alphatest="on" />
-                <widget name="key_4" position="550,302" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="5" position="760,325" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_5.png" transparent="1" alphatest="on" />
-                <widget name="key_5" position="550,327" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="6" position="760,350" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_6.png" transparent="1" alphatest="on" />
-                <widget name="key_6" position="550,352" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="7" position="760,375" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_7.png" transparent="1" alphatest="on" />
-                <widget name="key_7" position="550,377" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="0" position="760,400" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_0.png" transparent="1" alphatest="on" />
-                <widget name="key_0" position="550,402" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <ePixmap name="red" position="30,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-                <ePixmap name="green" position="200,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-                <widget name="blue" position="370,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-                <widget name="key_red" position="30,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <widget name="key_green" position="200,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <widget name="key_blue" position="370,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-                <widget source="size" render="Label" position="500,15" size="100,30" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
-                <widget source="size2" render="Label" position="430,10" size="100,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
-                <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
-                <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
-          </screen>"""
+        <screen name="DownloadMenu" position="center,center" size="800,400" title="Select your Download">
+            <widget name="downloadmenu" position="10,10" size="400,300" scrollbarMode="showOnDemand" />
+            <ePixmap name="white" position="420,15" zPosition="10" size="2,300" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/whiter.png" transparent="0" alphatest="on" />
+            <ePixmap name="1" position="760,225" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_1.png" transparent="1" alphatest="on" />
+            <widget name="key_1" position="550,227" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="2" position="760,250" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_2.png" transparent="1" alphatest="on" />
+            <widget name="key_2" position="550,252" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="3" position="760,275" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_3.png" transparent="1" alphatest="on" />
+            <widget name="key_3" position="550,277" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="4" position="760,300" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_4.png" transparent="1" alphatest="on" />
+            <widget name="key_4" position="550,302" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="5" position="760,325" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_5.png" transparent="1" alphatest="on" />
+            <widget name="key_5" position="550,327" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="6" position="760,350" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_6.png" transparent="1" alphatest="on" />
+            <widget name="key_6" position="550,352" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="7" position="760,375" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_7.png" transparent="1" alphatest="on" />
+            <widget name="key_7" position="550,377" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="0" position="760,400" zPosition="1" size="40,40" pixmap="skin_default/buttons/key_0.png" transparent="1" alphatest="on" />
+            <widget name="key_0" position="550,402" zPosition="2" size="200,30" valign="right" halign="right" font="Regular;15" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <ePixmap name="red" position="30,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+            <ePixmap name="green" position="200,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+            <widget name="blue" position="370,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+            <widget name="key_red" position="30,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget name="key_green" position="200,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget name="key_blue" position="370,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+            <widget source="size" render="Label" position="500,15" size="100,30" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
+            <widget source="size2" render="Label" position="430,10" size="100,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
+            <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
+            <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
+        </screen>"""
     def __init__(self, session , **kwargs):
         self.session = session
         self.skinAttributes = (())
@@ -381,8 +372,8 @@ class Hdf_Downloader(Screen):
         self["key_blue"].setText(" ")
         if "download" in self["downloadmenu"].l.getCurrentSelection():
             if self.switch == "skin" or self.switch == "picon":
-                        self["blue"].show()
-                        self["key_blue"].setText("Preview")
+                self["blue"].show()
+                self["key_blue"].setText("Preview")
             self["key_green"].setText("Download")
             self["introduction"].setText("Press OK to install the file.")
             self["description"].setText(self["downloadmenu"].l.getCurrentSelection()[3])
@@ -543,7 +534,7 @@ class Hdf_Downloader(Screen):
         self.mkNewMenu()
 
     def menu(self):
-		self.session.open(ConfigMenu)
+        self.session.open(ConfigMenu)
 
 ##### Basic Controls
 
@@ -609,13 +600,13 @@ bufferThread = BufferThread()
 class downloadfile(Screen):
     skin = """
         <screen name="downloadfile" position="center,center" size="300,300" title="Download File" >
-                <widget name="info" position="0,5" size="290,200" font="Regular;18" transparent="1" backgroundColor="#415a80" halign="center" valign="center" />
-                <widget name="progress" position="10,200" size="280,14" backgroundColor="#415a80" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
-                <widget name="precent" position="125,225" size="50,20" font="Regular;19" halign="center" valign="center" backgroundColor="#415a80" zPosition="6" />
-                <ePixmap name="red" position="10,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-                <ePixmap name="green" position="150,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-                <widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-                <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget name="info" position="0,5" size="290,200" font="Regular;18" transparent="1" backgroundColor="#415a80" halign="center" valign="center" />
+            <widget name="progress" position="10,200" size="280,14" backgroundColor="#415a80" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
+            <widget name="precent" position="125,225" size="50,20" font="Regular;19" halign="center" valign="center" backgroundColor="#415a80" zPosition="6" />
+            <ePixmap name="red" position="10,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+            <ePixmap name="green" position="150,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+            <widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
         </screen>"""
 
     def __init__(self, session, filename, url):
@@ -631,12 +622,12 @@ class downloadfile(Screen):
         self["progress"] = ProgressBar()
         self["precent"] = Label()
         self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-                                    {
-                                     "ok": self.okClicked,
-                                     "cancel": self.exit,
-                                     "green": self.okClicked,
-                                     "red": self.exit
-                                     }, -1)
+            {
+                 "ok": self.okClicked,
+                 "cancel": self.exit,
+                 "green": self.okClicked,
+                 "red": self.exit
+             }, -1)
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Show/Hide"))
         self.onLayoutFinish.append(self.downloadPlugin)
@@ -745,13 +736,13 @@ class PictureScreen(Screen):
     def ShowPicture(self):
         if self.picPath is not None:
             self.PicLoad.setPara([
-                        self["picture"].instance.size().width(),
-                        self["picture"].instance.size().height(),
-                        self.Scale[0],
-                        self.Scale[1],
-                        0,
-                        1,
-                        "#002C2C39"])
+                self["picture"].instance.size().width(),
+                self["picture"].instance.size().height(),
+                self.Scale[0],
+                self.Scale[1],
+                0,
+                1,
+                "#002C2C39"])
 
             self.PicLoad.startDecode(self.picPath)
 
@@ -765,205 +756,205 @@ class PictureScreen(Screen):
         self.close(None)
 
 class ConfigMenu(ConfigListScreen, Screen):
-	skin = """
-		<screen name="config" position="center,center" size="300,300" title="Download File" >
-				<widget name="config" position="10,10" size="290,210" scrollbarMode="showOnDemand" />
-				<ePixmap name="red" position="10,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<ePixmap name="green" position="150,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-				<widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-				<widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="help" render="Label" position="5,345" size="690,105" font="Regular;21" />
-		</screen>"""
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skinAttributes = (())
-		Screen.setTitle(self, _("Config Menu..."))
-		self["status"] = StaticText()
-		self["help"] = StaticText()
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("Save"))
+    skin = """
+        <screen name="config" position="center,center" size="300,300" title="Download File" >
+            <widget name="config" position="10,10" size="290,210" scrollbarMode="showOnDemand" />
+            <ePixmap name="red" position="10,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+            <ePixmap name="green" position="150,260" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+            <widget name="key_red" position="10,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+            <widget source="help" render="Label" position="5,345" size="690,105" font="Regular;21" />
+        </screen>"""
+    def __init__(self, session):
+        Screen.__init__(self, session)
+        self.session = session
+        self.skinAttributes = (())
+        Screen.setTitle(self, _("Config Menu..."))
+        self["status"] = StaticText()
+        self["help"] = StaticText()
+        self["key_red"] = Label(_("Cancel"))
+        self["key_green"] = Label(_("Save"))
 
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
+        self.onChangedEntry = [ ]
+        self.list = []
+        ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+        self.createSetup()
 
-		self["config"].onSelectionChanged.append(self.updateHelp)
+        self["config"].onSelectionChanged.append(self.updateHelp)
 
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keySave,
-			"info": self.info
-		}, -2)
+        self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+        {
+            "ok": self.keySave,
+            "cancel": self.keyCancel,
+            "red": self.keyCancel,
+            "green": self.keySave,
+            "info": self.info
+        }, -2)
 
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-		self.changedEntry()
+        if not self.selectionChanged in self["config"].onSelectionChanged:
+            self["config"].onSelectionChanged.append(self.selectionChanged)
+        self.selectionChanged()
+        self.changedEntry()
 
-	def info(self):
-		lastscan = config.downloader.autoupdate_last.value
-		if lastscan:
-			from Tools.FuzzyDate import FuzzyTime
-			scanDate = ', '.join(FuzzyTime(lastscan))
-		else:
-			scanDate = _("never")
+    def info(self):
+        lastscan = config.downloader.autoupdate_last.value
+        if lastscan:
+            from Tools.FuzzyDate import FuzzyTime
+            scanDate = ', '.join(FuzzyTime(lastscan))
+        else:
+            scanDate = _("never")
 
-		try:
-			nextTimer = str(iptvtimer.getNextTimerEntry()).split(",")[0].split("(")[1]
-		except:
-			nextTimer = "No Timer Configured"
+        try:
+            nextTimer = str(iptvtimer.getNextTimerEntry()).split(",")[0].split("(")[1]
+        except:
+            nextTimer = "No Timer Configured"
 
-		self.session.open(
-			MessageBox,
-			_("Last refresh was %s\nNext timer: %s") % (scanDate,nextTimer),
-			type=MessageBox.TYPE_INFO
-			)
-		# just for debugging
-		#iptvtimer.show()
+        self.session.open(
+            MessageBox,
+            _("Last refresh was %s\nNext timer: %s") % (scanDate,nextTimer),
+            type=MessageBox.TYPE_INFO
+            )
+        # just for debugging
+        #iptvtimer.show()
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createSetup()
+    def keyLeft(self):
+        ConfigListScreen.keyLeft(self)
+        self.createSetup()
 
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createSetup()
+    def keyRight(self):
+        ConfigListScreen.keyRight(self)
+        self.createSetup()
 
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("IPTV AutoUpdate"), config.downloader.autoupdate, _("Start Update on enigma2 start?")))
-		if config.downloader.autoupdate.getValue():
-			self.list.append(getConfigListEntry(_("IPTV AutoUpdate Type"), config.downloader.autoupdate_type, _("Choose the type of AutoUpdate."), False))
-			if config.downloader.autoupdate_type.value == "auto":
-				self.list.append(getConfigListEntry(_("Start Update every Day at (hh:mm)"), config.downloader.autoupdate_time, _("An automated refresh will start at this time."), False))
-			elif config.downloader.autoupdate_type.value == "periodic":
-				self.list.append(getConfigListEntry(_("Start Update every "), config.downloader.autoupdate_timer, _("An automated refresh will start after this duration."), False))
-			if config.downloader.autoupdate_type.value != "startup":
-				self.list.append(getConfigListEntry(_("Run in Standby?"), config.downloader.autoupdate_runinstandby, _("Start Update when in Standby?")))
+    def createSetup(self):
+        self.editListEntry = None
+        self.list = []
+        self.list.append(getConfigListEntry(_("IPTV AutoUpdate"), config.downloader.autoupdate, _("Start Update on enigma2 start?")))
+        if config.downloader.autoupdate.getValue():
+            self.list.append(getConfigListEntry(_("IPTV AutoUpdate Type"), config.downloader.autoupdate_type, _("Choose the type of AutoUpdate."), False))
+            if config.downloader.autoupdate_type.value == "auto":
+                self.list.append(getConfigListEntry(_("Start Update every Day at (hh:mm)"), config.downloader.autoupdate_time, _("An automated refresh will start at this time."), False))
+            elif config.downloader.autoupdate_type.value == "periodic":
+                self.list.append(getConfigListEntry(_("Start Update every "), config.downloader.autoupdate_timer, _("An automated refresh will start after this duration."), False))
+            if config.downloader.autoupdate_type.value != "startup":
+                self.list.append(getConfigListEntry(_("Run in Standby?"), config.downloader.autoupdate_runinstandby, _("Start Update when in Standby?")))
 
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
+        self["config"].list = self.list
+        self["config"].setList(self.list)
+        if config.usage.sort_settings.value:
+            self["config"].list.sort()
 
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[2])
+    def selectionChanged(self):
+        self["status"].setText(self["config"].getCurrent()[2])
 
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
+    def changedEntry(self):
+        for x in self.onChangedEntry:
+            x()
+        self.selectionChanged()
 
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
+    def getCurrentEntry(self):
+        return self["config"].getCurrent()[0]
 
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
+    def getCurrentValue(self):
+        return str(self["config"].getCurrent()[1].getText())
 
-	def updateHelp(self):
-		cur = self["config"].getCurrent()
-		if cur:
-			self["help"].text = cur[2]
+    def updateHelp(self):
+        cur = self["config"].getCurrent()
+        if cur:
+            self["help"].text = cur[2]
 
-	def saveAll(self):
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
+    def saveAll(self):
+        for x in self["config"].list:
+            x[1].save()
+        configfile.save()
 
-	def keySave(self):
-		iptvtimer.clear()
-		if config.downloader.autoupdate.getValue():
-			iptvtimer.setRefreshTimer(self.createWaitTimer)
-		else:
-			self.stop()
-		self.saveAll()
-		self.close()
+    def keySave(self):
+        iptvtimer.clear()
+        if config.downloader.autoupdate.getValue():
+            iptvtimer.setRefreshTimer(self.createWaitTimer)
+        else:
+            self.stop()
+        self.saveAll()
+        self.close()
 
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
+    def cancelConfirm(self, result):
+        if not result:
+            return
+        for x in self["config"].list:
+            x[1].cancel()
+        self.close()
 
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
+    def keyCancel(self):
+        if self["config"].isChanged():
+            self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+        else:
+            self.close()
 
-	def createWaitTimer(self):
-		# Add wait timer to iptvtimer
-		iptvtimer.add(IPTVTimerEntry(time() + 30, self.prepareRefresh))
+    def createWaitTimer(self):
+        # Add wait timer to iptvtimer
+        iptvtimer.add(IPTVTimerEntry(time() + 30, self.prepareRefresh))
 
-	def prepareRefresh(self):
-		self.isrunning = True
-		return
+    def prepareRefresh(self):
+        self.isrunning = True
+        return
 
-	def stop(self):
-		print "[IPTVTimer] Stopping Timer"
-		iptvtimer.clear()
+    def stop(self):
+        print "[IPTVTimer] Stopping Timer"
+        iptvtimer.clear()
 
 #### IPTV Updater Calls
 
 try:
-	import httplib
+    import httplib
 except:
-	import http.client as httplib
+    import http.client as httplib
 
 def connected():
-	c = httplib.HTTPConnection('hdfreaks.cc', 80)
-	try:
-		socket.setdefaulttimeout(3)
-		c.connect()
-		c.request("HEAD", "/")
-		c.close()
-		return True
-	except:
-		print "[HDF-Toolbox]: Server offline"
-		c.close()
-		return False
+    c = httplib.HTTPConnection('hdfreaks.cc', 80)
+    try:
+        socket.setdefaulttimeout(3)
+        c.connect()
+        c.request("HEAD", "/")
+        c.close()
+        return True
+    except:
+        print "[HDF-Toolbox]: Server offline"
+        c.close()
+        return False
 
 
 def doIptvUpdate(**kwargs):
-	import urllib2
-	if connected():
-		print "[HDF-Toolbox]: IPTV list update"
-		os.chdir("/etc/enigma2")
-		for filename in glob.glob("*iptv*.tv"):
-			url = "http://iptv.hdfreaks.cc/" + filename
-			iptvfile = "/etc/enigma2/" + str(filename)
-			try:
-				i = urllib2.urlopen(url)
-				html = i.read()
-				f = open(iptvfile, 'w')
-				f.write(html)
-				f.close()
-				changed = True
-                        except urllib2.HTTPError as e:
-                                print type(e)    #catched
-                                print "[HDF-Toolbox]: IPTV list update ... download error"
-                        except socket.timeout as e:
-                                print type(e)    #catched
-                                print "[HDF-Toolbox]: IPTV list update ... download error"
-                        except urllib2.URLError as e:
-                                print type(e)    #catched
-                                print "[HDF-Toolbox]: IPTV list update ... download error"
-		return True
-	else:
-		return False
+    import urllib2
+    if connected():
+        print "[HDF-Toolbox]: IPTV list update"
+        os.chdir("/etc/enigma2")
+        for filename in glob.glob("*iptv*.tv"):
+            url = "http://iptv.hdfreaks.cc/" + filename
+            iptvfile = "/etc/enigma2/" + str(filename)
+            try:
+                i = urllib2.urlopen(url)
+                html = i.read()
+                f = open(iptvfile, 'w')
+                f.write(html)
+                f.close()
+                changed = True
+            except urllib2.HTTPError as e:
+                print type(e)    #catched
+                print "[HDF-Toolbox]: IPTV list update ... download error"
+            except socket.timeout as e:
+                print type(e)    #catched
+                print "[HDF-Toolbox]: IPTV list update ... download error"
+            except urllib2.URLError as e:
+                print type(e)    #catched
+                print "[HDF-Toolbox]: IPTV list update ... download error"
+        return True
+    else:
+        return False
 
 
 ###### Standard Stuff
 
 def main(session, **kwargs):
-	try:
-		session.open(Hdf_Downloader)
-	except:
-		self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
+    try:
+        session.open(Hdf_Downloader)
+    except:
+        self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
