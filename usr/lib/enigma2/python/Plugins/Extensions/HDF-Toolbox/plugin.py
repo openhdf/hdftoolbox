@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 from enigma import *
 from Screens.Screen import Screen
@@ -19,7 +21,7 @@ from RecordTimer import *
 from time import *
 from Tools import Directories, Notifications
 import NavigationInstance
-from downloader import Hdf_Downloader
+from .downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType, getImageDistro, getOEVersion
 
 toolboxversion = "Toolbox Version - 12.06.2019"
@@ -254,17 +256,17 @@ session = None
 
 def autostart(reason, **kwargs):
     global session
-    if reason == 0 and kwargs.has_key("session"):
+    if reason == 0 and "session" in kwargs:
        session = kwargs["session"]
        session.open(FantasticBoot)
 
 def iptvUpdate(reason, **kwargs):
     if config.downloader.autoupdate.value:
-        print "[HDF-Toolbox]: IPTV autoupdate"
+        print("[HDF-Toolbox]: IPTV autoupdate")
         global session
         if reason == 0:
-             import downloader
-             from downloader import iptvtimer, ConfigMenu
+             from . import downloader
+             from .downloader import iptvtimer, ConfigMenu
              downloader.doIptvUpdate()
              iptvtimer.setRefreshTimer(ConfigMenu.createWaitTimer)
 
@@ -287,7 +289,7 @@ def main(session,**kwargs):
     try:
         session.open(Fantastic)
     except:
-        print "[FANTASTIC] Pluginexecution failed"
+        print("[FANTASTIC] Pluginexecution failed")
 
 class Fantastic(Screen):
     skin = """
@@ -732,7 +734,7 @@ class Fantastic(Screen):
               elif mftextargument == "wall":
                  os.system("wall %s" %mfexecute)
               else:
-                 print "[FANTASTIC] Logging: %s" %mfexecute
+                 print("[FANTASTIC] Logging: %s" %mfexecute)
               self.FantasticMenu("")
            elif mfcommand is "M":
               self.FantasticMenu("")

@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
@@ -24,7 +26,7 @@ import sys
 import glob
 import socket
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM
-from IPTVTimer import iptvtimer, IPTVTimerEntry
+from .IPTVTimer import iptvtimer, IPTVTimerEntry
 
 box = getBoxType()
 boxname = getBoxType()
@@ -217,9 +219,9 @@ class Hdf_Downloader(Screen):
         self.list = []
 ##### Download Source File
         try:
-            import urllib2
+            import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
             url = "http://addons.hdfreaks.cc/feeds/down.hdf"
-            i = urllib2.urlopen(url)
+            i = six.moves.urllib.request.urlopen(url)
             downfile = i.read()
             f = open("/tmp/.down.hdf", 'w')
             f.write(downfile)
@@ -437,7 +439,7 @@ class Hdf_Downloader(Screen):
             file = self["downloadmenu"].l.getCurrentSelection()[1].split(".")[0] + ".jpg"
             url = "http://addons.hdfreaks.cc/feeds/" + file
             path = "/tmp/" + file
-            import urllib
+            import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
             if "<title>404 Not Found</title>" in open(path, "r").read():
                 self.session.open(MessageBox, ("Sorry, no Preview available."), MessageBox.TYPE_ERROR).setTitle(_("No Preview"))
             else:
@@ -447,7 +449,7 @@ class Hdf_Downloader(Screen):
 
     def recompile(self):
         if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.devdown"):
-            print "Starting Recompile"
+            print("Starting Recompile")
             self.restartGUI(True)
         else:
             pass
@@ -688,7 +690,7 @@ class downloadfile(Screen):
             # Jetzt wird noch am "_" gesplittet und der erste Teil ausgewaehlt -> cccaminfo
             if pluginname.split('-')[0] == "enigma2":
                 f = open("/usr/uninstall/hdf_" + self.filename.split("-")[3].split('_')[0] + "_delfile_ipk.sh", 'w')
-                print >> f, '#!/bin/sh \n\n', 'ipkg remove ' + pluginname, '\nrm -rf /usr/uninstall/hdf_' + self.filename.split("-")[3].split("_")[0] + '_delfile_ipk.sh'
+                print('#!/bin/sh \n\n', 'ipkg remove ' + pluginname, '\nrm -rf /usr/uninstall/hdf_' + self.filename.split("-")[3].split("_")[0] + '_delfile_ipk.sh', file=f)
                 f.close()
                 os.chmod("/usr/uninstall/hdf_" + self.filename.split("-")[3].split('_')[0] + "_delfile_ipk.sh", 755)
             else:
@@ -898,18 +900,18 @@ class ConfigMenu(ConfigListScreen, Screen):
         return
 
     def stop(self):
-        print "[IPTVTimer] Stopping Timer"
+        print("[IPTVTimer] Stopping Timer")
         iptvtimer.clear()
 
 #### IPTV Updater Calls
 
 try:
-    import httplib
+    import six.moves.http_client
 except:
     import http.client as httplib
 
 def connected():
-    c = httplib.HTTPConnection('hdfreaks.cc', 80)
+    c = six.moves.http_client.HTTPConnection('hdfreaks.cc', 80)
     try:
         socket.setdefaulttimeout(3)
         c.connect()
@@ -917,35 +919,35 @@ def connected():
         c.close()
         return True
     except:
-        print "[HDF-Toolbox]: Server offline"
+        print("[HDF-Toolbox]: Server offline")
         c.close()
         return False
 
 
 def doIptvUpdate(**kwargs):
-    import urllib2
+    import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
     if connected():
-        print "[HDF-Toolbox]: IPTV list update"
+        print("[HDF-Toolbox]: IPTV list update")
         os.chdir("/etc/enigma2")
         for filename in glob.glob("*iptv*.tv"):
             url = "http://iptv.hdfreaks.cc/" + filename
             iptvfile = "/etc/enigma2/" + str(filename)
             try:
-                i = urllib2.urlopen(url)
+                i = six.moves.urllib.request.urlopen(url)
                 html = i.read()
                 f = open(iptvfile, 'w')
                 f.write(html)
                 f.close()
                 changed = True
-            except urllib2.HTTPError as e:
-                print type(e)    #catched
-                print "[HDF-Toolbox]: IPTV list update ... download error"
+            except six.moves.urllib.error.HTTPError as e:
+                print(type(e))    #catched
+                print("[HDF-Toolbox]: IPTV list update ... download error")
             except socket.timeout as e:
-                print type(e)    #catched
-                print "[HDF-Toolbox]: IPTV list update ... download error"
-            except urllib2.URLError as e:
-                print type(e)    #catched
-                print "[HDF-Toolbox]: IPTV list update ... download error"
+                print(type(e))    #catched
+                print("[HDF-Toolbox]: IPTV list update ... download error")
+            except six.moves.urllib.error.URLError as e:
+                print(type(e))    #catched
+                print("[HDF-Toolbox]: IPTV list update ... download error")
         return True
     else:
         return False

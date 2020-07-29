@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import Screens.Standby
 import timer
 from time import localtime, mktime, time, strftime
@@ -17,7 +19,7 @@ class IPTVTimer(timer.Timer):
     def setRefreshTimer(self, tocall):
         # Add refresh Timer
         now = localtime()
-        from downloader import ConfigMenu
+        from .downloader import ConfigMenu
         from Tools.FuzzyDate import FuzzyTime
         if config.downloader.autoupdate_type.value == "auto":
             begin = mktime(
@@ -28,7 +30,7 @@ class IPTVTimer(timer.Timer):
             )
 
             if config.downloader.autoupdate_last.value < begin and begin < time():
-                from downloader import ConfigMenu
+                from .downloader import ConfigMenu
                 ConfigMenu.createWaitTimer
 
             refreshTimer = IPTVTimerEntry(begin, tocall, nocheck = True)
@@ -39,7 +41,7 @@ class IPTVTimer(timer.Timer):
                 i += 1
 
             self.addTimerEntry(refreshTimer)
-            print "[IPTVTimer] Added Entry  ", self.timer_list[-1]
+            print("[IPTVTimer] Added Entry  ", self.timer_list[-1])
 
 
 
@@ -67,11 +69,11 @@ class IPTVTimer(timer.Timer):
                     g += 1
 
                 self.addTimerEntry(refreshTimer)
-                print "[IPTVTimer] Added Entry ", self.timer_list[-1]
+                print("[IPTVTimer] Added Entry ", self.timer_list[-1])
 
     # just for debugging
     def show(self):
-        for line in self.timer_list: print line
+        for line in self.timer_list: print(line)
 
     def clear(self):
         self.timer_list = []
@@ -104,7 +106,7 @@ class IPTVTimerEntry(timer.TimerEntry):
             # check if we are in standby
             from Screens.Standby import inStandby
             if (not inStandby or config.downloader.autoupdate_runinstandby.getValue()):
-                import downloader
+                from . import downloader
                 if downloader.doIptvUpdate():
                     config.downloader.autoupdate_last.value = int(time())
                     config.downloader.autoupdate_last.save()
