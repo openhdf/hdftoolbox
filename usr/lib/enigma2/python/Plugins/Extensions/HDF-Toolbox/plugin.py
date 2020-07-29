@@ -845,23 +845,23 @@ class FantasticBoot(Screen):
         self.session = session
 
         mainmenufile = "%s/%s.cfg" % (fantastic_pluginpath,"main")
-            if os.path.exists(mainmenufile) is True:
-               mfmain = open(mainmenufile,"r")
-               line=mfmain.readline()
-               parts=line.split(splitchar,3)
-               index=len(parts)
-               if index > 1:
-                  command=parts[0].upper().rstrip()
-                  # only if menu file contains S in first line startup is executed
-                  if command[0] is "S":
-                     if index > 3:
-                        cmd=parts[3].rstrip()
-                        if os.path.exists("%s/%s" %(fantastic_pluginpath,cmd)) is True:
-                           os.system("%s/%s" % (fantastic_pluginpath,cmd))
-                        else:
-                           os.system("%s" % (cmd))
+        if os.path.exists(mainmenufile) is True:
+           mfmain = open(mainmenufile,"r")
+           line=mfmain.readline()
+           parts=line.split(splitchar,3)
+           index=len(parts)
+           if index > 1:
+              command=parts[0].upper().rstrip()
+              # only if menu file contains S in first line startup is executed
+              if command[0] is "S":
+                 if index > 3:
+                    cmd=parts[3].rstrip()
+                    if os.path.exists("%s/%s" %(fantastic_pluginpath,cmd)) is True:
+                       os.system("%s/%s" % (fantastic_pluginpath,cmd))
+                    else:
+                       os.system("%s" % (cmd))
 
-                     mfmain.close()
+                 mfmain.close()
 
 
 class FantasticApplication(Screen):
