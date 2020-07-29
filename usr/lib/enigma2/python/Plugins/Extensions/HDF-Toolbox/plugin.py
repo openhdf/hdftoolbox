@@ -324,13 +324,13 @@ class Fantastic(Screen):
            mfmenuold="main"
            mfmenudescr="Menu Fantastic Main Menu"
 
-        if mfmenu is "red":
+        if mfmenu == "red":
            pass
-        elif mfmenu is "green":
+        elif mfmenu == "green":
            pass
-        elif mfmenu is "yellow":
+        elif mfmenu == "yellow":
            pass
-        elif mfmenu is "blue":
+        elif mfmenu == "blue":
            pass
         else:
            mfmenu="main"
@@ -353,7 +353,7 @@ class Fantastic(Screen):
               if index > 1:
                  command=parts[0].upper().rstrip()
                  mfcommand=command[0]
-                 if mfcommand is not "S":
+                 if mfcommand != "S":
                     if index >2:
                        mainmenu.append(( str(parts[2]), line ))
                     else:
@@ -407,31 +407,31 @@ class Fantastic(Screen):
         mfselected = self["menu"].l.getCurrentSelection()[1]
 
         if mfselected is not None:
-           if mfselected is "mfreadme":
+           if mfselected == "mfreadme":
                 self.session.open(Console,_("Showing Fantastic readme.txt"),["cat %s" % fantastic_readme])
-           elif mfselected is "mfnomenu":
+           elif mfselected == "mfnomenu":
                title1=_("HDF-Toolbox")
                title2=_("needs a %s.cfg file at" % mfmenu)
                title3=_("%s" %fantastic_pluginpath)
                title="%s\n%s\n%s" % (title1, title2,title3)
                self.session.open(MessageBox,("%s") % (title),  MessageBox.TYPE_INFO)
-           elif mfselected is "mfabout":
+           elif mfselected == "mfabout":
                title1=_("Menu Fantastic Plugin %s") % fantastic_pluginversion
                title2=_("by gutemine is Freeware - use at your own risk !")
                title3=_("~~~~~~~~~~~~~~~~~~~~~~~~~")
                title4=_("adapted by www.hdfreaks.cc")
                title="%s\n%s\n%s\n%s" % (title1, title2, title3, title4)
                self.session.open(MessageBox,("%s") % (title),  MessageBox.TYPE_INFO)
-           elif mfselected is "mfschdf":
+           elif mfselected == "mfschdf":
                try:
                    self.session.open(Hdf_Downloader)
                except:
                     self.session.open(MessageBox, ("There seems to be an Error!\nPlease check if your internet connection is established correctly."), MessageBox.TYPE_INFO, timeout=10).setTitle(_("HDFreaks.cc Downloader Error"))
-           elif mfselected is "mfsc":
+           elif mfselected == "mfsc":
                self.session.openWithCallback(self.FantasticMenu(""),ScSelection)
-           elif mfselected is "mfsc2":
+           elif mfselected == "mfsc2":
                self.session.openWithCallback(self.FantasticMenu(""),ScSelection2)
-           elif mfselected is "mfxyz":
+           elif mfselected == "mfxyz":
                title1=_("HDF Toolbox")
                title2=_("~~~~~~~~~~~~~~~~")
                title3=_("visit www.HDFreaks.cc for updates and support")
@@ -463,7 +463,7 @@ class Fantastic(Screen):
               if index > 1:
                  command=parts[0].upper().rstrip()
                  # only if menu file contains S in first line startup is executed
-                 if command[0] is "S":
+                 if command[0] == "S":
                     if index > 3:
                        cmd=parts[3].rstrip()
                        if mfmenu == mfmenuold:
@@ -478,7 +478,7 @@ class Fantastic(Screen):
 
                        mfmenudescr=parts[2].rstrip()
                     else:
-                       if index is 3:
+                       if index == 3:
                           mfmenudescr=parts[2].rstrip()
                        else:
                           mfmenudescr=parts[1].rstrip()
@@ -552,27 +552,27 @@ class Fantastic(Screen):
            else:
               pass
 
-           if mfcommand is "E":
+           if mfcommand == "E":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
                  os.system("%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument))
               else:
                  os.system("%s %s"  % (mfexecute,mftextargument))
               self.session.openWithCallback(self.FantasticMenu,MessageBox,"%s %s was executed !" %(mfexecute,mftextargument), MessageBox.TYPE_INFO, timeout=mfintargument)
-           elif mfcommand is "U":
+           elif mfcommand == "U":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
                  os.system("%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument))
               else:
                  os.system("%s %s"  % (mfexecute,mftextargument))
               self.FantasticMenu("")
-           elif mfcommand is "C":
+           elif mfcommand == "C":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
                  self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument) ])
               else:
                  self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s %s" % (mfexecute, mftextargument) ])
-           elif mfcommand is "A":
+           elif mfcommand == "A":
               FantasticApplication(self.session)
               self.FantasticMenu("")
-           elif mfcommand is "P":
+           elif mfcommand == "P":
               plugininstalled=False
               if os.path.exists("%s/Extensions/%s" %(pluginpath,mftextargument)) is True:
                  plugininstalled=True
@@ -662,7 +662,7 @@ class Fantastic(Screen):
                  else:
                     self.session.openWithCallback(self.FantasticMenu,MessageBox,"Plugin %s is not installed !" %mftextargument, MessageBox.TYPE_INFO)
 
-           elif mfcommand is "R":
+           elif mfcommand == "R":
               if mfintargument == 3:
                  self.session.openWithCallback(self.FantasticMenu,MessageBox,"Restarting Enigma2", MessageBox.TYPE_INFO, timeout=5)
                  TryQuitMainloop(self.session,mfintargument)
@@ -674,7 +674,7 @@ class Fantastic(Screen):
                  TryQuitMainloop(self.session,mfintargument)
               else:
                  pass
-           elif mfcommand is "I":
+           elif mfcommand == "I":
               if os.path.exists("%s/%s.txt" %(fantastic_pluginpath,mfexecute)) is True:
                  menufile="%s/%s.txt" %(fantastic_pluginpath,mfexecute)
                  mf = open(menufile,"r")
@@ -691,7 +691,7 @@ class Fantastic(Screen):
                  self.session.openWithCallback(self.FantasticMenu,MessageBox,mfexecute, MessageBox.TYPE_INFO, timeout=mfintargument)
 
 # modded by koivo G: read file
-           elif mfcommand is "G":
+           elif mfcommand == "G":
               if os.path.exists("%s" % (mfexecute)) is True:
                  os.system("%s %s" % (mfexecute,mftextargument))
                  datei = open(mftextargument,"r")
@@ -699,31 +699,31 @@ class Fantastic(Screen):
                  datei.close()
                  self.session.openWithCallback(self.FantasticMenu,MessageBox,Ausgabe, MessageBox.TYPE_INFO)
 # modded by koivo Q: execute and read file
-           elif mfcommand is "Q":
+           elif mfcommand == "Q":
                  os.system("%s>%s"  % (mfexecute,mftextargument))
                  datei = open(mftextargument,"r")
                  Ausgabe=datei.read(400)
                  datei.close()
                  self.session.openWithCallback(self.FantasticMenu,MessageBox,Ausgabe, MessageBox.TYPE_INFO, timeout=mfintargument)
 # modded by koivo Q: execute and read file with yes or no
-           elif mfcommand is "X":
+           elif mfcommand == "X":
                  os.system("%s>%s"  % (mfexecute,mftextargument))
                  datei = open(mftextargument,"r")
                  Ausgabe=datei.read()
                  datei.close()
                  self.session.openWithCallback(self.FantasticYN,MessageBox,Ausgabe, MessageBox.TYPE_YESNO)
 # modded by koivo Z: open extra plugins and screens
-           elif mfcommand is "Z":
+           elif mfcommand == "Z":
                  self.session.openWithCallback(self.FantasticMenu(""),PluginBrowser)
 # modded by henrylicious W: open extra plugins and screens
-           elif mfcommand is "W":
+           elif mfcommand == "W":
                  self.session.openWithCallback(self.FantasticMenu(""),SkinSelector)
-           elif mfcommand is "1":
+           elif mfcommand == "1":
                  #os.system("opkg update")
                  self.session.openWithCallback(self.FantasticMenu(""),UpdatePluginMenu)
-           elif mfcommand is "D":
+           elif mfcommand == "D":
               self.session.openWithCallback(self.FantasticMenu(""),FantasticLCD,mftextargument)
-           elif mfcommand is "L":
+           elif mfcommand == "L":
               if mftextargument == "log":
                  os.system("echo %s > /tmp/fantasticlog.txt" %mfexecute)
               elif mftextargument == "logappend":
@@ -736,11 +736,11 @@ class Fantastic(Screen):
               else:
                  print("[FANTASTIC] Logging: %s" %mfexecute)
               self.FantasticMenu("")
-           elif mfcommand is "M":
+           elif mfcommand == "M":
               self.FantasticMenu("")
-           elif mfcommand is "T":
+           elif mfcommand == "T":
               self.session.openWithCallback(self.FantasticEnterText,InputBox, title=mfmenudescr, text=mftextargument, maxSize=False, type=Input.TEXT)
-           elif mfcommand is "Y":
+           elif mfcommand == "Y":
               self.session.openWithCallback(self.FantasticYN,MessageBox,mfmenudescr, MessageBox.TYPE_YESNO)
            else:
               pass
@@ -765,7 +765,7 @@ class Fantastic(Screen):
            index=len(parts)
            if index > 1:
               command=parts[0].upper().rstrip()
-              if command[0] is not "S":
+              if command[0] != "S":
                  if index > 2:
                     menu.append(( str(parts[2]), line ))
                  else:
@@ -805,7 +805,7 @@ class Fantastic(Screen):
 
         if mfanswer is False:
            if mftextargument is not None:
-              if mftextargument is not " ":
+              if mftextargument != " ":
                  mfmenu=mftextargument
 
         self.FantasticMenu("")
@@ -855,7 +855,7 @@ class FantasticBoot(Screen):
            if index > 1:
               command=parts[0].upper().rstrip()
               # only if menu file contains S in first line startup is executed
-              if command[0] is "S":
+              if command[0] == "S":
                  if index > 3:
                     cmd=parts[3].rstrip()
                     if os.path.exists("%s/%s" %(fantastic_pluginpath,cmd)) is True:

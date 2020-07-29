@@ -20,7 +20,7 @@ from Screens.Standby import TryQuitMainloop
 from Tools.Downloader import downloadWithProgress
 from enigma import ePicLoad, eTimer, eDVBDB
 from twisted.web.client import downloadPage
-from time import localtime, mktime, time, strftime
+from time import time
 import os
 import sys
 import glob
@@ -439,7 +439,9 @@ class Hdf_Downloader(Screen):
             file = self["downloadmenu"].l.getCurrentSelection()[1].split(".")[0] + ".jpg"
             url = "http://addons.hdfreaks.cc/feeds/" + file
             path = "/tmp/" + file
-            import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
+            import six.moves.urllib.error
+            import six.moves.urllib.parse
+            import six.moves.urllib.request
             if "<title>404 Not Found</title>" in open(path, "r").read():
                 self.session.open(MessageBox, ("Sorry, no Preview available."), MessageBox.TYPE_ERROR).setTitle(_("No Preview"))
             else:

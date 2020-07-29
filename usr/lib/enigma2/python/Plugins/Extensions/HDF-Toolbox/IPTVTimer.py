@@ -5,9 +5,7 @@ import timer
 from time import localtime, mktime, time, strftime
 from Components.config import config
 from enigma import eDVBDB
-import os
 
-import inspect
 
 debug = False
 debug2 = False
