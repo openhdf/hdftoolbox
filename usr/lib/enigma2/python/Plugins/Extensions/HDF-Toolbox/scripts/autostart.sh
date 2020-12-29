@@ -85,6 +85,9 @@ if grep ^config.usage.cleanmemlite=true /etc/enigma2/settings >/dev/null; then
 	fi
 fi
 
+# change minisatip port to 9090
+cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/bootfiles/minisatip /etc/init.d/
+chmod -R 755 /etc/init.d/minisatip
 
 # install picons after flash
 FREEsize=`df -k /usr/ | awk '/[0-9]%/ {print $4}'`
