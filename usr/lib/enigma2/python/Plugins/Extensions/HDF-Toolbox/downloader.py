@@ -153,13 +153,13 @@ except:
 ##read brand and machine for other OEMs
 brandfile = "/etc/.brand"
 if os.path.exists(brandfile) is True:
-    brand = open(brandfile,"r")
+    brand = open(brandfile, "r")
     box = brand.readline().lower()
     brand.close()
 
 machinefile = "/etc/.machine"
 if os.path.exists(machinefile) is True:
-    machine = open(machinefile,"r")
+    machine = open(machinefile, "r")
     boxmachine = machine.readline().lower()
     machine.close()
 
@@ -349,7 +349,7 @@ class Hdf_Downloader(Screen):
                     if self.switch == "picon":
                         self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif "all" in self.filesArraySplit[i][0]:
-                if self.switch in self.filesArray[i][0].replace('_','.').split('.'):
+                if self.switch in self.filesArray[i][0].replace('_', '.').split('.'):
                     if self.switch == "iptv":
                         self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
 
@@ -489,7 +489,7 @@ class Hdf_Downloader(Screen):
                 com = "opkg install --force-overwrite /tmp/" + file + ""
             else:
                 com = "tar xzvf /tmp/" + file + " -C /"
-            self.session.open(Console,_("Install Log: %s") % (com), ["%s" % com])
+            self.session.open(Console, _("Install Log: %s") % (com), ["%s" % com])
         elif "uninstall" in self["downloadmenu"].l.getCurrentSelection():
             self.session.openWithCallback(self.uninstall, MessageBox, _("Do you want to uninstall the Plugin?"), MessageBox.TYPE_YESNO).setTitle(_("Uninstall?"))
         else:
@@ -817,7 +817,7 @@ class ConfigMenu(ConfigListScreen, Screen):
 
         self.session.open(
             MessageBox,
-            _("Last refresh was %s\nNext timer: %s") % (scanDate,nextTimer),
+            _("Last refresh was %s\nNext timer: %s") % (scanDate, nextTimer),
             type=MessageBox.TYPE_INFO
             )
         # just for debugging
