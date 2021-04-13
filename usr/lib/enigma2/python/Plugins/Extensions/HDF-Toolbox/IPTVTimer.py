@@ -71,7 +71,8 @@ class IPTVTimer(timer.Timer):
 
     # just for debugging
     def show(self):
-        for line in self.timer_list: print(line)
+        for line in self.timer_list:
+            print(line)
 
     def clear(self):
         self.timer_list = []
