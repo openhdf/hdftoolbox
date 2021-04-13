@@ -283,7 +283,7 @@ def Plugins(**kwargs):
                 PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_MENU, fnc=menu),
                 PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, fnc=filescan)]
     except:
-        return [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=[PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_MENU, fnc=menu)]
+        return [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=[PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_MENU, fnc=menu)]
 
 def main(session,**kwargs):
     try:
@@ -355,9 +355,9 @@ class Fantastic(Screen):
                  mfcommand=command[0]
                  if mfcommand != "S":
                     if index >2:
-                       mainmenu.append(( str(parts[2]), line ))
+                       mainmenu.append((str(parts[2]), line))
                     else:
-                       mainmenu.append(( str(parts[1]), line ))
+                       mainmenu.append((str(parts[1]), line))
 
            mf.close()
         else:
@@ -374,11 +374,11 @@ class Fantastic(Screen):
             pass
 
         if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.pyo") is True:
-           mainmenu.append(("openHDF-Downloader" , "mfschdf"))
+           mainmenu.append(("openHDF-Downloader", "mfschdf"))
 
-        mainmenu.append(("--------------------------------------------------" , "mfxyz"))
+        mainmenu.append(("--------------------------------------------------", "mfxyz"))
         mainmenu.append((toolboxversion, "mfxyz"))
-        mainmenu.append(("About" , "mfabout"))
+        mainmenu.append(("About", "mfabout"))
 
         self["menu"] = MenuList(mainmenu)
         self["actions"] = ActionMap(["WizardActions", "DirectionActions"],{"ok": self.FantasticMainMenu,"back": self.close,}, -1)
@@ -566,9 +566,9 @@ class Fantastic(Screen):
               self.FantasticMenu("")
            elif mfcommand == "C":
               if os.path.exists("%s/%s" % (fantastic_pluginpath,mfexecute)) is True:
-                 self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument) ])
+                 self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s/%s %s" % (fantastic_pluginpath,mfexecute,mftextargument)])
               else:
-                 self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s %s" % (mfexecute, mftextargument) ])
+                 self.session.openWithCallback(self.FantasticMenu(""),Console,_("Executing %s %s" %(mfexecute, mftextargument)),["%s %s" % (mfexecute, mftextargument)])
            elif mfcommand == "A":
               FantasticApplication(self.session)
               self.FantasticMenu("")
@@ -767,9 +767,9 @@ class Fantastic(Screen):
               command=parts[0].upper().rstrip()
               if command[0] != "S":
                  if index > 2:
-                    menu.append(( str(parts[2]), line ))
+                    menu.append((str(parts[2]), line))
                  else:
-                    menu.append(( str(parts[1]), line ))
+                    menu.append((str(parts[1]), line))
         mf.close()
 
         return menu

@@ -205,7 +205,7 @@ class Hdf_Downloader(Screen):
             <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
             <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
         </screen>"""
-    def __init__(self, session , **kwargs):
+    def __init__(self, session, **kwargs):
         self.session = session
         self.skinAttributes = (())
 
@@ -240,15 +240,15 @@ class Hdf_Downloader(Screen):
         self["description2"] = StaticText(_("Description:"))
         self["actions"] = ActionMap(["WizardActions", "InputActions", "EPGSelectActions", "ColorActions"],
         {
-            "ok" : self.ok,
-            "1" : self.one,
-            "2" : self.two,
-            "3" : self.three,
-            "4" : self.four,
-            "5" : self.five,
-            "6" : self.six,
-            "7" : self.seven,
-            "0" : self.zero,
+            "ok": self.ok,
+            "1": self.one,
+            "2": self.two,
+            "3": self.three,
+            "4": self.four,
+            "5": self.five,
+            "6": self.six,
+            "7": self.seven,
+            "0": self.zero,
             "back": self.cancel,
             "blue": self.preview,
             "info": self.info,
@@ -323,35 +323,35 @@ class Hdf_Downloader(Screen):
             if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.devdown"):
                 if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
                     if self.switch == "extensions":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "skin":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "update":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "softcam":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "picon":
-                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif self.box in self.filesArraySplit[i][0]:
                 if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
                     if self.switch == "extensions":
                         if "2.7" in sys.version:
                             if "mips32el" in self.filesArrayClean[i] or "_all" in self.filesArrayClean[i]:
-                                self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                                self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                         else:
-                            self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                            self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "skin":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "update":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "softcam":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "picon":
-                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif "all" in self.filesArraySplit[i][0]:
                 if self.switch in self.filesArray[i][0].replace('_','.').split('.'):
                     if self.switch == "iptv":
-                        self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
 
             i = i + 1
         self.list.append((_(" "), "none"))
@@ -384,7 +384,7 @@ class Hdf_Downloader(Screen):
             self["description2"].setText("Description: ")
             self["size"].setText(self["downloadmenu"].l.getCurrentSelection()[2])
             self["size2"].setText("Size: ")
-            Screen.setTitle(self, "Select your Download for " + boxname )
+            Screen.setTitle(self, "Select your Download for " + boxname)
         elif "uninstall" in self["downloadmenu"].l.getCurrentSelection():
             self["key_green"].setText("Remove")
             self["introduction"].setText("Press OK to remove the file.")
@@ -704,7 +704,7 @@ class downloadfile(Screen):
             filename = self.filename.split('/')[2]
             f = open("/etc/enigma2/bouquets.tv", "r")
             exists = False
-            for line in f.readlines() :
+            for line in f.readlines():
                 if filename in line.split("\""):
                     exists = True
             f.close()
@@ -781,7 +781,7 @@ class ConfigMenu(ConfigListScreen, Screen):
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
 
-        self.onChangedEntry = [ ]
+        self.onChangedEntry = []
         self.list = []
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
