@@ -489,7 +489,7 @@ class Hdf_Downloader(Screen):
                 com = "opkg install --force-overwrite /tmp/" + file + ""
             else:
                 com = "tar xzvf /tmp/" + file + " -C /"
-            self.session.open(Console,_("Install Log: %s") % (com), ["%s" %com])
+            self.session.open(Console,_("Install Log: %s") % (com), ["%s" % com])
         elif "uninstall" in self["downloadmenu"].l.getCurrentSelection():
             self.session.openWithCallback(self.uninstall, MessageBox, _("Do you want to uninstall the Plugin?"), MessageBox.TYPE_YESNO).setTitle(_("Uninstall?"))
         else:
@@ -678,11 +678,11 @@ class downloadfile(Screen):
             self.doInstall()
 
     def doInstall(self):
-        if "tar.gz" in  self.filename:
+        if "tar.gz" in self.filename:
             os.system("tar xzf " + self.filename + " -C /")
-        elif "tgz" in  self.filename:
+        elif "tgz" in self.filename:
             os.system("tar xzf " + self.filename + " -C /")
-        elif "ipk" in  self.filename:
+        elif "ipk" in self.filename:
             # Installiert das Plugin und liest den expliziten Pluginnamen (wichtig fuer remove)
             os.system("ipkg install " + self.filename + " | cut -d' ' -f2 | sort -u > /tmp/.ipkinst")
             # das ist der Pluginname
@@ -719,7 +719,7 @@ class downloadfile(Screen):
 
 class PictureScreen(Screen):
 
-    skin="""
+    skin = """
         <screen name="Preview" position="center,center" size="800,450" title="Preview" >
             <widget name="picture" position="0,0" size="800,450" zPosition="1" alphatest="on" />
         </screen>"""

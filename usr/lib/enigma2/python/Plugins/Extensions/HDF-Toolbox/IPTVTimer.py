@@ -95,7 +95,7 @@ class IPTVTimerEntry(timer.TimerEntry):
 
     def getNextActivation(self):
         # We delay our activation so we won't rush into reprocessing a repeating one
-        return self.begin+1
+        return self.begin + 1
 
     def activate(self):
         # check if Auto Update is enabled anyway
