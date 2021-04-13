@@ -219,7 +219,9 @@ class Hdf_Downloader(Screen):
         self.list = []
 ##### Download Source File
         try:
-            import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+            import six.moves.urllib.request
+            import six.moves.urllib.error
+            import six.moves.urllib.parse
             url = "http://addons.hdfreaks.cc/feeds/down.hdf"
             i = six.moves.urllib.request.urlopen(url)
             downfile = i.read()
@@ -927,7 +929,9 @@ def connected():
 
 
 def doIptvUpdate(**kwargs):
-    import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+    import six.moves.urllib.request
+    import six.moves.urllib.error
+    import six.moves.urllib.parse
     if connected():
         print("[HDF-Toolbox]: IPTV list update")
         os.chdir("/etc/enigma2")
