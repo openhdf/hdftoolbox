@@ -10,6 +10,7 @@ from enigma import eDVBDB
 debug = False
 debug2 = False
 
+
 class IPTVTimer(timer.Timer):
     def __init__(self):
         timer.Timer.__init__(self)
@@ -40,8 +41,6 @@ class IPTVTimer(timer.Timer):
 
             self.addTimerEntry(refreshTimer)
             print("[IPTVTimer] Added Entry  ", self.timer_list[-1])
-
-
 
         if config.downloader.autoupdate_type.value == "periodic":
             import math
@@ -83,8 +82,10 @@ class IPTVTimer(timer.Timer):
     def getNextTimerEntry(self):
         return self.timer_list[0]
 
+
 class IPTVTimerEntry(timer.TimerEntry):
     """TimerEntry ..."""
+
     def __init__(self, begin, tocall, nocheck=False):
         timer.TimerEntry.__init__(self, int(begin), int(begin))
 
@@ -132,5 +133,6 @@ class IPTVTimerEntry(timer.TimerEntry):
                 )),
                 ")>"
             ))
+
 
 iptvtimer = IPTVTimer()

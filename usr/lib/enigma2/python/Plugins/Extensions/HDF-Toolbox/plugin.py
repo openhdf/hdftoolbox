@@ -61,6 +61,7 @@ try:
 except:
     pass
 
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -76,6 +77,7 @@ class bcolors:
         self.WARNING = ''
         self.FAIL = ''
         self.ENDC = ''
+
 
 try:
     boxdesc = getMachineBrand() + " " + getMachineName()
@@ -254,11 +256,13 @@ splitchar = ":"
 
 session = None
 
+
 def autostart(reason, **kwargs):
     global session
     if reason == 0 and "session" in kwargs:
        session = kwargs["session"]
        session.open(FantasticBoot)
+
 
 def iptvUpdate(reason, **kwargs):
     if config.downloader.autoupdate.value:
@@ -270,10 +274,12 @@ def iptvUpdate(reason, **kwargs):
              downloader.doIptvUpdate()
              iptvtimer.setRefreshTimer(ConfigMenu.createWaitTimer)
 
+
 def menu(menuid, **kwargs):
     if menuid == "mainmenu":
         return [(_("HDF Toolbox " + boxdesc + ""), main, "hdf_toolbox", 10)]
     return []
+
 
 def Plugins(**kwargs):
     try:
@@ -285,11 +291,13 @@ def Plugins(**kwargs):
     except:
         return [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart), PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=[PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main), PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_MENU, fnc=menu)]
 
+
 def main(session, **kwargs):
     try:
         session.open(Fantastic)
     except:
         print("[FANTASTIC] Pluginexecution failed")
+
 
 class Fantastic(Screen):
     skin = """
@@ -500,7 +508,6 @@ class Fantastic(Screen):
         global mfmenudescr
         global mfintargument
         global mftextargument
-
 
         if mfselected is None:
 #           self.skipMF("nothing selected")
@@ -792,7 +799,6 @@ class Fantastic(Screen):
            mftextargument = mftext
            self.FantasticMenu("")
 
-
     def FantasticYN(self, mfanswer):
 
         global mfcommand
@@ -812,6 +818,7 @@ class Fantastic(Screen):
 
     def skipMF(self, reason):
         self.session.open(MessageBox, _("Menu Fantastic exits, because %s") % reason, MessageBox.TYPE_WARNING)
+
 
 class FantasticButton(Screen):
     def __init__(self, session, button):
@@ -900,6 +907,7 @@ class FantasticApplication(Screen):
         eRCInput.getInstance().unlock()
         eDBoxLCD.getInstance().unlock()
         self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+
 
 class FantasticLCD(Screen):
     # use size 0,0 to show text on LCD only

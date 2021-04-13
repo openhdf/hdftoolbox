@@ -172,6 +172,7 @@ else:
 if os.path.exists("/usr/uninstall") == False:
     os.system("mkdir /usr/uninstall")
 
+
 class Hdf_Downloader(Screen):
     skin = """
         <screen name="DownloadMenu" position="center,center" size="800,400" title="Select your Download">
@@ -205,6 +206,7 @@ class Hdf_Downloader(Screen):
             <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
             <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
         </screen>"""
+
     def __init__(self, session, **kwargs):
         self.session = session
         self.skinAttributes = (())
@@ -562,6 +564,7 @@ class Hdf_Downloader(Screen):
 
 ##### % Anzeige
 
+
 class BufferThread():
     def __init__(self):
         self.progress = 0
@@ -599,9 +602,11 @@ class BufferThread():
         self.error = ""
         self.download.stop()
 
+
 bufferThread = BufferThread()
 
 ##### Downloader
+
 
 class downloadfile(Screen):
     skin = """
@@ -717,6 +722,7 @@ class downloadfile(Screen):
 
 ###########################################################################
 
+
 class PictureScreen(Screen):
 
     skin = """
@@ -757,9 +763,9 @@ class PictureScreen(Screen):
             ptr = self.PicLoad.getData()
             self["picture"].instance.setPixmap(ptr)
 
-
     def cancel(self):
         self.close(None)
+
 
 class ConfigMenu(ConfigListScreen, Screen):
     skin = """
@@ -771,6 +777,7 @@ class ConfigMenu(ConfigListScreen, Screen):
             <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
             <widget source="help" render="Label" position="5,345" size="690,105" font="Regular;21" />
         </screen>"""
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.session = session
@@ -909,10 +916,12 @@ class ConfigMenu(ConfigListScreen, Screen):
 
 #### IPTV Updater Calls
 
+
 try:
     import six.moves.http_client
 except:
     import http.client as httplib
+
 
 def connected():
     c = six.moves.http_client.HTTPConnection('hdfreaks.cc', 80)
