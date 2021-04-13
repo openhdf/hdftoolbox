@@ -10,6 +10,7 @@ from enigma import eDVBDB
 debug = False
 debug2 = False
 
+
 class IPTVTimer(timer.Timer):
     def __init__(self):
         timer.Timer.__init__(self)
@@ -31,7 +32,7 @@ class IPTVTimer(timer.Timer):
                 from .downloader import ConfigMenu
                 ConfigMenu.createWaitTimer
 
-            refreshTimer = IPTVTimerEntry(begin, tocall, nocheck = True)
+            refreshTimer = IPTVTimerEntry(begin, tocall, nocheck=True)
 
             i = 0
             while i < 7:
@@ -40,8 +41,6 @@ class IPTVTimer(timer.Timer):
 
             self.addTimerEntry(refreshTimer)
             print("[IPTVTimer] Added Entry  ", self.timer_list[-1])
-
-
 
         if config.downloader.autoupdate_type.value == "periodic":
             import math
@@ -55,11 +54,11 @@ class IPTVTimer(timer.Timer):
                     0, now.tm_wday, now.tm_yday, now.tm_isdst)
                 )
                 i += k
-                
+
                 if config.downloader.autoupdate_last.value < begin and begin < time():
                     ConfigMenu.createWaitTimer
 
-                refreshTimer = IPTVTimerEntry(begin, tocall, nocheck = True)
+                refreshTimer = IPTVTimerEntry(begin, tocall, nocheck=True)
 
                 g = 0
                 while g < 7:
@@ -71,7 +70,8 @@ class IPTVTimer(timer.Timer):
 
     # just for debugging
     def show(self):
-        for line in self.timer_list: print(line)
+        for line in self.timer_list:
+            print(line)
 
     def clear(self):
         self.timer_list = []
@@ -82,9 +82,11 @@ class IPTVTimer(timer.Timer):
     def getNextTimerEntry(self):
         return self.timer_list[0]
 
+
 class IPTVTimerEntry(timer.TimerEntry):
     """TimerEntry ..."""
-    def __init__(self, begin, tocall, nocheck = False):
+
+    def __init__(self, begin, tocall, nocheck=False):
         timer.TimerEntry.__init__(self, int(begin), int(begin))
 
         self.function = tocall
@@ -94,7 +96,7 @@ class IPTVTimerEntry(timer.TimerEntry):
 
     def getNextActivation(self):
         # We delay our activation so we won't rush into reprocessing a repeating one
-        return self.begin+1
+        return self.begin + 1
 
     def activate(self):
         # check if Auto Update is enabled anyway
@@ -131,5 +133,6 @@ class IPTVTimerEntry(timer.TimerEntry):
                 )),
                 ")>"
             ))
+
 
 iptvtimer = IPTVTimer()

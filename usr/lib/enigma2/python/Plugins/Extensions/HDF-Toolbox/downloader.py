@@ -153,13 +153,13 @@ except:
 ##read brand and machine for other OEMs
 brandfile = "/etc/.brand"
 if os.path.exists(brandfile) is True:
-    brand = open(brandfile,"r")
+    brand = open(brandfile, "r")
     box = brand.readline().lower()
     brand.close()
 
 machinefile = "/etc/.machine"
 if os.path.exists(machinefile) is True:
-    machine = open(machinefile,"r")
+    machine = open(machinefile, "r")
     boxmachine = machine.readline().lower()
     machine.close()
 
@@ -171,6 +171,7 @@ else:
 
 if os.path.exists("/usr/uninstall") == False:
     os.system("mkdir /usr/uninstall")
+
 
 class Hdf_Downloader(Screen):
     skin = """
@@ -205,7 +206,8 @@ class Hdf_Downloader(Screen):
             <widget source="description" render="Label" position="450,80" size="330,150" zPosition="10" font="Regular;15" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
             <widget source="description2" render="Label" position="430,50" size="150,30" zPosition="10" font="Regular;21" halign="left" valign="top" backgroundColor="#25062748" transparent="1" />
         </screen>"""
-    def __init__(self, session , **kwargs):
+
+    def __init__(self, session, **kwargs):
         self.session = session
         self.skinAttributes = (())
 
@@ -219,7 +221,9 @@ class Hdf_Downloader(Screen):
         self.list = []
 ##### Download Source File
         try:
-            import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+            import six.moves.urllib.request
+            import six.moves.urllib.error
+            import six.moves.urllib.parse
             url = "http://addons.hdfreaks.cc/feeds/down.hdf"
             i = six.moves.urllib.request.urlopen(url)
             downfile = i.read()
@@ -238,15 +242,15 @@ class Hdf_Downloader(Screen):
         self["description2"] = StaticText(_("Description:"))
         self["actions"] = ActionMap(["WizardActions", "InputActions", "EPGSelectActions", "ColorActions"],
         {
-            "ok" : self.ok,
-            "1" : self.one,
-            "2" : self.two,
-            "3" : self.three,
-            "4" : self.four,
-            "5" : self.five,
-            "6" : self.six,
-            "7" : self.seven,
-            "0" : self.zero,
+            "ok": self.ok,
+            "1": self.one,
+            "2": self.two,
+            "3": self.three,
+            "4": self.four,
+            "5": self.five,
+            "6": self.six,
+            "7": self.seven,
+            "0": self.zero,
             "back": self.cancel,
             "blue": self.preview,
             "info": self.info,
@@ -321,35 +325,35 @@ class Hdf_Downloader(Screen):
             if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/.devdown"):
                 if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
                     if self.switch == "extensions":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "skin":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "update":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "softcam":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "picon":
-                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif self.box in self.filesArraySplit[i][0]:
                 if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
                     if self.switch == "extensions":
                         if "2.7" in sys.version:
                             if "mips32el" in self.filesArrayClean[i] or "_all" in self.filesArrayClean[i]:
-                                self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                                self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                         else:
-                            self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                            self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "skin":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "update":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "softcam":
-                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "picon":
-                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][2].split('.')[0]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
             elif "all" in self.filesArraySplit[i][0]:
-                if self.switch in self.filesArray[i][0].replace('_','.').split('.'):
+                if self.switch in self.filesArray[i][0].replace('_', '.').split('.'):
                     if self.switch == "iptv":
-                        self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
+                        self.list.append((_(self.filesArray[i][0].split('.')[1]), self.filesArrayClean[i], "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
 
             i = i + 1
         self.list.append((_(" "), "none"))
@@ -382,7 +386,7 @@ class Hdf_Downloader(Screen):
             self["description2"].setText("Description: ")
             self["size"].setText(self["downloadmenu"].l.getCurrentSelection()[2])
             self["size2"].setText("Size: ")
-            Screen.setTitle(self, "Select your Download for " + boxname )
+            Screen.setTitle(self, "Select your Download for " + boxname)
         elif "uninstall" in self["downloadmenu"].l.getCurrentSelection():
             self["key_green"].setText("Remove")
             self["introduction"].setText("Press OK to remove the file.")
@@ -487,7 +491,7 @@ class Hdf_Downloader(Screen):
                 com = "opkg install --force-overwrite /tmp/" + file + ""
             else:
                 com = "tar xzvf /tmp/" + file + " -C /"
-            self.session.open(Console,_("Install Log: %s") % (com), ["%s" %com])
+            self.session.open(Console, _("Install Log: %s") % (com), ["%s" % com])
         elif "uninstall" in self["downloadmenu"].l.getCurrentSelection():
             self.session.openWithCallback(self.uninstall, MessageBox, _("Do you want to uninstall the Plugin?"), MessageBox.TYPE_YESNO).setTitle(_("Uninstall?"))
         else:
@@ -560,6 +564,7 @@ class Hdf_Downloader(Screen):
 
 ##### % Anzeige
 
+
 class BufferThread():
     def __init__(self):
         self.progress = 0
@@ -597,9 +602,11 @@ class BufferThread():
         self.error = ""
         self.download.stop()
 
+
 bufferThread = BufferThread()
 
 ##### Downloader
+
 
 class downloadfile(Screen):
     skin = """
@@ -676,11 +683,11 @@ class downloadfile(Screen):
             self.doInstall()
 
     def doInstall(self):
-        if "tar.gz" in  self.filename:
+        if "tar.gz" in self.filename:
             os.system("tar xzf " + self.filename + " -C /")
-        elif "tgz" in  self.filename:
+        elif "tgz" in self.filename:
             os.system("tar xzf " + self.filename + " -C /")
-        elif "ipk" in  self.filename:
+        elif "ipk" in self.filename:
             # Installiert das Plugin und liest den expliziten Pluginnamen (wichtig fuer remove)
             os.system("ipkg install " + self.filename + " | cut -d' ' -f2 | sort -u > /tmp/.ipkinst")
             # das ist der Pluginname
@@ -702,7 +709,7 @@ class downloadfile(Screen):
             filename = self.filename.split('/')[2]
             f = open("/etc/enigma2/bouquets.tv", "r")
             exists = False
-            for line in f.readlines() :
+            for line in f.readlines():
                 if filename in line.split("\""):
                     exists = True
             f.close()
@@ -715,14 +722,15 @@ class downloadfile(Screen):
 
 ###########################################################################
 
+
 class PictureScreen(Screen):
 
-    skin="""
+    skin = """
         <screen name="Preview" position="center,center" size="800,450" title="Preview" >
             <widget name="picture" position="0,0" size="800,450" zPosition="1" alphatest="on" />
         </screen>"""
 
-    def __init__(self, session, picPath = None):
+    def __init__(self, session, picPath=None):
         Screen.__init__(self, session)
         self.picPath = picPath
         self.Scale = AVSwitch().getFramebufferScale()
@@ -750,14 +758,14 @@ class PictureScreen(Screen):
 
             self.PicLoad.startDecode(self.picPath)
 
-    def DecodePicture(self, PicInfo = ""):
+    def DecodePicture(self, PicInfo=""):
         if self.picPath is not None:
             ptr = self.PicLoad.getData()
             self["picture"].instance.setPixmap(ptr)
 
-
     def cancel(self):
         self.close(None)
+
 
 class ConfigMenu(ConfigListScreen, Screen):
     skin = """
@@ -769,6 +777,7 @@ class ConfigMenu(ConfigListScreen, Screen):
             <widget name="key_green" position="150,260" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
             <widget source="help" render="Label" position="5,345" size="690,105" font="Regular;21" />
         </screen>"""
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self.session = session
@@ -779,9 +788,9 @@ class ConfigMenu(ConfigListScreen, Screen):
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
 
-        self.onChangedEntry = [ ]
+        self.onChangedEntry = []
         self.list = []
-        ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
 
         self["config"].onSelectionChanged.append(self.updateHelp)
@@ -815,7 +824,7 @@ class ConfigMenu(ConfigListScreen, Screen):
 
         self.session.open(
             MessageBox,
-            _("Last refresh was %s\nNext timer: %s") % (scanDate,nextTimer),
+            _("Last refresh was %s\nNext timer: %s") % (scanDate, nextTimer),
             type=MessageBox.TYPE_INFO
             )
         # just for debugging
@@ -907,10 +916,12 @@ class ConfigMenu(ConfigListScreen, Screen):
 
 #### IPTV Updater Calls
 
+
 try:
     import six.moves.http_client
 except:
     import http.client as httplib
+
 
 def connected():
     c = six.moves.http_client.HTTPConnection('hdfreaks.cc', 80)
@@ -927,7 +938,9 @@ def connected():
 
 
 def doIptvUpdate(**kwargs):
-    import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+    import six.moves.urllib.request
+    import six.moves.urllib.error
+    import six.moves.urllib.parse
     if connected():
         print("[HDF-Toolbox]: IPTV list update")
         os.chdir("/etc/enigma2")
