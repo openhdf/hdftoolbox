@@ -277,13 +277,13 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
     try:
-        return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-                PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = iptvUpdate),
-                PluginDescriptor(name=" HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
-                PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc=menu),
-                PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
+        return [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart),
+                PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, fnc=iptvUpdate),
+                PluginDescriptor(name=" HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_EXTENSIONSMENU, icon="hdf.png", fnc=main),
+                PluginDescriptor(name="HDF Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_MENU, fnc=menu),
+                PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, fnc=filescan)]
     except:
-        return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where = [PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name = "HDFreaks Toolbox " + boxdesc + "", description = "Addons, Scripts, Tools", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
+        return [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=[PluginDescriptor.WHERE_PLUGINMENU , PluginDescriptor.WHERE_EXTENSIONSMENU], icon="hdf.png", fnc=main),PluginDescriptor(name="HDFreaks Toolbox " + boxdesc + "", description="Addons, Scripts, Tools", where=PluginDescriptor.WHERE_MENU, fnc=menu)]
 
 def main(session,**kwargs):
     try:
@@ -298,7 +298,7 @@ class Fantastic(Screen):
             <ePixmap position="10,335" size="380,57" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/banner.png" zPosition="1" alphatest="on" />
         </screen>"""
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         self.skin = Fantastic.skin
         self.session = session
         Screen.__init__(self, session)
@@ -908,7 +908,7 @@ class FantasticLCD(Screen):
             <widget name="text" position="0,0" size="0,0" font="Regular;14" halign="center"/>
         </screen>"""
 
-    def __init__(self, session, title = "LCD Text"):
+    def __init__(self, session, title="LCD Text"):
         self.skin = FantasticLCD.skin
         Screen.__init__(self, session)
 

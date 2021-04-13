@@ -724,7 +724,7 @@ class PictureScreen(Screen):
             <widget name="picture" position="0,0" size="800,450" zPosition="1" alphatest="on" />
         </screen>"""
 
-    def __init__(self, session, picPath = None):
+    def __init__(self, session, picPath=None):
         Screen.__init__(self, session)
         self.picPath = picPath
         self.Scale = AVSwitch().getFramebufferScale()
@@ -752,7 +752,7 @@ class PictureScreen(Screen):
 
             self.PicLoad.startDecode(self.picPath)
 
-    def DecodePicture(self, PicInfo = ""):
+    def DecodePicture(self, PicInfo=""):
         if self.picPath is not None:
             ptr = self.PicLoad.getData()
             self["picture"].instance.setPixmap(ptr)
@@ -783,7 +783,7 @@ class ConfigMenu(ConfigListScreen, Screen):
 
         self.onChangedEntry = [ ]
         self.list = []
-        ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
 
         self["config"].onSelectionChanged.append(self.updateHelp)

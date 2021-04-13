@@ -31,7 +31,7 @@ class IPTVTimer(timer.Timer):
                 from .downloader import ConfigMenu
                 ConfigMenu.createWaitTimer
 
-            refreshTimer = IPTVTimerEntry(begin, tocall, nocheck = True)
+            refreshTimer = IPTVTimerEntry(begin, tocall, nocheck=True)
 
             i = 0
             while i < 7:
@@ -59,7 +59,7 @@ class IPTVTimer(timer.Timer):
                 if config.downloader.autoupdate_last.value < begin and begin < time():
                     ConfigMenu.createWaitTimer
 
-                refreshTimer = IPTVTimerEntry(begin, tocall, nocheck = True)
+                refreshTimer = IPTVTimerEntry(begin, tocall, nocheck=True)
 
                 g = 0
                 while g < 7:
@@ -85,7 +85,7 @@ class IPTVTimer(timer.Timer):
 
 class IPTVTimerEntry(timer.TimerEntry):
     """TimerEntry ..."""
-    def __init__(self, begin, tocall, nocheck = False):
+    def __init__(self, begin, tocall, nocheck=False):
         timer.TimerEntry.__init__(self, int(begin), int(begin))
 
         self.function = tocall
