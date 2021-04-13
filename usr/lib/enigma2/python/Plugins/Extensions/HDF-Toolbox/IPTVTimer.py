@@ -54,7 +54,7 @@ class IPTVTimer(timer.Timer):
                     0, now.tm_wday, now.tm_yday, now.tm_isdst)
                 )
                 i += k
-                
+
                 if config.downloader.autoupdate_last.value < begin and begin < time():
                     ConfigMenu.createWaitTimer
 
