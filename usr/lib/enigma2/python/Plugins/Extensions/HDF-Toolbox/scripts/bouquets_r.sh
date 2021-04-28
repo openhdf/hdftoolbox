@@ -2,7 +2,7 @@
 
 echo -e "Restore your Bouquets/Timers/Automounts from HDD to /etc/enigma2/\n"
 
-if [ -f /hdd/backup/HDF_Backup.tar.gz ]; then 
+if [ -f /hdd/backup/HDF_Backup.tar.gz ]; then
 	echo "Backup found ... restore now"
 	cd /etc/enigma2
 	init 4
@@ -15,4 +15,4 @@ if [ -f /hdd/backup/HDF_Backup.tar.gz ]; then
 else
 	echo -e "No backup /hdd/backup/HDF_Backup.tar.gz found"\!"\nCan't restore old data\n"
 fi
-exit 0 
+exit 0

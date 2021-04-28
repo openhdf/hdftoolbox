@@ -11,7 +11,7 @@ sleep 1
 opkg list-upgradable > /etc/last-upgrades-git.log
 sleep 1
 lines=`cat /etc/last-upgrades-git.log | wc -l`
-	
+
 echo
 if [ -f "/var/lib/opkg/.status" ]; then
 	echo "The update function is currently disabled."

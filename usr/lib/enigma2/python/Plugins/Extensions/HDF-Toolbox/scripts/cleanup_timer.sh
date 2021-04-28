@@ -8,4 +8,4 @@ sleep 1
 sed -i '/log code\=/d' /etc/enigma2/timers.xml
 init 3
 
-exit 0   
+exit 0

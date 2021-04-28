@@ -4,7 +4,7 @@ line=$(grep -e et4000 -e et8000 -e et10000 /etc/enigma2/boxinformations)
 boxtype=$(grep getBoxType /etc/enigma2/boxinformations | cut -d "=" -f 2)
 echo Boxtype =$boxtype
 
-if [ -f /usr/local/OpenOpera/launcher ]; then 
+if [ -f /usr/local/OpenOpera/launcher ]; then
 		echo
 		echo -n "HbbTV Browser found ... remove from$boxtype"
 		opkg remove --force-depends enigma2-plugin-extensions-openopera > /dev/null 2>&1
@@ -43,4 +43,4 @@ if [ -f /usr/local/OpenOpera/launcher ]; then
 		df -h | grep /usr
 		echo
 fi
-exit 0 
+exit 0

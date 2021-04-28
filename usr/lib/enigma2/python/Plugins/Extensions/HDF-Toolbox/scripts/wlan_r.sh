@@ -11,4 +11,4 @@ opkg remove --force-depends rt5572 enigma2-plugin-drivers-network-usb-rt5572 eni
 echo
 echo "Now reboot your box to unload the drivers and modules"
 echo
-exit 0   
+exit 0

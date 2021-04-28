@@ -3,10 +3,10 @@
 cd /tmp
 echo "Download and install update"
 
-if [ `cat /proc/stb/info/chipset` = bcm7405 ]; then 
+if [ `cat /proc/stb/info/chipset` = bcm7405 ]; then
 	echo -e "\nBoxtype et9000\n"
 	wget http://addons.hdfreaks.cc/et9000/webif.tar.gz
-		if [ -f /tmp/webif.tar.gz ]; then 
+		if [ -f /tmp/webif.tar.gz ]; then
 		echo -e "\nextract files"
 		cd /
 		tar xzvf /tmp/webif.tar.gz > /dev/null 2>&1
@@ -15,10 +15,10 @@ if [ `cat /proc/stb/info/chipset` = bcm7405 ]; then
 fi
 fi
 
-if [ `cat /proc/stb/info/chipset` = 7335 ]; then 
-	echo -e "\nBoxtype vuduo\n"	
+if [ `cat /proc/stb/info/chipset` = 7335 ]; then
+	echo -e "\nBoxtype vuduo\n"
 	wget http://addons.hdfreaks.cc/vuduo/webif.tar.gz
-		if [ -f /tmp/webif.tar.gz ]; then 
+		if [ -f /tmp/webif.tar.gz ]; then
 		echo -e "\nextract files"
 		cd /
 		tar xzvf /tmp/webif.tar.gz > /dev/null 2>&1
@@ -27,4 +27,4 @@ if [ `cat /proc/stb/info/chipset` = 7335 ]; then
 fi
 fi
 
-exit 0 
+exit 0

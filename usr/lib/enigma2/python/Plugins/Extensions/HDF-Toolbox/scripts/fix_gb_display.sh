@@ -3,7 +3,7 @@
 echo
 echo "find ddbootup and remove string"
 
-if [ -f /etc/init.d/ddbootup ]; then 
+if [ -f /etc/init.d/ddbootup ]; then
 	echo
 	echo "ddbootup found ... remove string and reboot"
 	echo
@@ -19,4 +19,4 @@ else
 	echo "no /etc/init.d/ddbootup found"
 	echo
 fi
-exit 0 
+exit 0

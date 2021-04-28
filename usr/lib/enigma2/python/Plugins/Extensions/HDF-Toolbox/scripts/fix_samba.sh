@@ -18,4 +18,4 @@ echo
 /etc/init.d/samba restart
 echo
 
-exit 0   
+exit 0

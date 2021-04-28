@@ -30,7 +30,7 @@ opkg install python-youtube-dl \
 python-mutagen \
 python-textutils
 echo
-echo "install system plugins" 
+echo "install system plugins"
 opkg install enigma2-plugin-systemplugins-automaticvolumeadjustment
 echo
 echo "install extensions"

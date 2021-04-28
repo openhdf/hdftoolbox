@@ -5,4 +5,4 @@ rm -rf /media/usb/picon > /dev/null 2>&1
 rm -rf /media/hdd/picon > /dev/null 2>&1
 echo -e "\nPicon removed\n"
 
-exit 0 
+exit 0

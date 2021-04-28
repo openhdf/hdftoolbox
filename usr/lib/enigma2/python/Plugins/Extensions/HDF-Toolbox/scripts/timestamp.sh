@@ -7,4 +7,4 @@ echo
 echo "Timestamp removed ... Please reboot your Box now!"
 echo
 
-exit 0   
+exit 0

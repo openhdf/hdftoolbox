@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f /etc/.ushare ]; then 
+if [ -f /etc/.ushare ]; then
 	echo
 	/etc/init.d/ushare stop
 	chmod 644 /etc/init.d/ushare
@@ -19,4 +19,4 @@ else
 	echo
 	echo
 fi
-exit 0 
+exit 0

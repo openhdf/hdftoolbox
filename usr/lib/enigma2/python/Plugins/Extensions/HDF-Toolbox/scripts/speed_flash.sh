@@ -20,4 +20,4 @@ time dd if=/dev/zero of=$target/blanks2 bs=1024k count=10
 rm $target/blanks2
 echo
 
-exit 0   
+exit 0

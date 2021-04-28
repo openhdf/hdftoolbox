@@ -13,4 +13,4 @@ cat /etc/image-version
 echo
 echo
 
-exit 0 
+exit 0

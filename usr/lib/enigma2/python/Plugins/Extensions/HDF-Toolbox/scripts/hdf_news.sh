@@ -4,7 +4,7 @@ cd /tmp
 rm -f /tmp/news.txt
 wget http://feeds.hdfreaks.cc/news.txt > /dev/null 2>&1
 
-if [ -f /tmp/news.txt ]; then 
+if [ -f /tmp/news.txt ]; then
 		cat /tmp/news.txt
 		echo
 else
@@ -13,4 +13,4 @@ else
 		echo
 fi
 
-exit 0 
+exit 0

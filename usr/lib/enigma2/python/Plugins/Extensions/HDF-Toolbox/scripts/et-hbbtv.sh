@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f /usr/local/browser/browser ]; then 
+if [ -f /usr/local/browser/browser ]; then
 	echo opkg list-installed | grep webbrowser
 	echo
 	echo "HbbTV Browser found ... remove ETXx00 HbbTV"
@@ -36,4 +36,4 @@ else
 	df -h | grep /usr
 	echo
 fi
-exit 0 
+exit 0

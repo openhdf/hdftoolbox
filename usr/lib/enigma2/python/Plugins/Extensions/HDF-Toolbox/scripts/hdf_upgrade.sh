@@ -13,7 +13,7 @@ opkg list-upgradable > /etc/last-upgrades-git.log
 lines=`cat /etc/last-upgrades-git.log | wc -l`
 if [ -z "$upgrades" ]; then
 	echo -e "Nothing to upgrade at this point.\n"
-	wget -q -O /tmp/.message.txt "http://127.0.0.1/web/message?text=Nothing%20to%20update%20at%20this%20point%20...&type=2" &  > /dev/null 2>&1 
+	wget -q -O /tmp/.message.txt "http://127.0.0.1/web/message?text=Nothing%20to%20update%20at%20this%20point%20...&type=2" &  > /dev/null 2>&1
 else
 	echo -e "\nThere are $lines updates available in /etc/last-upgrades-git.log.\n"
 	sleep 1

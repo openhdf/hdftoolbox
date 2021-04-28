@@ -18,4 +18,4 @@ sleep 2
 killall enigma2
 echo
 
-exit 0   
+exit 0

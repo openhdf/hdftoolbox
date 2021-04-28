@@ -27,10 +27,10 @@ enigma2-plugin-extensions-xbmcwetter \
 enigma2-plugin-extensions-zaphistorybrowser
 echo
 echo "install austria settings"
-opkg install enigma2-plugin-settings-austria-19.2-13.0-by-googgi 
+opkg install enigma2-plugin-settings-austria-19.2-13.0-by-googgi
 echo
 echo "install nblack51-skin"
-opkg install enigma2-plugin-skins-nblack51-openhdf-mod 
+opkg install enigma2-plugin-skins-nblack51-openhdf-mod
 echo
 echo "Installation erfolgreich abgeschlossen!"
 echo

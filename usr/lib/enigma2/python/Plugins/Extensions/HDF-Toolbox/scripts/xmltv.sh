@@ -8,4 +8,4 @@ opkg upgrade enigma2-plugin-extensions-xmltvimport-rytec enigma2-plugin-extensio
 echo
 echo "done"
 echo
-exit 0 
+exit 0

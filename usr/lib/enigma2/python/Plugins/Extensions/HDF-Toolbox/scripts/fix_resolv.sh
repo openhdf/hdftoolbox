@@ -2,7 +2,7 @@
 
 echo -e "\nrecreate resolv.conf"
 
-if [ -f /etc/resolv.conf ]; then 
+if [ -f /etc/resolv.conf ]; then
 	echo -e "\n/etc/resolv.conf found ... remove and recreate\n"
 	cp /etc/resolv.conf /etc/resolv.conf.backup
 	rm -f /etc/resolv.conf
@@ -17,4 +17,4 @@ if [ -f /etc/resolv.conf ]; then
 else
 	echo -e "no /etc/resolv.conf found\n"
 fi
-exit 0 
+exit 0

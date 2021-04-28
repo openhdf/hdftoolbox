@@ -6,7 +6,7 @@ echo Boxtype =$boxtype
 
 if [[ -n "$line" ]]
 then
-	if [ -f /usr/local/NXBrowser/launcher ]; then 
+	if [ -f /usr/local/NXBrowser/launcher ]; then
 		echo
 		echo -n "HbbTV Browser found ... remove from$boxtype"
 		opkg remove --force-depends enigma2-plugin-extensions-newxtrend-hbbtv > /dev/null 2>&1
@@ -44,9 +44,9 @@ then
 		echo
 		df -h | grep /usr
 		echo
-	fi	
+	fi
 else
-	if [ -f /usr/local/hbb-browser/launcher ]; then 
+	if [ -f /usr/local/hbb-browser/launcher ]; then
 		echo
 		echo -n "HbbTV Browser found ... remove from$boxtype"
 		opkg remove --force-depends enigma2-plugin-extensions-hbbtv vuplus-opera-browser-util vuplus-opera-dumpait enigma2-hbbtv-util > /dev/null 2>&1
@@ -86,4 +86,4 @@ else
 		echo
 	fi
 fi
-exit 0 
+exit 0

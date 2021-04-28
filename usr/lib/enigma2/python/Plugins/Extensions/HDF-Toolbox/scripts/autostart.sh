@@ -67,7 +67,7 @@ if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; th
 fi
 if [ -e /usr/sbin/streamlinksrv ]; then
 	if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
-		chmod 755 /usr/sbin/streamlinksrv 
+		chmod 755 /usr/sbin/streamlinksrv
 		/etc/rc3.d/S50streamlinksrv start
 	else
 		/etc/rc3.d/S50streamlinksrv stop

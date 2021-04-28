@@ -18,7 +18,7 @@ if ! opkg list-installed | egrep 'enigma2-plugin-systemplugins-serviceapp' >/dev
 fi
 
 echo
-echo "Please reboot your box," 
+echo "Please reboot your box,"
 echo "if you run this script the first time!"
 echo
 echo
