@@ -52,7 +52,7 @@ if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
 		echo "IPTV Player addons are currently installed"
 	else
 		opkg update
-		opkg install iptv-player-xxx --force-reinstall
+		opkg install enigma2-plugin-extensions-e2iplayer-xxx --force-reinstall
 	fi
 fi
 
