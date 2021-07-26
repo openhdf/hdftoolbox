@@ -4,6 +4,18 @@ echo
 echo "####################### running HDFreaks autostart scripts ####################### "
 echo
 
+server=iptv.hdfreaks.cc
+ping -c1 -W1 -q $server &>/dev/null
+status=$( echo $? )
+#echo $status
+if [[ $status == 0 ]] ; then
+	online="0"
+	echo "HDFreaks Server reachable"
+else
+	online="1"
+	echo "HDFreaks Server not reachable"
+fi
+
 ##set temp output file
 cat /proc/stb/info/boxtype /proc/version > /tmp/hdf.txt
 echo "" >> /tmp/hdf.txt
@@ -30,7 +42,7 @@ if grep -Eqs 'cortexa15hf-neon-vfpv4' /tmp/boxbranding.cfg; then
 fi
 
 ##create iptv symlinks to /usr/scripts/ for cronjobs
-echo "check scripts and create symlinks"
+echo "Check scripts and create some symlinks"
 [ -d /usr/scripts ] || mkdir /usr/scripts
 rm -f /usr/scripts/IPTV_*
 cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/e2scripts/* /usr/scripts/
@@ -39,10 +51,14 @@ chmod -R 755 /usr/scripts
 #check mediaportal skins
 if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal ]; then
 	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/XionHDF ]; then
-		echo "MP skins are currently installed"
+		echo "MediaPortal skins are currently installed"
 	else
-		opkg update
-		opkg install mediaportal-skins --force-reinstall
+		if [ $online == 0 ]; then
+			opkg update
+			opkg install mediaportal-skins --force-reinstall
+		else
+			echo "Server not available"
+		fi
 	fi
 fi
 
@@ -51,18 +67,26 @@ if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
 	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer/hosts/hostXXX.py ]; then
 		echo "IPTV Player addons are currently installed"
 	else
-		opkg update
-		opkg install enigma2-plugin-extensions-e2iplayer-xxx --force-reinstall
+		if [ $online == 0 ]; then
+			opkg update
+			opkg install enigma2-plugin-extensions-e2iplayer-xxx --force-reinstall
+		else
+			echo "Server not available"
+		fi
 	fi
 fi
 
 # check streamlinkserver
 if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/sbin/streamlinksrv ]; then
-		echo "streamlinksrv installed"
+		echo "Streamlinksrv is installed"
 	else
-		opkg update
-		opkg install enigma2-plugin-extensions-streamlinkserver
+		if [ $online == 0 ]; then
+			opkg update
+			opkg install enigma2-plugin-extensions-streamlinkserver
+		else
+			echo "Server not available"
+		fi
 	fi
 fi
 if [ -e /usr/sbin/streamlinksrv ]; then
@@ -80,8 +104,12 @@ if grep ^config.usage.cleanmemlite=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/ClearMem/plugin.py ]; then
 		echo "cleanmemlite installed"
 	else
-		opkg update
-		opkg install enigma2-plugin-extensions-clearmem-lite_1.0_all
+		if [ $online == 0 ]; then
+			opkg update
+			opkg install enigma2-plugin-extensions-clearmem-lite_1.0_all
+		else
+			echo "Server not available"
+		fi
 	fi
 fi
 
@@ -104,8 +132,12 @@ else
 			if [ "10576" -gt "$FREEsize" ]; then
 				echo "Piconsize 4MB is to big for your Flashsize with "$FREEsize"kb free"
 			else
-				opkg update
-				opkg install enigma2-plugin-picons-default-hdf
+				if [ $online == 0 ]; then
+					opkg update
+					opkg install enigma2-plugin-picons-default-hdf
+				else
+					echo "Server not available"
+				fi
 			fi
 	fi
 fi
