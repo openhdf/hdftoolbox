@@ -110,10 +110,10 @@ if [ -e /usr/sbin/streamlinksrv ]; then
 	fi
 fi
 
-# check cleanmemlite
+# check clearmemlite
 if grep ^config.usage.cleanmemlite=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/ClearMem/plugin.py ]; then
-		echo "cleanmemlite installed"
+		echo "clearmemlite installed"
 	else
 		if [ $online == 0 ]; then
 			opkg update
