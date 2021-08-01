@@ -13,18 +13,14 @@ if [ -f "$epgfilename" ]; then
 	rm -f $epgfilename
 	echo "please wait ..."
 	sleep 3
-	init 4
-	sleep 1
-	init 3
+	killall -9 enigma2
 elif [ -f "$epgfilename2" ]; then
 	echo "found epg = $epgfilename2"
 	echo "delete epg & restart enigma"
 	rm -f $epgfilename2
 	echo "please wait ..."
 	sleep 3
-	init 4
-	sleep 1
-	init 3
+	killall -9 enigma2
 else
 	echo "no epg file found"
 fi
