@@ -76,6 +76,37 @@ if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
 	fi
 fi
 
+# check serviceapp
+if grep ^config.usage.serviceapp=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.so ]; then
+		echo "ServiceApp is installed"
+	else
+		if [ $online == 0 ]; then
+			opkg update
+			echo "Remove ServiceHisilicon"
+			opkg remove --force-depends enigma2-plugin-systemplugins-servicehisilicon
+			opkg install enigma2-plugin-systemplugins-serviceapp
+		else
+			echo "Server not available"
+		fi
+	fi
+fi
+if ! grep ^config.usage.serviceapp /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.so ]; then
+		echo "ServiceApp is installed"
+		opkg remove --force-depends enigma2-plugin-systemplugins-serviceapp
+		if [ $online == 0 ]; then
+			echo "install servicehisilicon again"
+			opkg update
+			opkg install enigma2-plugin-systemplugins-servicehisilicon
+		else
+			echo "Server not available"
+		fi
+	else
+		echo "ServiceApp not installed"
+	fi
+fi
+
 # check streamlinkserver
 if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/sbin/streamlinksrv ]; then
