@@ -944,7 +944,7 @@ def doIptvUpdate(**kwargs):
     if connected():
         print("[HDF-Toolbox]: IPTV list update")
         os.chdir("/etc/enigma2")
-        for filename in glob.glob("*iptv*.tv"):
+        for filename in glob.glob("*iptv*"):
             url = "http://iptv.hdfreaks.cc/" + filename
             iptvfile = "/etc/enigma2/" + str(filename)
             try:
