@@ -48,22 +48,6 @@ rm -f /usr/scripts/IPTV_*
 cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/e2scripts/* /usr/scripts/
 chmod -R 755 /usr/scripts
 
-#check hdfradio plugin
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/HDFRadio ]; then
-	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/HDFRadio/HDFRadio.pyo ]; then
-		echo "HDFRadio is currently installed"
-	fi
-fi
-if [ ! -d /usr/lib/enigma2/python/Plugins/Extensions/HDFRadio ]; then
-	if [ $online == 0 ]; then
-		echo "HDFRadio is missing"
-		opkg update
-		opkg install enigma2-plugin-extensions-hdfradio --force-reinstall
-	else
-			echo "Server not available"
-	fi
-fi
-
 #check mediaportal skins
 if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal ]; then
 	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/XionHDF ]; then
