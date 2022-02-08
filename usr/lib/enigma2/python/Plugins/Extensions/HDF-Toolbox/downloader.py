@@ -228,7 +228,7 @@ class Hdf_Downloader(Screen):
             i = six.moves.urllib.request.urlopen(url)
             downfile = i.read()
             f = open("/tmp/.down.hdf", 'w')
-            f.write(downfile)
+            f.write(downfile.decode('utf-8'))
             f.close()
         except:
             os.system("touch /tmp/.down.hdf")

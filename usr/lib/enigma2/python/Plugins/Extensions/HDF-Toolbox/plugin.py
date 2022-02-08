@@ -242,6 +242,8 @@ if os.path.exists("/usr/lib/enigma2/python/Plugins/PLi/SoftcamSetup") is True:
    from Plugins.PLi.SoftcamSetup.Sc import *
 if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
    from Plugins.SystemPlugins.SoftcamSetup.Sc import *
+if os.path.exists("/usr/lib/enigma2/python/Screens/SoftcamSetup.py") is True:
+    from Screens.SoftcamSetup import SoftcamSetup
 
 # starting cardserver and softcam
 if os.path.exists("/etc/init.d/cardserver") is True:
@@ -378,10 +380,12 @@ class Fantastic(Screen):
            mainmenu.append(("Softcam Cardserver Manager", "mfsc"))
         elif os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftcamSetup") is True:
            mainmenu.append(("Image Softcam Cardserver Manager", "mfsc"))
+        elif os.path.exists("/usr/lib/enigma2/python/Screens/SoftcamSetup.py") is True:
+           mainmenu.append(("Image Softcam Cardserver Manager", "mfsc2"))
         else:
             pass
 
-        if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.pyo") is True:
+        if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.pyc") or os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/downloader.pyo"):
            mainmenu.append(("openHDF-Downloader", "mfschdf"))
 
         mainmenu.append(("--------------------------------------------------", "mfxyz"))
@@ -438,7 +442,7 @@ class Fantastic(Screen):
            elif mfselected == "mfsc":
                self.session.openWithCallback(self.FantasticMenu(""), ScSelection)
            elif mfselected == "mfsc2":
-               self.session.openWithCallback(self.FantasticMenu(""), ScSelection2)
+               self.session.openWithCallback(self.FantasticMenu(""), SoftcamSetup)
            elif mfselected == "mfxyz":
                title1 = _("HDF Toolbox")
                title2 = _("~~~~~~~~~~~~~~~~")
