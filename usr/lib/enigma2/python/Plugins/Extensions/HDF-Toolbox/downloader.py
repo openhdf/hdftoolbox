@@ -950,7 +950,7 @@ def doIptvUpdate(**kwargs):
             try:
                 i = six.moves.urllib.request.urlopen(url)
                 html = i.read()
-                f = open(iptvfile, 'w')
+                f = open(iptvfile, 'wb')
                 f.write(html)
                 f.close()
                 changed = True
