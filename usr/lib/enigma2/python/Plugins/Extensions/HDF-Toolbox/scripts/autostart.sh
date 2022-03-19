@@ -36,7 +36,7 @@ cat $issuenetlogo | sed "s/#GETIMAGEVERSION/$getImageVersion/g;s/GETCURRENTBUILD
 ln -fs /usr/share/enigma2/spinner/ /usr/share/enigma2/skin_default/.
 
 #check ld-linux symlink
-python /usr/lib/enigma2/python/BoxBrandingTest.pyo | sed 's/<$//g;s/ /_/g' > /tmp/boxbranding.cfg
+python /usr/lib/enigma2/python/BoxBrandingTest.py | sed 's/<$//g;s/ /_/g' > /tmp/boxbranding.cfg
 if grep -Eqs 'cortexa15hf-neon-vfpv4' /tmp/boxbranding.cfg; then
 	ln -fs /lib/ld-linux-armhf.so.3 /lib/ld-linux.so.3
 fi
