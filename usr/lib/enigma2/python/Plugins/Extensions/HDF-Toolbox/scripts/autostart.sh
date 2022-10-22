@@ -76,6 +76,19 @@ if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
 	fi
 fi
 
+if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
+	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer/hosts/hostxxx.py ]; then
+		echo "IPTV Player addons are currently installed"
+	else
+		if [ $online == 0 ]; then
+			opkg update
+			opkg install enigma2-plugin-extensions-e2iplayer-xxx --force-reinstall
+		else
+			echo "Server not available"
+		fi
+	fi
+fi
+
 # check serviceapp
 if grep ^config.usage.serviceapp=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.so ]; then
