@@ -143,6 +143,34 @@ if [ -e /usr/sbin/streamlinksrv ]; then
 	fi
 fi
 
+# check ytdlp wrapper
+if grep ^config.usage.ytdlp=true /etc/enigma2/settings >/dev/null; then
+	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/YTDLPWrapper ]; then
+		echo "Wrapper is installed"
+	else
+		if [ $online == 0 ]; then
+			opkg update
+			opkg install python3-youtube-dl
+			opkg install python3-yt-dlp
+			opkg install enigma2-plugin-extensions-streamlinkwrapper
+			opkg install enigma2-plugin-extensions-ytdlpwrapper
+			opkg install enigma2-plugin-extensions-ytdlwrapper
+		else
+			echo "Server not available"
+		fi
+	fi
+fi
+
+if ! grep  ^config.usage.ytdlp /etc/enigma2/settings >/dev/null; then
+	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/YTDLPWrapper ]; then
+		echo "Remove installed Wrapper"
+		opkg update
+		opkg install enigma2-plugin-extensions-streamlinkwrapper
+		opkg install enigma2-plugin-extensions-ytdlpwrapper
+		opkg install enigma2-plugin-extensions-ytdlwrapper
+	fi
+fi
+
 # check clearmemlite
 if grep ^config.usage.cleanmemlite=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/ClearMem/plugin.py ]; then
