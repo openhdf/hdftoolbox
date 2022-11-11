@@ -165,9 +165,9 @@ if ! grep  ^config.usage.ytdlp /etc/enigma2/settings >/dev/null; then
 	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/YTDLPWrapper ]; then
 		echo "Remove installed Wrapper"
 		opkg update
-		opkg install enigma2-plugin-extensions-streamlinkwrapper
-		opkg install enigma2-plugin-extensions-ytdlpwrapper
-		opkg install enigma2-plugin-extensions-ytdlwrapper
+		opkg remove enigma2-plugin-extensions-streamlinkwrapper
+		opkg remove enigma2-plugin-extensions-ytdlpwrapper
+		opkg remove enigma2-plugin-extensions-ytdlwrapper
 	fi
 fi
 
