@@ -151,6 +151,7 @@ if grep ^config.usage.ytdlp=true /etc/enigma2/settings >/dev/null; then
 		if [ $online == 0 ]; then
 			opkg update
 			opkg install python3-youtube-dl
+			opkg install python-youtube-dl
 			opkg install python3-yt-dlp
 			opkg install enigma2-plugin-extensions-streamlinkwrapper
 			opkg install enigma2-plugin-extensions-ytdlpwrapper
