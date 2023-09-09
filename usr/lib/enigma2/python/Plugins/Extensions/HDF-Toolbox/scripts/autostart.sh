@@ -48,129 +48,19 @@ rm -f /usr/scripts/IPTV_*
 cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/e2scripts/* /usr/scripts/
 chmod -R 755 /usr/scripts
 
-#check mediaportal skins
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal ]; then
-	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/XionHDF ]; then
-		echo "MediaPortal skins are currently installed"
-	else
-		if [ $online == 0 ]; then
-			opkg update
-			opkg install mediaportal-skins --force-reinstall
-		else
-			echo "Server not available"
-		fi
-	fi
-fi
-
-#check iptvplayer addons
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
-	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer/hosts/hostXXX.py ]; then
-		echo "IPTV Player addons are currently installed"
-	else
-		if [ $online == 0 ]; then
-			opkg update
-			opkg install enigma2-plugin-extensions-e2iplayer-xxx --force-reinstall
-		else
-			echo "Server not available"
-		fi
-	fi
-fi
-
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer ]; then
-	if [ -e /usr/lib/enigma2/python/Plugins/Extensions/IPTVPlayer/hosts/hostxxx.py ]; then
-		echo "IPTV Player addons are currently installed"
-	else
-		if [ $online == 0 ]; then
-			opkg update
-			opkg install enigma2-plugin-extensions-e2iplayer-xxx --force-reinstall
-		else
-			echo "Server not available"
-		fi
-	fi
-fi
-
-# check serviceapp
-if grep ^config.usage.serviceapp=true /etc/enigma2/settings >/dev/null; then
-	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.so ]; then
-		echo "ServiceApp is installed"
-	else
-		if [ $online == 0 ]; then
-			opkg update
-			echo "Remove ServiceHisilicon"
-			opkg remove --force-depends enigma2-plugin-systemplugins-servicehisilicon
-			opkg install enigma2-plugin-systemplugins-serviceapp
-		else
-			echo "Server not available"
-		fi
-	fi
-fi
-if ! grep ^config.usage.serviceapp /etc/enigma2/settings >/dev/null; then
-	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.so ]; then
-		echo "ServiceApp is installed"
-		opkg remove --force-depends enigma2-plugin-systemplugins-serviceapp
-		if [ $online == 0 ]; then
-			echo "install servicehisilicon again"
-			opkg update
-			opkg install enigma2-plugin-systemplugins-servicehisilicon
-		else
-			echo "Server not available"
-		fi
-	else
-		echo "ServiceApp not installed"
-	fi
-fi
-
-# check streamlinkserver
-if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
-	if [ -e /usr/sbin/streamlinksrv ]; then
-		echo "Streamlinksrv is installed"
-	else
-		if [ $online == 0 ]; then
-			opkg update
-			opkg install enigma2-plugin-extensions-streamlinkserver
-		else
-			echo "Server not available"
-		fi
-	fi
-fi
-if [ -e /usr/sbin/streamlinksrv ]; then
-	if grep ^config.usage.streamlinkserver=true /etc/enigma2/settings >/dev/null; then
-		chmod 755 /usr/sbin/streamlinksrv
-		/etc/rc3.d/S50streamlinksrv start
-	else
-		/etc/rc3.d/S50streamlinksrv stop
-		chmod 644 /usr/sbin/streamlinksrv
-	fi
-fi
-
-# check ytdlp wrapper
-if grep ^config.usage.ytdlp=true /etc/enigma2/settings >/dev/null; then
-	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/YTDLPWrapper ]; then
-		echo "Wrapper is installed"
-	else
-		if [ $online == 0 ]; then
-			opkg update
-			opkg install python3-youtube-dl
-			opkg install python-youtube-dl
-			opkg install python3-yt-dlp
-			opkg install enigma2-plugin-extensions-streamlinkwrapper
-			opkg install enigma2-plugin-extensions-ytdlpwrapper
-			opkg install enigma2-plugin-extensions-ytdlwrapper
-		else
-			echo "Server not available"
-		fi
-	fi
-fi
-
-if ! grep  ^config.usage.ytdlp /etc/enigma2/settings >/dev/null; then
-	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/YTDLPWrapper ]; then
-		echo "Remove installed Wrapper"
-		opkg update
-		opkg remove enigma2-plugin-extensions-streamlinkwrapper
-		opkg remove enigma2-plugin-extensions-ytdlpwrapper
-		opkg remove enigma2-plugin-extensions-ytdlwrapper
-	fi
-fi
+##check mediaportal skins
+#if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal ]; then
+#	if [ -d /usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/XionHDF ]; then
+#		echo "MediaPortal skins are currently installed"
+#	else
+#		if [ $online == 0 ]; then
+#			opkg update
+#			opkg install mediaportal-skins --force-reinstall
+#		else
+#			echo "Server not available"
+#		fi
+#	fi
+#fi
 
 # check clearmemlite
 if grep ^config.usage.cleanmemlite=true /etc/enigma2/settings >/dev/null; then
@@ -191,26 +81,4 @@ if [ -e /etc/init.d/minisatip ]; then
 	echo "copy minisatip startscript"
 	cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/bootfiles/minisatip /etc/init.d/
 	chmod -R 755 /etc/init.d/minisatip
-fi
-
-# install picons after flash
-FREEsize=`df -k /usr/ | awk '/[0-9]%/ {print $4}'`
-if [ -f /usr/share/enigma2/picon/1_0_19_EF74_3F9_1_C00000_0_0_0.png ] >/dev/null; then
-	echo "default HDF picons already installed"
-else
-	if grep ^config.usage.hdfpicon=false /etc/enigma2/settings >/dev/null; then
-		echo "HDF picons not wanted"
-	else
-		echo "installing HDF default picons"
-			if [ "10576" -gt "$FREEsize" ]; then
-				echo "Piconsize 4MB is to big for your Flashsize with "$FREEsize"kb free"
-			else
-				if [ $online == 0 ]; then
-					opkg update
-					opkg install enigma2-plugin-picons-default-hdf
-				else
-					echo "Server not available"
-				fi
-			fi
-	fi
 fi

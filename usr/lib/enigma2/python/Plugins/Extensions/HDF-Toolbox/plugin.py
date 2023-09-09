@@ -24,7 +24,7 @@ import NavigationInstance
 from .downloader import Hdf_Downloader
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getImageType, getImageDistro, getOEVersion
 
-toolboxversion = "Toolbox Version - 14.08.2023"
+toolboxversion = "Toolbox Version - 09.09.2023"
 
 try:
     os.system("echo box_type=" + getBoxType() + " > /etc/image-version")
