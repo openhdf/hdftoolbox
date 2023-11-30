@@ -573,28 +573,25 @@ class BufferThread():
         self.download = None
 
     def startDownloading(self, filename, url):
+		self.filename = filename
         self.progress = 0
         self.downloading = True
         self.error = ""
         self.download = downloadWithProgress(url, filename)
         self.download.addProgress(self.httpProgress)
-        self.download.start().addCallback(self.httpFinished).addErrback(self.httpFailed)
+        self.download.addEnd(self.httpFinished)
+        self.download.addError(self.httpFailed)
+        self.download.start()
 
     def httpProgress(self, recvbytes, totalbytes):
         self.progress = int(100 * recvbytes / float(totalbytes))
 
-    def httpFinished(self, string=""):
-        self.downloading = False
-        if string is not None:
-            self.error = str(string)
-        else:
-            self.error = ""
+    def httpFailed(self, error):
+        self.download.stop()
+        self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading\n%s\n%s") % (self.filename, error.strerror), type=MessageBox.TYPE_ERROR, simple=True)
 
-    def httpFailed(self, failure_instance=None, error_message=""):
-        self.downloading = False
-        if error_message == "" and failure_instance is not None:
-            error_message = failure_instance.getErrorMessage()
-            self.error = str(error_message)
+    def httpFinished(self, filename=None):
+        self.download.stop()
 
     def stop(self):
         self.progress = 0
