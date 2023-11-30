@@ -573,7 +573,7 @@ class BufferThread():
         self.download = None
 
     def startDownloading(self, filename, url):
-		self.filename = filename
+        self.filename = filename
         self.progress = 0
         self.downloading = True
         self.error = ""
