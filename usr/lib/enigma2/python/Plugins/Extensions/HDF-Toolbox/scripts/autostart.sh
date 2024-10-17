@@ -16,6 +16,8 @@ else
 	echo "HDFreaks Server not reachable"
 fi
 
+sysctl net.ipv6.conf.lo.disable_ipv6=0
+
 ##set temp output file
 cat /proc/stb/info/boxtype /proc/version > /tmp/hdf.txt
 echo "" >> /tmp/hdf.txt
